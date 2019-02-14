@@ -1,0 +1,51 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <a class="navbar-brand" routerLink="/">
+    <img src="../../assets/img/logo_utn_blanco.png" height="50px" alt="Museo UTN">
+  </a>
+  
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown"
+    aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse espaciado" id="navbarNavDropdown">
+    <ul class="navbar-nav ">
+      <li class="nav-item active">
+        <a class="nav-link" routerLink="/">Inicio</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" routerLink="/nosotros">Nosotros</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" routerLink="/colecciones-user">Colecciones</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" routerLink="/noticias">Noticias</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" routerLink="/contactos">Contactos</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" routerLink="/login">Ingresar</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<!--
+  <mat-toolbar color="primary" class="navegacion">
+  <mat-toolbar-row>
+    <img src="../../assets/img/logo_utn_blanco.png" style="height:100%" alt="Museo UTN">
+    <span class="espaciado"></span>
+    <a mat-button routerLink="/">Inicio</a>
+    <a mat-button [matMenuTriggerFor]="nosotros">Nosotros</a>
+    <mat-menu #nosotros="matMenu">
+      <a mat-menu-item>Misión</a>
+      <a mat-menu-item>Visión</a>
+    </mat-menu>
+    <a mat-button>Colecciones</a>
+    <a mat-button>Blog</a>
+    <a mat-button>Contactos</a>
+    <a mat-button routerLink="/login">Ingresar</a>
+  </mat-toolbar-row>
+</mat-toolbar>
+-->
