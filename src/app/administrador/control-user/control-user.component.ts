@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { UserService } from '../../services/user.service';
 import { RolService } from '../../services/rol.service';
+
 @Component({
   selector: 'app-control-user',
   templateUrl: './control-user.component.html',
@@ -9,6 +10,7 @@ import { RolService } from '../../services/rol.service';
 export class ControlUserComponent implements OnInit {
   users: any;
   rols:any;
+  
   constructor(private userService: UserService, private rolService: RolService) { }
 
   ngOnInit() {

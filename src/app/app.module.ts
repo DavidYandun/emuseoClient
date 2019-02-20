@@ -31,12 +31,14 @@ import { HeaderAdminComponent } from './administrador/header-admin/header-admin.
 import { AdminComponent } from './administrador/admin/admin.component';
 import { CreateUserComponent } from './administrador/create-user/create-user.component';
 import { ControlUserComponent } from './administrador/control-user/control-user.component';
+import { RolComponent } from './administrador/rol/rol.component';
 
 import { RolService } from './services/rol.service';
 import { UserService } from './services/user.service';
 import { AuthService } from './services/auth.service';
 
 import { AuthGuard } from './guards/auth.guard';
+
 
 
 
@@ -59,6 +61,7 @@ import { AuthGuard } from './guards/auth.guard';
     HeaderAdminComponent,
     CreateUserComponent,
     ControlUserComponent,
+    RolComponent,
 
   ],
   imports: [
@@ -106,6 +109,10 @@ import { AuthGuard } from './guards/auth.guard';
       },
       {
         path: 'control-user',
+        component: ControlUserComponent
+      },
+      {
+        path: 'rol',
         component: ControlUserComponent
       },
       {
