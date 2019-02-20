@@ -14,7 +14,8 @@ import { MaterialModule } from './material';
 
 import { HeaderClientComponent } from './usuario/header-client/header-client.component';
 import { LoginComponent } from './usuario/login/login.component';
-import { AdminComponent } from './administrador/admin/admin.component';
+
+
 import { HomeComponent } from './usuario/home/home.component';
 import { FooterComponent } from './footer/footer.component';
 import { ColeccionesUserComponent } from './usuario/colecciones-user/colecciones-user.component';
@@ -25,8 +26,18 @@ import { MultimediaComponent } from './usuario/multimedia/multimedia.component';
 import { NosotrosComponent } from './usuario/nosotros/nosotros.component';
 import { ContactosComponent } from './usuario/contactos/contactos.component';
 import { NoticiasComponent } from './usuario/noticias/noticias.component';
-import { CrearUsuarioComponent } from './administrador/crear-usuario/crear-usuario.component';
+
 import { HeaderAdminComponent } from './administrador/header-admin/header-admin.component';
+import { AdminComponent } from './administrador/admin/admin.component';
+import { CreateUserComponent } from './administrador/create-user/create-user.component';
+import { ControlUserComponent } from './administrador/control-user/control-user.component';
+
+import { RolService } from './services/rol.service';
+import { UserService } from './services/user.service';
+import { AuthService } from './services/auth.service';
+
+import { AuthGuard } from './guards/auth.guard';
+
 
 
 @NgModule({
@@ -45,8 +56,9 @@ import { HeaderAdminComponent } from './administrador/header-admin/header-admin.
     NosotrosComponent,
     ContactosComponent,
     NoticiasComponent,
-    CrearUsuarioComponent,
     HeaderAdminComponent,
+    CreateUserComponent,
+    ControlUserComponent,
 
   ],
   imports: [
@@ -78,14 +90,23 @@ import { HeaderAdminComponent } from './administrador/header-admin/header-admin.
         path: 'contactos',
         component: ContactosComponent
       },
+      {
+        path: 'reinos',
+        component: ReinosComponent
+      },
       //Adminisitradores
       {
         path: 'admin',
-        component: AdminComponent
+        component: AdminComponent,
+        canActivate: [AuthGuard]
       },
       {
-        path: 'crear-usuario',
-        component: CrearUsuarioComponent
+        path: 'create-user',
+        component: CreateUserComponent
+      },
+      {
+        path: 'control-user',
+        component: ControlUserComponent
       },
       {
         path: '',
@@ -94,7 +115,7 @@ import { HeaderAdminComponent } from './administrador/header-admin/header-admin.
 
     ])
   ],
-  providers: [],
+  providers: [RolService, UserService, AuthService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

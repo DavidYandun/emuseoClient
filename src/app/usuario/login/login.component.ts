@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../../auth.service';
+import { AuthService } from '../../services/auth.service';
 import { FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -8,7 +9,7 @@ import { FormControl, Validators } from '@angular/forms';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  constructor(private Auth: AuthService) { }
+  constructor(private Auth: AuthService, private router:Router) { }
 
   ngOnInit() {
   }
@@ -19,24 +20,20 @@ export class LoginComponent implements OnInit {
   getErrorMessage() {
     return this.email.hasError('required') ? 'Ingrese un email' :
       this.email.hasError('email') ? 'email invalido' : '';
-
   }
 
   //crear nuevo usuario
-
-
 
   loginUser() {
     this.Auth.getUserDetails(this.usuario).subscribe(data => {
       console.log(data);
 
-      if (data) {
-        console.log("bien");
+      if (data.success) {
+        this.router.navigate(['admin'])
+        this.Auth.setLoggedIn(true)
       }
 
       //redirect the person to /admin
-
-
 
     });
 

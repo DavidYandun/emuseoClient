@@ -6,10 +6,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./admin.component.css']
 })
 export class AdminComponent implements OnInit {
-
+  message = "Loading....";
   constructor() { }
 
   ngOnInit() {
+    this.message = "Estas en admin";
+    
   }
 
 }

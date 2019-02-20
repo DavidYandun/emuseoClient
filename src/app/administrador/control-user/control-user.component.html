@@ -1,0 +1,21 @@
+<div class="container  row">
+  <div class="card col-md-4" style="width: 18rem;" *ngFor="let user of users">
+    <img src="../../../assets/img/perfil.jpg" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">{{user.name}} {{user.lastname}} 
+        
+
+        <small class="text-muted">({{user.rolid}})</small>
+      </h5>
+
+      <div class="card-text">
+        <ul>
+          <li>Email: {{user.email}}</li>
+          <li>Dirección: {{user.direction}}</li>
+          <li>Teléfono: {{user.phone}}</li>
+        </ul>
+      </div>
+      <a href="#" class="btn btn-primary">Go somewhere</a>
+    </div>
+  </div>
+</div>
