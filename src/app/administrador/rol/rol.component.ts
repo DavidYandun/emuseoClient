@@ -14,7 +14,7 @@ export class RolComponent implements OnInit {
   }
 
   getRols() {
-    this.rolService.getRol().subscribe(data => {
+    this.rolService.getRols().subscribe(data => {
       this.rols = data;
     })
   }

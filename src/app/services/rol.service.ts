@@ -9,7 +9,7 @@ export class RolService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getRol(): Observable<any> {
+  getRols(): Observable<any> {
     return this.httpClient.get("/api/rols");
   }
 }

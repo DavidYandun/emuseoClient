@@ -26,10 +26,16 @@ export class UserService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getUser(): Observable<any> {
-
-    //let headers = new HttpHeaders().set('Content-Type', 'application/json');
+  getUsers(): Observable<any> {
     return this.httpClient.get("/api/users");
+  }
+
+  getUsersRol(): Observable<any> {
+    return this.httpClient.get("/api/users/rol");
+  }
+
+  getUser(user): Observable<any> {
+    return this.httpClient.get('api/users/:$user.userid');
   }
 
 

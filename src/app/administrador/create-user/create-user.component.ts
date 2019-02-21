@@ -18,6 +18,7 @@ export class CreateUserComponent implements OnInit {
     phone: '',
     password: '',
     state: true,
+    url:'',
     created_at: ''
   };
 
@@ -30,7 +31,7 @@ export class CreateUserComponent implements OnInit {
   }
 
   getRols() {
-    this.rolService.getRol().subscribe(data => {
+    this.rolService.getRols().subscribe(data => {
       this.rols = data;
     },
       error => {

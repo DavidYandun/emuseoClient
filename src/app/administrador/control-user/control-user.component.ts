@@ -9,35 +9,49 @@ import { RolService } from '../../services/rol.service';
 })
 export class ControlUserComponent implements OnInit {
   users: any;
-  rols:any;
-  
+  rols: any;
+  user = null;
   constructor(private userService: UserService, private rolService: RolService) { }
 
   ngOnInit() {
     this.getUsers();
     this.getRols();
   }
-  
-  getUsers() {
-    var rolName:string;
-    this.userService.getUser().subscribe(data => {
-      this.users = data;
-      for(let rol of this.rols){
-        if(data.rolid==rol.rolid){
-            rolName=rol.name;
-        }
-      }
 
+
+  cambiar(user) {
+    for (let rol of this.rols) {
+      if (user.rolid == rol.rolid) {
+        return rol.name;
+      }
+    }
+  }
+  variable: any;
+  getUsers() {
+    this.userService.getUsersRol().subscribe(data => {
+      this.users = data;
     },
       error => {
         console.log(JSON.stringify(error));
-
       });
   }
 
-  getRols(){
-    this.rolService.getRol().subscribe(data=>{
-      this.rols=data;
-    })
+  getRols() {
+    this.rolService.getRols().subscribe(data => {
+      this.rols = data;
+    }, error => {
+      console.log(JSON.stringify(error));
+
+    });
+  }
+  onClick(userid) {
+    this.userService.getUser(userid).subscribe(data => {
+      this.user = data;
+    }, error => {
+      console.log(JSON.stringify(error));
+    });
+  }
+  cerrarDetalles(){
+    this.user=null;
   }
 }

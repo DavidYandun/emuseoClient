@@ -1,0 +1,16 @@
+.perfil {
+  width: 6em;
+  align-self: auto;
+}
+
+.card {
+  border-radius: 10px;
+  border-style: solid;
+  width: 50px;
+  margin: 10px;
+}
+
+.container{
+    margin-left: auto;
+    margin-right: auto;
+}
