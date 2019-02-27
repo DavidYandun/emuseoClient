@@ -26,7 +26,7 @@ export class ControlUserComponent implements OnInit {
       }
     }
   }
-  variable: any;
+  
   getUsers() {
     this.userService.getUsersRol().subscribe(data => {
       this.users = data;
@@ -44,14 +44,16 @@ export class ControlUserComponent implements OnInit {
 
     });
   }
-  onClick(userid) {
-    this.userService.getUser(userid).subscribe(data => {
+
+  getUser(user) {
+    this.userService.getUser(user.userid).subscribe(data => {
       this.user = data;
+
     }, error => {
       console.log(JSON.stringify(error));
     });
   }
-  cerrarDetalles(){
-    this.user=null;
+  cerrarDetalles() {
+    this.user = null;
   }
 }

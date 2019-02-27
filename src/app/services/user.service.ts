@@ -34,15 +34,20 @@ export class UserService {
     return this.httpClient.get("/api/users/rol");
   }
 
-  getUser(user): Observable<any> {
-    return this.httpClient.get('api/users/:$user.userid');
+  getUser(userid): Observable<any> {
+    return this.httpClient.get('api/users/' + userid);
   }
-
 
   postUser(user: any) {
     let json = JSON.stringify(user);
     let headers = new HttpHeaders().set('Content-Type', 'application/json');
     return this.httpClient.post("/api/users", json, { headers: headers });
+  }
+
+  putUser(userid: any, user: any) {
+    let json = JSON.stringify(user);
+    let headers = new HttpHeaders().set('Content-Type', 'application/json');
+    return this.httpClient.put('api/users/' + userid, json, { headers: headers });
   }
 
   isLoggedIn(): Observable<isLoggeIn> {

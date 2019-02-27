@@ -13,7 +13,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
   }
-  usuario: any = { email: '', password: '' };
+  user: any = { email: '', password: '' };
   //error de correo incorrecto
   email = new FormControl('', [Validators.required, Validators.email]);
   hide = true;
@@ -22,10 +22,10 @@ export class LoginComponent implements OnInit {
       this.email.hasError('email') ? 'email invalido' : '';
   }
 
-  //crear nuevo usuario
+  //crear nuevo user
 
   loginUser() {
-    this.Auth.getUserDetails(this.usuario).subscribe(data => {
+    this.Auth.getUserDetails(this.user).subscribe(data => {
       console.log(data);
 
       if (data.success) {

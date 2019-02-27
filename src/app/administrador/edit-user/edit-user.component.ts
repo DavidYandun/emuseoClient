@@ -1,4 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { RolService } from 'src/app/services/rol.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-edit-user',
@@ -6,15 +8,45 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./edit-user.component.css']
 })
 export class EditUserComponent implements OnInit {
-  
-  @Input() user: any = null;
+
+  @Input() user: any = {
+    rolid: null,
+    name: '',
+    lastname: '',
+    email: '',
+    direction: '',
+    phone: '',
+    state: true,
+    url: ''
+  };
+
+
+  rols: any;
   @Output() cerrar= new EventEmitter();
 
-  constructor() { }
+  constructor(private userService: UserService, private rolService: RolService) { }
 
   ngOnInit() {
+    this.getRols();
   }
-onCerrar(){
-  this.cerrar.emit();
-}
+
+  updateUser() {
+    this.userService.putUser(this.user.userid, this.user).subscribe(data => {
+      this.cerrar.emit();
+      console.log("modificación correcta");
+      
+    });
+  }
+
+  getRols() {
+    this.rolService.getRols().subscribe(data => {
+      this.rols = data;
+    }, error => {
+      console.log(JSON.stringify(error));
+
+    });
+  }
+  /*onCerrar(){
+    this.cerrar.emit();
+  }*/
 }
