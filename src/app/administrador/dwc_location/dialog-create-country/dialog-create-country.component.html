@@ -1,0 +1,11 @@
+<h1 mat-dialog-title>Nuevo Pais</h1>
+<div mat-dialog-content>
+  <mat-form-field appearance="outline" class="col">
+      <mat-label>Pais</mat-label>
+      <input matInput [(ngModel)]="data.country" cdkFocusInitial>
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-flat-button (click)="onNoClick()">No Gracias</button>
+  <button mat-flat-button [mat-dialog-close]="data" color="primary">Ok</button>
+</div>

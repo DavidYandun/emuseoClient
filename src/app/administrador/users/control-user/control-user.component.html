@@ -1,0 +1,30 @@
+<app-header-admin></app-header-admin>
+
+<div class="container row">
+  <div *ngFor="let user of users" class="card" style="width: 18rem;">
+    <div  class="text-center">
+      <img src="{{user.url}}" class="card-img-top perfil" alt="">
+    </div>
+    
+    <div class="card-body">
+      <h5 class="card-title text-center">{{user.name}} {{user.lastname}}
+        <br>
+        <small class="text-muted">{{user.rolname}}</small>
+      </h5>
+
+      <div class="card-text">
+        <ul>
+          <li>Email: {{user.email}}</li>
+          <li>Dirección: {{user.direction}}</li>
+          <li>Teléfono: {{user.phone}}</li>
+        </ul>
+      </div>
+      <button (click)="getUser(user)" class="btn btn-link" data-toggle="modal" data-target="#modalEditUser"> Editar</button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<app-edit-user [user]="user"></app-edit-user>
+
+<app-footer></app-footer>

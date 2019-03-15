@@ -1,0 +1,61 @@
+<app-header-admin></app-header-admin>
+<div class="container">
+  <mat-tab-group>
+    <mat-tab label="Identification">
+      <app-create-identification></app-create-identification>
+    </mat-tab>
+    <mat-tab label="Record Level">
+      <app-create-record-level></app-create-record-level>
+    </mat-tab>
+    <mat-tab label="Occurrence">
+      <app-create-occurrence></app-create-occurrence>
+    </mat-tab>
+    <mat-tab label="Organism">
+      <app-create-organism></app-create-organism>
+    </mat-tab>
+    <mat-tab label="Event">
+      <app-create-event></app-create-event>
+    </mat-tab>
+    <mat-tab label="Location">
+      <app-create-location></app-create-location>
+    </mat-tab>
+    <mat-tab label="Geological Context">
+      <app-create-geologicalcontext></app-create-geologicalcontext>
+    </mat-tab>
+    <mat-tab label="Taxon">
+      <app-create-taxon></app-create-taxon>
+    </mat-tab>
+  </mat-tab-group>
+</div>
+<!--
+<mat-horizontal-stepper [linear]="isLinear" #stepper>
+  <mat-step>
+    <form>
+      <ng-template matStepLabel>Identification</ng-template>
+      <app-create-identification></app-create-identification>
+      <div>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step>
+    <form>
+      <ng-template matStepLabel>Record Level</ng-template>
+      <app-create-record-level></app-create-record-level>
+      <div>
+        <button class="btn btn-primary" mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>Done</ng-template>
+    You are now done.
+    <div>
+      <button mat-button matStepperPrevious>Back</button>
+      <button mat-button (click)="stepper.reset()">Reset</button>
+    </div>
+  </mat-step>
+</mat-horizontal-stepper>
+-->
+<app-footer></app-footer>

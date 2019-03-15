@@ -1,0 +1,8 @@
+<div>
+  <label for="singleSelectRol">Estado de Verificación</label>
+  <select ng-model="verifications" class="form-control" id="singleSelectVerification" name="singleSelectVerification">
+    <option value="">--Seleccione un estado de verificación--</option>
+    <!--Selección en blanco-->
+    <option *ngFor="let verification of verifications" value="{{verification.verificationstatus}}">{{verification.verificationstatus}}</option>
+  </select>
+</div>

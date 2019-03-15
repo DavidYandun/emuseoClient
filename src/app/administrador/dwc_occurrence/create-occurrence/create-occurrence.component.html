@@ -1,0 +1,98 @@
+<div class="container">
+  <mat-form-field appearance="outline">
+    <mat-label for="identificationid">Identification</mat-label>
+    <input matInput type="text" [(ngModel)]="occurrence.identificationid" id="identificationid">
+  </mat-form-field>
+  <div class="row">
+    <mat-form-field appearance="outline" class="col">
+      <mat-label for="lifestage">Life Stage</mat-label>
+      <mat-select ng-model="lifestages" [(ngModel)]="occurrence.lifestage">
+        <mat-option>-Ninguno-</mat-option>
+        <mat-option *ngFor="let lifestage of lifestages" value="{{lifestage.lifestage}}">{{lifestage.lifestage}}</mat-option>
+      </mat-select>
+      <mat-hint class="add" (click)="addLifeStage()">
+          <mat-icon>add</mat-icon> Add Life Stage
+        </mat-hint>
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="col">
+      <mat-label for="reproductivecondition">Reproductive Condition</mat-label>
+      <mat-select ng-model="reproductiveconditions" [(ngModel)]="occurrence.reproductivecondition">
+        <mat-option>-Ninguno-</mat-option>
+        <mat-option *ngFor="let reproductivecondition of reproductiveconditions" value="{{reproductivecondition.reproductivecondition}}">{{reproductivecondition.reproductivecondition}}</mat-option>
+      </mat-select>
+      <mat-hint class="add" (click)="addReproductiveCondition()">
+          <mat-icon>add</mat-icon> Add Reproductive Condition
+        </mat-hint>
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="col">
+      <mat-label for="sex">Sex</mat-label>
+      <mat-select ng-model="sexs" [(ngModel)]="occurrence.sex">
+        <mat-option>-Ninguno-</mat-option>
+        <mat-option *ngFor="let sex of sexs" value="{{sex.sex}}">{{sex.sex}}</mat-option>
+      </mat-select>
+      <mat-hint class="add" (click)="addSex()">
+          <mat-icon>add</mat-icon> Add Sex
+        </mat-hint>
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="col">
+      <mat-label for="establishmentmeans">Establishment Means</mat-label>
+      <mat-select ng-model="establishmentmeanss" [(ngModel)]="occurrence.establishmentmeans">
+        <mat-option>-Ninguno-</mat-option>
+        <mat-option *ngFor="let establishmentmeans of establishmentmeanss" value="{{establishmentmeans.establishmentmeans}}">{{establishmentmeans.establishmentmeans}}</mat-option>
+      </mat-select>
+      <mat-hint class="add" (click)="addEstablishmentmeans()">
+          <mat-icon>add</mat-icon> Add Establishment Means
+        </mat-hint>
+    </mat-form-field>
+  </div>
+  <div class="row">
+    <mat-form-field appearance="outline" class="col">
+      <mat-label for="recordnumber">Record Number</mat-label>
+      <input matInput [(ngModel)]="occurrence.recordnumber" type="text" id="recordnumber" placeholder="Un identificador dado a la Ocurrencia en el momento en que se registró. ">
+    </mat-form-field>
+  </div>
+  <div class="row">
+    <mat-form-field appearance="outline" class="col">
+      <mat-label for="individualcount">Individual Count</mat-label>
+      <input matInput [(ngModel)]="occurrence.individualcount" type="number" id="individualcount" placeholder="Individuos presentes al registrar.">
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="col">
+      <mat-label for="organismquantity">Organism Quantity</mat-label>
+      <input matInput [(ngModel)]="occurrence.organismquantity" type="number" id="organismquantity" placeholder="Cantidad de organismos.">
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="col">
+      <mat-label for="organismquantitytype">Organism Quantity Type</mat-label>
+      <mat-select ng-model="organismquantitytypes" [(ngModel)]="occurrence.organismquantitytype">
+        <mat-option>-Ninguno-</mat-option>
+        <mat-option *ngFor="let organismquantitytype of organismquantitytypes" value="{{organismquantitytype.organismquantitytype}}">{{organismquantitytype.organismquantitytype}}</mat-option>
+      </mat-select>
+      <mat-hint class="add" (click)="addOrganismQuantityType()">
+          <mat-icon>add</mat-icon> Add Organism Quantity Type
+        </mat-hint>
+    </mat-form-field>
+  </div>
+  <div class="row">
+    <mat-form-field appearance="outline" class="col-lg-12">
+      <mat-label for="behavior">Behavior</mat-label>
+      <input matInput [(ngModel)]="occurrence.behavior" type="text" id="behavior" placeholder="Comportamiento mostrado por el sujeto en el momento en que se registró la ocurrencia">
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="col-lg-12">
+      <mat-label for="preparations">Preparations</mat-label>
+      <textarea matInput [(ngModel)]="occurrence.preparations" type="text" id="preparations"
+      placeholder="Una lista (concatenada y separada) de preparaciones y métodos de conservación para un espécimen."></textarea>
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="col-lg-12">
+      <mat-label for="associatedreferences">Associated References</mat-label>
+      <textarea matInput [(ngModel)]="occurrence.associatedreferences" type="text" id="associatedreferences"
+        placeholder="Lista (concatenada y separada) de identificadores de la literatura asociada con la Ocurrencia."></textarea>
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="col-lg-12">
+      <mat-label for="occurrenceremarks">Occurrence Remarks</mat-label>
+      <textarea matInput [(ngModel)]="occurrence.occurrenceremarks" type="text" id="occurrenceremarks" placeholder="Comentarios o notas sobre la ocurrencia."></textarea>
+    </mat-form-field>
+  </div>
+
+  <div>
+    <button (click)="postOccurrence()" type="button" class="btn btn-primary">Aceptar</button>
+  </div>
+</div>

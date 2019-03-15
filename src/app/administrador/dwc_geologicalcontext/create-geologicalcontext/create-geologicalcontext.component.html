@@ -1,0 +1,87 @@
+<div class="container">
+  <mat-form-field appearance="outline">
+    <mat-label for="identificationid">Identification</mat-label>
+    <input matInput type="text" [(ngModel)]="geologicalcontext.identificationid" id="identificationid">
+  </mat-form-field>
+
+  <div class="row">
+    <div class="col-lg-3">
+      <h5> <button (click)="addEon()" mat-mini-fab color="primary">
+          <mat-icon>add</mat-icon>
+        </button> Eon</h5>
+      <mat-form-field appearance="outline" class="col-lg-12">
+        <mat-label for="earliesteonorlowesteonothem">Lowest Eon</mat-label>
+        <mat-select ng-model="eons" [(ngModel)]="geologicalcontext.earliesteonorlowesteonothem">
+          <mat-option *ngFor="let eon of eons" value="{{eon.name}}">{{eon.name}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="col-lg-12">
+        <mat-label for="latesteonorhighesteonothem">Highest Eon</mat-label>
+        <mat-select ng-model="eons" [(ngModel)]="geologicalcontext.latesteonorhighesteonothem">
+          <mat-option *ngFor="let eon of eons" value="{{eon.name}}">{{eon.name}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="col-lg-3">
+      <h5><button (click)="addEra()" mat-mini-fab color="primary">
+          <mat-icon>add</mat-icon>
+        </button>Era</h5>
+      <mat-form-field appearance="outline" class="col-lg-12">
+        <mat-label for="earliesteraorlowesterathem">Lowest Era</mat-label>
+        <mat-select ng-model="eras" [(ngModel)]="geologicalcontext.earliesteraorlowesterathem">
+          <mat-option *ngFor="let era of eras" value="{{era.name}}">{{era.name}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="col-lg-12">
+        <mat-label for="latesteraorhighesterathem">Highest Era</mat-label>
+        <mat-select ng-model="eras" [(ngModel)]="geologicalcontext.latesteraorhighesterathem">
+          <mat-option *ngFor="let era of eras" value="{{era.name}}">{{era.name}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="col-lg-3">
+      <h5><button (click)="addPeriod()" mat-mini-fab color="primary">
+          <mat-icon>add</mat-icon>
+        </button>Period</h5>
+      <mat-form-field appearance="outline" class="col-lg-12">
+        <mat-label for="earliestperiodorlowestsystem">Lowest Period</mat-label>
+        <mat-select ng-model="periods" [(ngModel)]="geologicalcontext.earliestperiodorlowestsystem">
+          <mat-option *ngFor="let period of periods" value="{{period.name}}">{{period.name}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="col-lg-12">
+        <mat-label for="latestperiodorhighestsystem">Highest Period</mat-label>
+        <mat-select ng-model="periods" [(ngModel)]="geologicalcontext.latestperiodorhighestsystem">
+          <mat-option *ngFor="let period of periods" value="{{period.name}}">{{period.name}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="col-lg-3">
+      <h5><button (click)="addEpoch()" mat-mini-fab color="primary">
+          <mat-icon>add</mat-icon>
+        </button>Epoch</h5>
+      <mat-form-field appearance="outline" class="col-lg-12">
+        <mat-label for="earliestepochorlowestseries">Lowest Epoch</mat-label>
+        <mat-select ng-model="epochs" [(ngModel)]="geologicalcontext.earliestepochorlowestseries">
+          <mat-option *ngFor="let epoch of epochs" value="{{epoch.name}}">{{epoch.name}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="col-lg-12">
+        <mat-label for="latestepochorhighestseries">Highest Epoch</mat-label>
+        <mat-select ng-model="epochs" [(ngModel)]="geologicalcontext.latestepochorhighestseries">
+          <mat-option *ngFor="let epoch of epochs" value="{{epoch.name}}">{{epoch.name}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="row">
+    <mat-form-field appearance="outline" class="col">
+      <mat-label for="geologicalcontextremarks">Geological Context Remarks</mat-label>
+      <textarea matInput [(ngModel)]="geologicalcontext.geologicalcontextremarks" type="text" id="geologicalcontextremarks"
+        placeholder="Notas adicionales del contexto geológico."></textarea>
+    </mat-form-field>
+  </div>
+
+  <div>
+    <button (click)="postGeologicalContext()" type="button" class="btn btn-primary">Aceptar</button>
+  </div>

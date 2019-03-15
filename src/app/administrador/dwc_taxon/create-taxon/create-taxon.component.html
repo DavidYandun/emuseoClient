@@ -1,0 +1,147 @@
+<div class="container">
+  <mat-form-field appearance="outline">
+    <mat-label>Identification</mat-label>
+    <input matInput type="text" [(ngModel)]="taxon.identificationid" id="identificationid">
+  </mat-form-field>
+  <h4>Taxon Rank: {{taxon.taxonrank}}</h4>
+  <div class="row">
+    <mat-form-field appearance="outline" class="col-lg-3">
+      <mat-label>Kingdom</mat-label>
+      <mat-select ng-model="kingdom" [(ngModel)]="taxon.kingdom">
+        <mat-option (click)="getPhylums()">-Ninguno-</mat-option>
+        <mat-option (click)="getPhylums()" *ngFor="let kingdom of kingdoms" value="{{kingdom.kingdom}}">{{kingdom.kingdom}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field *ngIf="kingdomshow; else phylumBlock" appearance="outline" class="col-lg-3">
+      <mat-label>Phylum</mat-label>
+      <input matInput disabled>
+    </mat-form-field>
+    <ng-template #phylumBlock>
+      <mat-form-field appearance="outline" class="col-lg-3">
+        <mat-label>Phylum</mat-label>
+        <mat-select ng-model="phylum" [(ngModel)]="taxon.phylum">
+          <mat-option (click)="getClasses()">-Ninguno-</mat-option>
+          <mat-option (click)="getClasses()" *ngFor="let phylum of phylums" value="{{phylum.phylum}}">{{phylum.phylum}}</mat-option>
+        </mat-select>
+        <mat-hint class="add" (click)="addPhylum()">
+          <mat-icon>add</mat-icon> Add Phylum
+        </mat-hint>
+      </mat-form-field>
+    </ng-template>
+    <mat-form-field *ngIf="phylumshow; else classBlock" appearance="outline" class="col-lg-3">
+      <mat-label>Class</mat-label>
+      <input matInput disabled>
+    </mat-form-field>
+    <ng-template #classBlock>
+      <mat-form-field appearance="outline" class="col-lg-3">
+        <mat-label>Class</mat-label>
+        <mat-select ng-model="class" [(ngModel)]="taxon.class">
+          <mat-option (click)="getOrders()">-Ninguno-</mat-option>
+          <mat-option (click)="getOrders()" *ngFor="let class of classs" value="{{class.class}}">{{class.class}}</mat-option>
+        </mat-select>
+        <mat-hint class="add" (click)="addClass()">
+          <mat-icon>add</mat-icon> Add Class
+        </mat-hint>
+      </mat-form-field>
+    </ng-template>
+    <mat-form-field *ngIf="classshow; else orderBlock" appearance="outline" class="col-lg-3">
+      <mat-label>Order</mat-label>
+      <input matInput disabled>
+    </mat-form-field>
+    <ng-template #orderBlock>
+      <mat-form-field appearance="outline" class="col-lg-3">
+        <mat-label>Order</mat-label>
+        <mat-select ng-model="order" [(ngModel)]="taxon.order">
+          <mat-option (click)="getFamilys()">-Ninguno-</mat-option>
+          <mat-option (click)="getFamilys()" *ngFor="let order of orders" value="{{order.order}}">{{order.order}}</mat-option>
+        </mat-select>
+        <mat-hint class="add" (click)="addOrder()">
+          <mat-icon>add</mat-icon> Add Order
+        </mat-hint>
+      </mat-form-field>
+    </ng-template>
+    <mat-form-field *ngIf="ordershow; else familyBlock" appearance="outline" class="col-lg-3">
+      <mat-label>Family</mat-label>
+      <input matInput disabled>
+    </mat-form-field>
+    <ng-template #familyBlock>
+      <mat-form-field appearance="outline" class="col-lg-4">
+        <mat-label for="family">Family</mat-label>
+        <mat-select ng-model="family" [(ngModel)]="taxon.family">
+          <mat-option (click)="getGenuss()">-Ninguno-</mat-option>
+          <mat-option (click)="getGenuss()" *ngFor="let family of familys" value="{{family.family}}">{{family.family}}</mat-option>
+        </mat-select>
+        <mat-hint class="add" (click)="addFamily()">
+          <mat-icon>add</mat-icon> Add Family
+        </mat-hint>
+      </mat-form-field>
+    </ng-template>
+    <mat-form-field *ngIf="familyshow; else genusBlock" appearance="outline" class="col-lg-4">
+      <mat-label>Genus</mat-label>
+      <input matInput disabled>
+    </mat-form-field>
+    <ng-template #genusBlock>
+      <mat-form-field appearance="outline" class="col-lg-4">
+        <mat-label for="genus">Genus</mat-label>
+        <mat-select ng-model="genus" [(ngModel)]="taxon.genus">
+          <mat-option (click)="getSpecies()">-Ninguno-</mat-option>
+          <mat-option (click)="getSpecies()" *ngFor="let genus of genuss" value="{{genus.genus}}">{{genus.genus}}</mat-option>
+        </mat-select>
+        <mat-hint class="add" (click)="addGenus()">
+          <mat-icon>add</mat-icon> Add Genus
+        </mat-hint>
+      </mat-form-field>
+    </ng-template>
+    <mat-form-field *ngIf="genusshow; else specieBlock" appearance="outline" class="col-lg-4">
+      <mat-label>Specie</mat-label>
+      <input matInput disabled>
+    </mat-form-field>
+    <ng-template #specieBlock>
+      <mat-form-field appearance="outline" class="col-lg-4">
+        <mat-label for="specie">Specie</mat-label>
+        <mat-select ng-model="specie" [(ngModel)]="taxon.specie">
+          <mat-option (click)="selectSpecie()">-Ninguno-</mat-option>
+          <mat-option (click)="selectSpecie()" *ngFor="let specie of species" value="{{specie.specie}}">{{specie.specie}}</mat-option>
+        </mat-select>
+        <mat-hint class="add" (click)="addSpecie()">
+          <mat-icon>add</mat-icon> Add Specie
+        </mat-hint>
+      </mat-form-field>
+    </ng-template>
+  </div>
+
+  <div class="row">
+    <mat-form-field appearance="outline" class="col-lg-6">
+      <mat-label for="scientificname">Scientific Name</mat-label>
+      <input matInput [(ngModel)]="taxon.scientificname" type="text" id="scientificname" placeholder="El nombre científico completo. ">
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="col-lg-6">
+      <mat-label for="acceptednameusage">Accepted Name Usage</mat-label>
+      <input matInput [(ngModel)]="taxon.acceptednameusage" type="text" id="acceptednameusage" placeholder="El nombre aceptado de mayor uso">
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="col-lg-6">
+      <mat-label for="originalnameusage">Original Name Usage</mat-label>
+      <input matInput [(ngModel)]="taxon.originalnameusage" type="text" id="originalnameusage" placeholder="El nombre del taxón, como apareció originalmente cuando se estableció por primera vez">
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="col-lg-6">
+      <mat-label for="vernacularname">Vernacular Name</mat-label>
+      <input matInput [(ngModel)]="taxon.vernacularname" type="text" id="vernacularname" placeholder="Un nombre común o vernáculo.">
+    </mat-form-field>
+  </div>
+  <div class="row">
+    <mat-form-field appearance="outline" class="col-lg-8">
+      <mat-label for="taxonremarks">Taxon Remarks</mat-label>
+      <textarea matInput [(ngModel)]="taxon.taxonremarks" type="text" id="taxonremarks" placeholder="Comentarios o notas sobre el taxon o nombre."></textarea>
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="col-lg-4">
+      <mat-label for="taxonomicstatus">Taxonomic Status</mat-label>
+      <mat-select ng-model="taxonomicstatus" [(ngModel)]="taxon.taxonomicstatus">
+        <mat-option *ngFor="let taxonomicstatus of taxonomicstatuss" value="{{taxonomicstatus.taxonomicstatus}}">{{taxonomicstatus.taxonomicstatus}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div class="form-group">
+    <button (click)="postTaxon()" type="button" class="btn btn-primary">Aceptar</button>
+  </div>
+</div>

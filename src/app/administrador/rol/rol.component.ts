@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { RolService } from '../../services/rol.service';
+import { RolService } from '../../services/users/rol.service';
 @Component({
   selector: 'app-rol',
   templateUrl: './rol.component.html',

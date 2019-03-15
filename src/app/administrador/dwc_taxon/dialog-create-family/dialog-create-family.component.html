@@ -1,0 +1,11 @@
+<h1 mat-dialog-title>Nueva Family del Order {{data.order}}</h1>
+<div mat-dialog-content>
+  <mat-form-field appearance="outline" class="col">
+    <mat-label>Nueva Family</mat-label>
+    <input matInput [(ngModel)]="data.family" cdkFocusInitial>
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-flat-button (click)="onNoClick()">No Gracias</button>
+  <button mat-flat-button [mat-dialog-close]="data" color="primary">Ok</button>
+</div>

@@ -1,0 +1,61 @@
+<div class="container">
+  <mat-form-field appearance="outline">
+    <mat-label for="identificationid">Identification</mat-label>
+    <input matInput type="text" [(ngModel)]="event.identificationid" id="identificationid">
+  </mat-form-field>
+  <div class="row">
+    <mat-form-field appearance="outline" class="col">
+      <mat-label for="fieldnumber">Field Number</mat-label>
+      <input matInput [(ngModel)]="event.fieldnumber" type="text" id="fieldnumber" placeholder="Identificador de las notas de campo.">
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="col">
+      <mat-label for="habitat">Habitat</mat-label>
+      <input matInput [(ngModel)]="event.habitat" type="text" id="habitat" placeholder="Descripción del hábitat en el que ocurrió el Evento.">
+    </mat-form-field>
+  </div>
+  <div class="row">
+    <mat-form-field appearance="outline" class="col">
+      <mat-label for="eventdate">Event Date</mat-label>
+      <input matInput [matDatepicker]="eventdate" [(ngModel)]="event.eventdate" type="text" id="eventdate" placeholder="Ingrese una eventdate"
+        disabled>
+      <mat-datepicker-toggle matSuffix [for]="eventdate"></mat-datepicker-toggle>
+      <mat-datepicker #eventdate disabled="false"></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="col">
+      <mat-label for="eventtime">Event Time</mat-label>
+      <input matInput [(ngModel)]="event.eventtime" type="text" id="eventtime" placeholder="Ingrese una eventtime">
+    </mat-form-field>
+  </div>
+
+  <div class="row">
+    <mat-form-field appearance="outline" class="col">
+      <mat-label for="samplingprotocol">Sampling Protocol</mat-label>
+      <textarea matInput [(ngModel)]="event.samplingprotocol" type="text" id="samplingprotocol" placeholder="El nombre, la referencia o la descripción del método o protocolo utilizado durante un Evento."></textarea>
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="col">
+      <mat-label for="fieldnotes">Field Notes</mat-label>
+      <textarea matInput [(ngModel)]="event.fieldnotes" type="text" id="fieldnotes" placeholder="Texto de las notas tomadas en el campo sobre el Evento."></textarea>
+    </mat-form-field>
+  </div>
+  <div class="row">
+    <mat-form-field appearance="outline" class="col">
+      <mat-label for="samplesizevalue">Sample Size Value</mat-label>
+      <input matInput [(ngModel)]="event.samplesizevalue" type="number" id="samplesizevalue" placeholder="Duración, área o volumen de una muestra en un evento.">
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="col">
+      <mat-label for="samplesizeunit">Sample Size Unit</mat-label>
+      <input matInput [(ngModel)]="event.samplesizeunit" type="text" id="samplesizeunit" placeholder="Unidad de medida de una muestra.">
+    </mat-form-field>
+  </div>
+
+  <div class="row">
+    <mat-form-field appearance="outline" class="col">
+      <mat-label for="eventremarks">Event Remarks</mat-label>
+      <textarea matInput [(ngModel)]="event.eventremarks" type="text" id="eventremarks" placeholder="Comentarios o notas sobre el evento."></textarea>
+    </mat-form-field>
+  </div>
+
+  <div class="form-group">
+    <button (click)="postEvent()" type="button" class="btn btn-primary">Aceptar</button>
+  </div>
+</div>

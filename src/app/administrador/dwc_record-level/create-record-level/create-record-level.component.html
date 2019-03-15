@@ -1,0 +1,70 @@
+<div class="container">
+  <mat-form-field appearance="outline">
+    <mat-label for="identificationid">Identification</mat-label>
+    <input matInput type="text" [(ngModel)]="recordlevel.identificationid" id="identificationid">
+  </mat-form-field>
+  <div class="row">
+    <mat-form-field appearance="outline" class="col">
+      <mat-label for="name">Entidad</mat-label>
+      <input matInput [(ngModel)]="recordlevel.entidadid" type="text" id="entidadid" placeholder="Ingrese una entidadid">
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="col">
+      <mat-label for="modified">Modified At</mat-label>
+      <input matInput [matDatepicker]="modified" [(ngModel)]="recordlevel.modified" type="text" id="modified"
+        placeholder="Ingrese una modified" disabled>
+      <mat-datepicker-toggle matSuffix [for]="modified"></mat-datepicker-toggle>
+      <mat-datepicker #modified disabled="false"></mat-datepicker>
+    </mat-form-field>
+  </div>
+  <div class="row">
+    <mat-form-field appearance="outline" class="col">
+      <mat-label for="language">Language</mat-label>
+      <input matInput [(ngModel)]="recordlevel.language" type="text" id="language" placeholder="Un lenguaje del recurso. en(para inglés), es(para español)">
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="col">
+      <mat-label for="license">License</mat-label>
+      <input matInput [(ngModel)]="recordlevel.license" type="text" id="license" placeholder="Documento legal que da permiso oficial para tratar con el recurso.">
+    </mat-form-field>
+  </div>
+  <div class="row">
+    <mat-form-field appearance="outline" class="col">
+      <mat-label for="rightsholder">Rights Holder</mat-label>
+      <input matInput [(ngModel)]="recordlevel.rightsholder" type="text" id="rightsholder" placeholder="Persona que administra derechos sobre el recurso.">
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="col">
+      <mat-label for="accessrights">Access Rights</mat-label>
+      <input matInput [(ngModel)]="recordlevel.accessrights" type="text" id="accessrights" placeholder="Info. acerca de las restricciones basadas en la privacidad.">
+    </mat-form-field>
+  </div>
+  <div class="row">
+    <mat-form-field appearance="outline" class="col-lg-12">
+      <mat-label for="bibliographiccitation">Bibliographic Citation</mat-label>
+      <input matInput [(ngModel)]="recordlevel.bibliographiccitation" type="text" id="bibliographiccitation"
+        placeholder="Referencia bibliográfica para el recurso como una declaración que indica cómo se debe citar (atribuir) este registro cuando se utiliza.">
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="col-lg-12">
+      <mat-label for="references">References</mat-label>
+      <input matInput [(ngModel)]="recordlevel.references" type="text" id="references" placeholder="Un recurso relacionado al que se hace referencia, se cita o se señala de otro modo por el recurso descrito.">
+    </mat-form-field>
+  </div>
+  <div class="row">
+    <mat-form-field appearance="outline" class="col">
+      <mat-label for="basisofrecord">Basis of Record</mat-label>
+      <mat-select ng-model="basisofrecords" [(ngModel)]="recordlevel.basisofrecord" id="singleSelectBasisofrecord" name="singleSelectBasisofrecord">
+        <mat-option value=""></mat-option>
+        <mat-option *ngFor="let basisofrecord of basisofrecords" value="{{basisofrecord.basisofrecord}}">{{basisofrecord.basisofrecord}}</mat-option>
+      </mat-select>
+      <mat-hint class="add" (click)="addBasisofRecord()">
+        <mat-icon>add</mat-icon> Add Basis of Record
+      </mat-hint>
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="col">
+      <mat-label for="dynamicproperties">Dynamic Properties</mat-label>
+      <textarea matInput [(ngModel)]="recordlevel.dynamicproperties" type="text" id="dynamicproperties" placeholder="Una lista de mediciones adicionales, hechos, características o aseveraciones sobre el registro."></textarea>
+    </mat-form-field>
+  </div>
+
+  <div>
+    <button (click)="postRecordLevel()" type="button" class="btn btn-primary">Aceptar</button>
+  </div>
+</div>

@@ -1,0 +1,50 @@
+<app-header-admin></app-header-admin>
+
+<div class="container formulario">
+  <div class="form-group text-center">
+    <h1 class="h3 mb-3 font-weight-normal color-primary">Nuevo Usuario</h1>
+  </div>
+  <mat-form-field appearance="outline">
+    <mat-label for="userid">ID/Cédula/Pasaporte</mat-label>
+    <input matInput type="text" [(ngModel)]="userRecord.userid" id="userid" placeholder="Ingrese su cédula">
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label for="name">Nombre</mat-label>
+    <input matInput type="text" [(ngModel)]="userRecord.name" id="name" placeholder="Ingrese su nombre">
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label for="lastname">Apellido</mat-label>
+    <input matInput type="text" [(ngModel)]="userRecord.lastname" id="lastname" placeholder="Ingrese su apellido">
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label for="email">Correo Electrónico</mat-label>
+    <input matInput type="email" [(ngModel)]="userRecord.email" id="email" placeholder="Ingrese su correo electrónico">
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label for="direction">Domicilio</mat-label>
+    <input matInput type="direction" [(ngModel)]="userRecord.direction" id="direction" placeholder="Ingrese su domicilio">
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label for="phone">Teléfono</mat-label>
+    <input matInput type="tel" [(ngModel)]="userRecord.phone" id="phone" placeholder="Ingrese su Teléfono">
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label for="password">Contraseña</mat-label>
+    <input matInput type="password" [(ngModel)]="userRecord.password" id="password" placeholder="Ingrese su password">
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label for="singleSelectRol">Rol</mat-label>
+    <mat-select ng-model="rols" [(ngModel)]="userRecord.rolid" id="singleSelectRol" name="singleSelectRol">
+      <mat-option *ngFor="let rol of rols" value="{{rol.rolid}}">{{rol.name}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label for="url">fotografía</mat-label>
+    <input matInput type="url" [(ngModel)]="userRecord.url" id="url" placeholder="Ingrese la url de la fotografía">
+  </mat-form-field>
+  <div class="form-group">
+    <button class="btn btn-lg btn-primary btn-block" (click)="postUser()">Registrar Usuario</button>
+  </div>
+</div>
+
+<app-footer></app-footer>
