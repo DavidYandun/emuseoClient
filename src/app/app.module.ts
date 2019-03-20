@@ -96,6 +96,11 @@ import { DialogCreateFamilyComponent } from './administrador/dwc_taxon/dialog-cr
 import { DialogCreateGenusComponent } from './administrador/dwc_taxon/dialog-create-genus/dialog-create-genus.component';
 import { DialogCreateSpecieComponent } from './administrador/dwc_taxon/dialog-create-specie/dialog-create-specie.component';
 
+//multimedia
+import { CreateMultimediaComponent } from './administrador/mul_multimedia/create-multimedia/create-multimedia.component';
+
+
+
 import { AuthGuard } from './guards/auth.guard';
 ///////////SERVICES///////////////////
 //users
@@ -126,7 +131,8 @@ import { TaxonService } from './services/dwc_taxon_services/taxon.service';
 
 //institutions
 import { EntidadService } from './services/usu_institution/entidad.service';
-
+//multimedia
+import { MultimediaService } from './services/mul_multimedia_service/multimedia.service';
 
 
 
@@ -201,6 +207,7 @@ import { EntidadService } from './services/usu_institution/entidad.service';
     DialogCreateEraComponent,
     DialogCreatePeriodComponent,
     DialogCreateEpochComponent,
+    CreateMultimediaComponent,
 
   ],
   imports: [
@@ -273,6 +280,10 @@ import { EntidadService } from './services/usu_institution/entidad.service';
         component: VerificationComponent
       },
       {
+        path:'multimedia',
+        component:CreateMultimediaComponent
+      },
+      {
         path: '',
         component: HomeComponent
       },
@@ -288,11 +299,12 @@ import { EntidadService } from './services/usu_institution/entidad.service';
     DialogCreateCountryComponent, DialogCreateStateprovinceComponent, DialogCreateCountyComponent, DialogCreateMunicipalityComponent,
     DialogCreateContinentComponent, DialogCreateWaterbodyComponent, DialogCreateIslandComponent, DialogCreateGeodeticdatumComponent,
     DialogCreateGeoreferenceverificationstatusComponent,
-    DialogCreateEonComponent,DialogCreateEraComponent,DialogCreatePeriodComponent,DialogCreateEpochComponent
+    DialogCreateEonComponent, DialogCreateEraComponent, DialogCreatePeriodComponent, DialogCreateEpochComponent
   ],
   providers: [RolService, UserService, AuthService, VerificationService, IdentificationService,
     RecordLevelService, OccurrenceService, OrganismService, EventService, LocationService,
-    GeologicalcontextService, TaxonService, EntidadService, BasisofrecordService, AuthGuard],
+    GeologicalcontextService, TaxonService, EntidadService, BasisofrecordService,
+    MultimediaService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

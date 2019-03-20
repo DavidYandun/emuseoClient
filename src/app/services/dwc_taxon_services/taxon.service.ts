@@ -14,6 +14,9 @@ export class TaxonService {
   getTaxon(taxonid): Observable<any> {
     return this.httpClient.get<any>('api/taxon/' + taxonid);
   }
+  getTaxonId(identificationid): Observable<any> {
+    return this.httpClient.get<any>('api/taxon/id/' + identificationid);
+  }
   postTaxon(taxon: Taxon) {
     let json = JSON.stringify(taxon);
     let headers = new HttpHeaders().set('Content-Type', 'application/json');
