@@ -99,7 +99,9 @@ import { DialogCreateSpecieComponent } from './administrador/dwc_taxon/dialog-cr
 //multimedia
 import { CreateMultimediaComponent } from './administrador/mul_multimedia/create-multimedia/create-multimedia.component';
 
-
+//ficha
+import { ReadFichaComponent } from './administrador/ficha/read-ficha/read-ficha.component';
+import { FichaTaxonComponent } from './administrador/ficha/ficha-taxon/ficha-taxon.component';
 
 import { AuthGuard } from './guards/auth.guard';
 ///////////SERVICES///////////////////
@@ -133,6 +135,8 @@ import { TaxonService } from './services/dwc_taxon_services/taxon.service';
 import { EntidadService } from './services/usu_institution/entidad.service';
 //multimedia
 import { MultimediaService } from './services/mul_multimedia_service/multimedia.service';
+
+
 
 
 
@@ -208,6 +212,8 @@ import { MultimediaService } from './services/mul_multimedia_service/multimedia.
     DialogCreatePeriodComponent,
     DialogCreateEpochComponent,
     CreateMultimediaComponent,
+    ReadFichaComponent,
+    FichaTaxonComponent,
 
   ],
   imports: [
@@ -282,6 +288,10 @@ import { MultimediaService } from './services/mul_multimedia_service/multimedia.
       {
         path:'multimedia',
         component:CreateMultimediaComponent
+      },
+      {
+        path:'ficha',
+        component:ReadFichaComponent
       },
       {
         path: '',

@@ -4,7 +4,8 @@
 <table class="table table-dark" mat-table matSort [dataSource]="collection" multiTemplateDataRows class="mat-elevation-z8">
   <ng-container matColumnDef="url">
     <th mat-header-cell *matHeaderCellDef> Foto </th>
-    <td mat-cell *matCellDef="let element"> <img class="miniatura" src="{{element.url}}" alt="{{element.medianame}}">
+    <td mat-cell *matCellDef="let element"> <img class="miniatura" src="http://192.168.0.4:3000/api/multimedia/img/Homo%20Erectus67.JPG"
+        alt="{{element.medianame}}">
     </td>
   </ng-container>
   <ng-container matColumnDef="scientificname">

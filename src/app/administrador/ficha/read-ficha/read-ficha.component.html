@@ -1,0 +1,39 @@
+<br>
+
+<mat-grid-list cols="3" rowHeight="1:1">
+  <mat-grid-tile colspan="1">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Índice de la Ficha</mat-card-title>
+      </mat-card-header>
+      <mat-divider></mat-divider>
+      <mat-card-content>
+        <mat-list>
+          <div class="list">
+            <cdk-virtual-scroll-viewport itemSize="50" class="scroll">
+              <mat-list-item> <button mat-button color="primary"> Taxon </button> </mat-list-item>
+              <mat-list-item> <button mat-button color="primary"> Record </button> </mat-list-item>
+              <mat-list-item> <button mat-button color="primary"> Occurrence </button> </mat-list-item>
+              <mat-list-item> <button mat-button color="primary"> Organism </button> </mat-list-item>
+              <mat-list-item> <button mat-button color="primary"> Event </button> </mat-list-item>
+              <mat-list-item> <button mat-button color="primary"> Location </button> </mat-list-item>
+              <mat-list-item> <button mat-button color="primary"> Geological Context </button> </mat-list-item>
+            </cdk-virtual-scroll-viewport>
+          </div>
+        </mat-list>
+      </mat-card-content>
+    </mat-card>
+  </mat-grid-tile>
+
+  <mat-grid-tile colspan="2">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Taxonomia</mat-card-title>
+      </mat-card-header>
+      <mat-divider></mat-divider>
+      <mat-card-content>
+        <app-ficha-taxon></app-ficha-taxon>
+      </mat-card-content>
+    </mat-card>
+  </mat-grid-tile>
+</mat-grid-list>

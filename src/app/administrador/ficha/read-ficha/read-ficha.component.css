@@ -1,0 +1,19 @@
+mat-grid-tile{
+  background: lightskyblue;
+}
+
+mat-card {
+  width: 98%;
+  height: 90%;
+}
+
+.scroll {
+  height: 100%;
+  width: 100%;
+  
+}
+.list {
+  height: 350px;
+  width: 100%;
+  
+}

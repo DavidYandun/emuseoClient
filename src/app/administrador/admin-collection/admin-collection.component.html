@@ -1,31 +1,34 @@
 <app-header-admin></app-header-admin>
+<br>
 <div class="container">
-  <mat-tab-group>
-    <mat-tab label="Identification">
-      <app-create-identification></app-create-identification>
-    </mat-tab>
-    <mat-tab label="Record Level">
-      <app-create-record-level></app-create-record-level>
-    </mat-tab>
-    <mat-tab label="Occurrence">
-      <app-create-occurrence></app-create-occurrence>
-    </mat-tab>
-    <mat-tab label="Organism">
-      <app-create-organism></app-create-organism>
-    </mat-tab>
-    <mat-tab label="Event">
-      <app-create-event></app-create-event>
-    </mat-tab>
-    <mat-tab label="Location">
-      <app-create-location></app-create-location>
-    </mat-tab>
-    <mat-tab label="Geological Context">
-      <app-create-geologicalcontext></app-create-geologicalcontext>
-    </mat-tab>
-    <mat-tab label="Taxon">
-      <app-create-taxon></app-create-taxon>
-    </mat-tab>
-  </mat-tab-group>
+  <mat-card>
+    <mat-tab-group>
+      <mat-tab label="Identification">
+        <app-create-identification></app-create-identification>
+      </mat-tab>
+      <mat-tab label="Record Level">
+        <app-create-record-level></app-create-record-level>
+      </mat-tab>
+      <mat-tab label="Occurrence">
+        <app-create-occurrence></app-create-occurrence>
+      </mat-tab>
+      <mat-tab label="Organism">
+        <app-create-organism></app-create-organism>
+      </mat-tab>
+      <mat-tab label="Event">
+        <app-create-event></app-create-event>
+      </mat-tab>
+      <mat-tab label="Location">
+        <app-create-location></app-create-location>
+      </mat-tab>
+      <mat-tab label="Geological Context">
+        <app-create-geologicalcontext></app-create-geologicalcontext>
+      </mat-tab>
+      <mat-tab label="Taxon">
+        <app-create-taxon></app-create-taxon>
+      </mat-tab>
+    </mat-tab-group>
+  </mat-card>
 </div>
 <!--
 <mat-horizontal-stepper [linear]="isLinear" #stepper>
@@ -58,4 +61,5 @@
   </mat-step>
 </mat-horizontal-stepper>
 -->
+<br>
 <app-footer></app-footer>

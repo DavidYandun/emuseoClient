@@ -16,12 +16,11 @@ export class CreateMultimediaComponent implements OnInit {
     url: null,
     author: null
   }
+  extension: any;
   max: number;
   typemedias: any;
   File: File;
-  taxon: any = {
-    scientificname: null
-  }
+
   constructor(private multimediaService: MultimediaService, private taxoService: TaxonService) { }
 
   ngOnInit() {
@@ -31,7 +30,13 @@ export class CreateMultimediaComponent implements OnInit {
 
   onFileSelected(file: any) {
     this.File = file.target.files[0];
-    console.log(this.File);
+    if (this.File.name.substr(-3, 1) == '.') {
+      this.extension = this.File.name.substr(-3);
+    } else if (this.File.name.substr(-4, 1) == '.') {
+      this.extension = this.File.name.substr(-4);
+    } else {
+      this.extension = this.File.name.substr(-5);
+    }
   }
   getTypeMedias() {
     this.multimediaService.getTypeMedias().subscribe(data => {
@@ -43,8 +48,7 @@ export class CreateMultimediaComponent implements OnInit {
   }
   getMax() {
     this.multimediaService.getMax().subscribe(data => {
-      this.max = data.multimediaid+1;
-      console.log(data.multimediaid+1);
+      this.max = data.multimediaid + 1;
     })
   }
 
@@ -69,7 +73,7 @@ export class CreateMultimediaComponent implements OnInit {
         //sube el archivo al repostitorio
 
 
-        this.multimediaService.postFile(this.File, this.multimedia.name + this.max).subscribe(data => {
+        this.multimediaService.postFile(this.File, this.multimedia.name + this.max + this.extension).subscribe(data => {
           if (data.type === HttpEventType.UploadProgress) {
             console.log('Upload Progress: ' + Math.round(data.loaded / data.total * 100) + '%');
           } else if (data.type === HttpEventType.Response) {
