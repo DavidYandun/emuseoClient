@@ -1,0 +1,55 @@
+<div class="row">
+  <div class="col-lg-5">
+    <mat-list>
+      <mat-list-item>
+        <div class="col title text-right">Eon:</div>
+        <div class="col">
+          <div class="row">
+            lowest {{geologicalcontext.earliesteonorlowesteonothem}}
+          </div>
+          <div class="row">
+            highest {{geologicalcontext.latesteonorhighesteonothem}}
+          </div>
+        </div>
+      </mat-list-item>
+      <mat-list-item>
+        <div class="col title text-right">Era:</div>
+        <div class="col">
+          <div class="row">
+            lowest {{geologicalcontext.earliesteraorlowesterathem}}
+          </div>
+          <div class="row">
+            highest {{geologicalcontext.latesteraorhighesterathem}}
+          </div>
+        </div>
+      </mat-list-item>
+      <mat-list-item>
+        <div class="col title text-right">Period:</div>
+        <div class="col">
+          <div class="row">
+            lowest {{geologicalcontext.earliestperiodorlowestsystem}}
+          </div>
+          <div class="row">
+            highest {{geologicalcontext.latestperiodorhighestsystem}}
+          </div>
+        </div>
+      </mat-list-item>
+      <mat-list-item>
+        <div class="col title text-right">Epoch:</div>
+        <div class="col">
+          <div class="row">
+            lowest {{geologicalcontext.earliestepochorlowestseries}}
+          </div>
+          <div class="row">
+            highest {{geologicalcontext.latestepochorhighestseries}}
+          </div>
+        </div>
+      </mat-list-item>
+    </mat-list>
+  </div>
+  <mat-divider [vertical]="true"></mat-divider>
+  <div class="col-lg-6">
+    <h3>Remarks:</h3>
+    <p>{{geologicalcontext.geologicalcontextremarks}}</p>
+  </div>
+</div>

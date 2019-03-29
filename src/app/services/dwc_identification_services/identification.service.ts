@@ -15,7 +15,7 @@ export class IdentificationService {
   getIdentification(identificationid): Observable<any> {
     return this.httpClient.get<any>('api/identifications/' + identificationid);
   }
-  postIdentification(identification: Identification) {
+  postIdentification (identification: Identification):Observable<any> {
     let json = JSON.stringify(identification);
     let headers = new HttpHeaders().set('Content-Type', 'application/json');
     return this.httpClient.post("/api/identifications", json, { headers: headers });
@@ -33,7 +33,7 @@ export class IdentificationService {
   }
 }
 
-interface Identification {
+export interface Identification {
   identificationid: number,
   verificationstatus: string,
   identificationqualifier: string,

@@ -15,6 +15,9 @@ export class GeologicalcontextService {
   getGeologicalcontext(geologicalcontextid): Observable<any> {
     return this.httpClient.get<any>('api/geologicalcontext/' + geologicalcontextid);
   }
+  getGeologicalcontextId(identificationid): Observable<any> {
+    return this.httpClient.get<any>('api/geologicalcontext/id/' + identificationid);
+  }
   postGeologicalcontext(geologicalcontext: Geologicalcontext) {
     let json = JSON.stringify(geologicalcontext);
     let headers = new HttpHeaders().set('Content-Type', 'application/json');

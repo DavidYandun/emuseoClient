@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, Input } from '@angular/core';
 import { TaxonService } from 'src/app/services/dwc_taxon_services/taxon.service';
 import { MatDialog } from '@angular/material';
 import { DialogCreatePhylumComponent } from '../dialog-create-phylum/dialog-create-phylum.component';
@@ -14,6 +14,7 @@ import { DialogCreateSpecieComponent } from '../dialog-create-specie/dialog-crea
   styleUrls: ['./create-taxon.component.css']
 })
 export class CreateTaxonComponent implements OnInit {
+  @Input() identificationid: number;
   taxon: any = {
     identificationid: null,
     lineoid: null,
@@ -72,11 +73,14 @@ export class CreateTaxonComponent implements OnInit {
     this.getTaxonomicStatus();
   }
   postTaxon() {
-    this.taxonService.postTaxon(this.taxon).subscribe(data => {
-      console.log(this.taxon);
-    }, error => {
-      console.log(JSON.stringify(error));
-    });
+    this.taxon.identificationid = this.identificationid;
+    if (this.taxon.identificationid) {
+      this.taxonService.postTaxon(this.taxon).subscribe(data => {
+        console.log(data);
+      }, error => {
+        console.log(JSON.stringify(error));
+      });
+    }
   }
   selectSpecie() {
     this.specieshow = false;

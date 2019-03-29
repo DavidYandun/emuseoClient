@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { EventService } from 'src/app/services/dwc_event_services/event.service';
 
 @Component({
@@ -7,6 +7,7 @@ import { EventService } from 'src/app/services/dwc_event_services/event.service'
   styleUrls: ['./create-event.component.css']
 })
 export class CreateEventComponent implements OnInit {
+  @Input() identificationid: number;
   event: any = {
     identificationid: null,
     fieldnumber: null,
@@ -25,11 +26,14 @@ export class CreateEventComponent implements OnInit {
   ngOnInit() {
   }
   postEvent() {
-    this.eventService.postEvent(this.event).subscribe(resultado => {
-      console.log(this.event);
-    },
-      error => {
-        console.log(JSON.stringify(error));
-      });
+    this.event.identificationid = this.identificationid;
+    if (this.event.identificationid) {
+      this.eventService.postEvent(this.event).subscribe(data => {
+        console.log(data);
+      },
+        error => {
+          console.log(JSON.stringify(error));
+        });
+    }
   }
 }

@@ -28,7 +28,6 @@ import { LoginComponent } from './usuario/login/login.component';
 import { ColeccionesUserComponent } from './usuario/colecciones-user/colecciones-user.component';
 import { ReinosComponent } from './usuario/reinos/reinos.component';
 import { TaxonomiaComponent } from './usuario/taxonomia/taxonomia.component';
-import { FichaComponent } from './usuario/ficha/ficha.component';
 import { MultimediaComponent } from './usuario/multimedia/multimedia.component';
 import { NosotrosComponent } from './usuario/nosotros/nosotros.component';
 import { ContactosComponent } from './usuario/contactos/contactos.component';
@@ -47,10 +46,6 @@ import { EditUserComponent } from './administrador/users/edit-user/edit-user.com
 import { RolComponent } from './administrador/rol/rol.component';
 
 //dwc_identification
-import { VerificationComponent } from './administrador/dwc_identification/verification/verification.component';
-import { CreateVerificationComponent } from './administrador/dwc_identification/create-verification/create-verification.component';
-import { ReadVerificationComponent } from './administrador/dwc_identification/read-verification/read-verification.component';
-import { UpdateVerificationComponent } from './administrador/dwc_identification/update-verification/update-verification.component';
 import { CreateIdentificationComponent } from './administrador/dwc_identification/create-identification/create-identification.component';
 import { DialogCreateVerificationstatusComponent } from './administrador/dwc_identification/dialog-create-verificationstatus/dialog-create-verificationstatus.component';
 
@@ -102,6 +97,15 @@ import { CreateMultimediaComponent } from './administrador/mul_multimedia/create
 //ficha
 import { ReadFichaComponent } from './administrador/ficha/read-ficha/read-ficha.component';
 import { FichaTaxonComponent } from './administrador/ficha/ficha-taxon/ficha-taxon.component';
+import { FichaRecordlevelComponent } from './administrador/ficha/ficha-recordlevel/ficha-recordlevel.component';
+import { FichaOccurrenceComponent } from './administrador/ficha/ficha-occurrence/ficha-occurrence.component';
+import { FichaOrganismComponent } from './administrador/ficha/ficha-organism/ficha-organism.component';
+import { FichaEventComponent } from './administrador/ficha/ficha-event/ficha-event.component';
+import { FichaLocationComponent } from './administrador/ficha/ficha-location/ficha-location.component';
+import { FichaGeologicalcontextComponent } from './administrador/ficha/ficha-geologicalcontext/ficha-geologicalcontext.component';
+import { FichaMultimediaComponent } from './administrador/ficha/ficha-multimedia/ficha-multimedia.component';
+
+
 
 import { AuthGuard } from './guards/auth.guard';
 ///////////SERVICES///////////////////
@@ -148,7 +152,6 @@ import { MultimediaService } from './services/mul_multimedia_service/multimedia.
 
 
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -160,7 +163,6 @@ import { MultimediaService } from './services/mul_multimedia_service/multimedia.
     ColeccionesUserComponent,
     ReinosComponent,
     TaxonomiaComponent,
-    FichaComponent,
     MultimediaComponent,
     NosotrosComponent,
     ContactosComponent,
@@ -170,10 +172,6 @@ import { MultimediaService } from './services/mul_multimedia_service/multimedia.
     ControlUserComponent,
     RolComponent,
     EditUserComponent,
-    VerificationComponent,
-    CreateVerificationComponent,
-    ReadVerificationComponent,
-    UpdateVerificationComponent,
     CreateIdentificationComponent,
     AdminCollectionComponent,
     CreateRecordLevelComponent,
@@ -214,6 +212,13 @@ import { MultimediaService } from './services/mul_multimedia_service/multimedia.
     CreateMultimediaComponent,
     ReadFichaComponent,
     FichaTaxonComponent,
+    FichaRecordlevelComponent,
+    FichaOccurrenceComponent,
+    FichaOrganismComponent,
+    FichaEventComponent,
+    FichaLocationComponent,
+    FichaGeologicalcontextComponent,
+    FichaMultimediaComponent,
 
   ],
   imports: [
@@ -282,15 +287,11 @@ import { MultimediaService } from './services/mul_multimedia_service/multimedia.
       },
       //identification
       {
-        path: 'verifications',
-        component: VerificationComponent
-      },
-      {
         path:'multimedia',
         component:CreateMultimediaComponent
       },
       {
-        path:'ficha',
+        path:'ficha/:id',
         component:ReadFichaComponent
       },
       {

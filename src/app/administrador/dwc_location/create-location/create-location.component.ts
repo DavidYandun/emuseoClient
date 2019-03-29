@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { LocationService } from 'src/app/services/dwc_location_services/location.service';
 import { MatDialog } from '@angular/material';
 import { DialogCreateCountryComponent } from '../dialog-create-country/dialog-create-country.component';
@@ -17,6 +17,7 @@ import { DialogCreateGeoreferenceverificationstatusComponent } from '../dialog-c
   styleUrls: ['./create-location.component.css']
 })
 export class CreateLocationComponent implements OnInit {
+  @Input() identificationid: number;
   location: any = {
     identificationid: null,
     divpoliticaid: null,
@@ -82,12 +83,15 @@ export class CreateLocationComponent implements OnInit {
     this.getLists();
   }
   postLocation() {
-    this.locationService.postLocation(this.location).subscribe(resultado => {
-      console.log(this.location);
-    },
-      error => {
-        console.log(JSON.stringify(error));
-      });
+    this.location.identificationid = this.identificationid;
+    if (this.location.identificationid) {
+      this.locationService.postLocation(this.location).subscribe(data => {
+        console.log(data);
+      },
+        error => {
+          console.log(JSON.stringify(error));
+        });
+    }
   }
   getCountrys() {
     this.locationService.getCountrys().subscribe(data => {

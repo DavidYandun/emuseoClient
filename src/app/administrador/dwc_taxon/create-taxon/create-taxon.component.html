@@ -1,9 +1,7 @@
 <div class="container">
-  <mat-form-field appearance="outline">
-    <mat-label>Identification</mat-label>
-    <input matInput type="text" [(ngModel)]="taxon.identificationid" id="identificationid">
-  </mat-form-field>
-  <h4>Taxon Rank: {{taxon.taxonrank}}</h4>
+  <br>
+  <h2>Taxon</h2>
+  <h5>Taxon Rank: {{taxon.taxonrank}}</h5>
   <div class="row">
     <mat-form-field appearance="outline" class="col-lg-3">
       <mat-label>Kingdom</mat-label>
@@ -142,6 +140,6 @@
   </div>
 
   <div class="form-group">
-    <button (click)="postTaxon()" type="button" class="btn btn-primary">Aceptar</button>
+    <button (click)="postTaxon()" mat-raised-button color="primary">Aceptar</button>
   </div>
 </div>

@@ -16,6 +16,9 @@ export class EventService {
   getEvent(eventid): Observable<any> {
     return this.httpClient.get<any>('api/event/' + eventid);
   }
+  getEventId(identificationid): Observable<any> {
+    return this.httpClient.get<any>('api/event/id/' + identificationid);
+  }
   postEvent(event: Event) {
     let json = JSON.stringify(event);
     let headers = new HttpHeaders().set('Content-Type', 'application/json');

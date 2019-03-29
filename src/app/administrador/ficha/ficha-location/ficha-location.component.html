@@ -1,0 +1,86 @@
+<div class="row">
+  <div class="col-lg-5">
+    <mat-list>
+      <mat-list-item>
+        <div class="col title text-right">Continent:</div>
+        <div class="col">{{location.continent}}</div>
+      </mat-list-item>
+      <mat-list-item>
+        <div class="col title text-right">Water Body:</div>
+        <div class="col">{{location.waterbody}}</div>
+      </mat-list-item>
+      <mat-list-item>
+        <div class="col title text-right">Island:</div>
+        <div class="col">{{location.island}}</div>
+      </mat-list-item>
+      <mat-list-item>
+        <div class="col title text-right">Geodetic Datum:</div>
+        <div class="col">{{location.geodeticdatum}}</div>
+      </mat-list-item>
+      <mat-list-item>
+        <div class="col title text-right">País:</div>
+        <div class="col">{{location.country}}</div>
+      </mat-list-item>
+      <mat-list-item>
+        <div class="col title text-right">Provincia:</div>
+        <div class="col">{{location.stateprovince}}</div>
+      </mat-list-item>
+      <mat-list-item>
+        <div class="col title text-right">Cantón:</div>
+        <div class="col">{{location.county}}</div>
+      </mat-list-item>
+      <mat-list-item>
+        <div class="col title text-right">Parroquia:</div>
+        <div class="col">{{location.municipality}}</div>
+      </mat-list-item>
+      <mat-list-item>
+        <div class="col title text-right">Verbatim Locality:</div>
+        <div class="col">{{location.verbatimlocality}}</div>
+      </mat-list-item>
+    </mat-list>
+  </div>
+  <mat-divider [vertical]="true"></mat-divider>
+  <div class="col-lg-6">
+    <mat-list>
+      <mat-list-item>
+        <div class="col title text-right">minimumElevationInMeters:</div>
+        <div class="col">{{location.minimumelevationinmeters}}</div>
+      </mat-list-item>
+      <mat-list-item>
+        <div class="col title text-right">maximumElevationInMeters:</div>
+        <div class="col">{{location.maximumelevationinmeters}}</div>
+      </mat-list-item>
+      <mat-list-item>
+        <div class="col title text-right">Location According to:</div>
+        <div class="col">{{location.locationaccordingto}}</div>
+      </mat-list-item>
+      <mat-list-item>
+        <div class="col title text-right">decimalLatitude:</div>
+        <div class="col">{{location.decimallatitude}}</div>
+      </mat-list-item>
+      <mat-list-item>
+        <div class="col title text-right">decimalLongitude:</div>
+        <div class="col">{{location.decimallongitude}}</div>
+      </mat-list-item>
+      <mat-list-item>
+        <div class="col title text-right">coordinateUncertaintyInMeters:</div>
+        <div class="col">{{location.coordinateuncertaintyinmeters}}</div>
+      </mat-list-item>
+      <mat-list-item>
+        <div class="col title text-right">georeferecedBy:</div>
+        <div class="col">{{location.georeferecedby}}</div>
+      </mat-list-item>
+      <mat-list-item>
+        <div class="col title text-right">coordinatePrecision:</div>
+        <div class="col">{{location.coordinateprecision}}</div>
+      </mat-list-item>
+    </mat-list>
+
+  </div>
+
+  <div colspan="2">
+    <mat-divider></mat-divider>
+    <h3>Remarks:</h3>
+    <p>{{location.locationremarks}}</p>
+  </div>
+</div>

@@ -2,62 +2,153 @@
 <br>
 <div class="container">
   <mat-card>
-    <mat-tab-group>
-      <mat-tab label="Identification">
-        <app-create-identification></app-create-identification>
+    <mat-tab-group backgroundColor="">
+      <mat-tab>
+        <ng-template mat-tab-label>
+          <mat-icon class="icon">filter_1</mat-icon> Identification
+        </ng-template>
+        <app-create-identification (identificationid)="postIdentificationid($event)"></app-create-identification>
       </mat-tab>
-      <mat-tab label="Record Level">
-        <app-create-record-level></app-create-record-level>
-      </mat-tab>
-      <mat-tab label="Occurrence">
-        <app-create-occurrence></app-create-occurrence>
-      </mat-tab>
-      <mat-tab label="Organism">
-        <app-create-organism></app-create-organism>
-      </mat-tab>
-      <mat-tab label="Event">
-        <app-create-event></app-create-event>
-      </mat-tab>
-      <mat-tab label="Location">
-        <app-create-location></app-create-location>
-      </mat-tab>
-      <mat-tab label="Geological Context">
-        <app-create-geologicalcontext></app-create-geologicalcontext>
-      </mat-tab>
-      <mat-tab label="Taxon">
-        <app-create-taxon></app-create-taxon>
-      </mat-tab>
+      <div *ngIf="identificationid; else elseBlock">
+
+        <mat-tab>
+          <ng-template mat-tab-label>
+            <mat-icon class="icon">filter_2</mat-icon> Taxon
+          </ng-template>
+          <app-create-taxon [identificationid]="identificationid"></app-create-taxon>
+        </mat-tab>
+        <mat-tab>
+          <ng-template mat-tab-label>
+            <mat-icon class="icon">filter_3</mat-icon> Record Level
+          </ng-template>
+          <app-create-record-level [identificationid]="identificationid"></app-create-record-level>
+        </mat-tab>
+        <mat-tab>
+          <ng-template mat-tab-label>
+            <mat-icon class="icon">filter_4</mat-icon> Occurrence
+          </ng-template>
+          <app-create-occurrence [identificationid]="identificationid"></app-create-occurrence>
+        </mat-tab>
+        <mat-tab>
+          <ng-template mat-tab-label>
+            <mat-icon class="icon">filter_5</mat-icon> Organism
+          </ng-template>
+          <app-create-organism [identificationid]="identificationid"></app-create-organism>
+        </mat-tab>
+        <mat-tab>
+          <ng-template mat-tab-label>
+            <mat-icon class="icon">filter_6</mat-icon> Event
+          </ng-template>
+          <app-create-event [identificationid]="identificationid"></app-create-event>
+        </mat-tab>
+        <mat-tab>
+          <ng-template mat-tab-label>
+            <mat-icon class="icon">filter_7</mat-icon> Location
+          </ng-template>
+          <app-create-location [identificationid]="identificationid"></app-create-location>
+        </mat-tab>
+        <mat-tab>
+          <ng-template mat-tab-label>
+            <mat-icon class="icon">filter_8</mat-icon> Geological Context
+          </ng-template>
+          <app-create-geologicalcontext [identificationid]="identificationid"></app-create-geologicalcontext>
+        </mat-tab>
+      </div>
+      <!--Tabs deshabilitadas-->
+      <ng-template #elseBlock>
+        <mat-tab disabled disabled>
+          <ng-template mat-tab-label>
+            <mat-icon class="icon">filter_2</mat-icon> Taxon
+          </ng-template>
+        </mat-tab>
+        <mat-tab disabled>
+          <ng-template mat-tab-label>
+            <mat-icon class="icon">filter_3</mat-icon> Record Level
+          </ng-template>
+        </mat-tab>
+        <mat-tab disabled>
+          <ng-template mat-tab-label>
+            <mat-icon class="icon">filter_4</mat-icon> Occurrence
+          </ng-template>
+        </mat-tab>
+        <mat-tab disabled>
+          <ng-template mat-tab-label>
+            <mat-icon class="icon">filter_5</mat-icon> Organism
+          </ng-template>
+        </mat-tab>
+        <mat-tab disabled>
+          <ng-template mat-tab-label>
+            <mat-icon class="icon">filter_6</mat-icon> Event
+          </ng-template>
+        </mat-tab>
+        <mat-tab disabled>
+          <ng-template mat-tab-label>
+            <mat-icon class="icon">filter_7</mat-icon> Location
+          </ng-template>
+        </mat-tab>
+        <mat-tab disabled>
+          <ng-template mat-tab-label>
+            <mat-icon class="icon">filter_8</mat-icon> Geological Context
+          </ng-template>
+        </mat-tab>
+      </ng-template>
     </mat-tab-group>
   </mat-card>
 </div>
 <!--
 <mat-horizontal-stepper [linear]="isLinear" #stepper>
   <mat-step>
-    <form>
-      <ng-template matStepLabel>Identification</ng-template>
-      <app-create-identification></app-create-identification>
-      <div>
-        <button mat-button matStepperNext>Next</button>
-      </div>
-    </form>
+    <ng-template matStepLabel>Identification</ng-template>
+    <app-create-identification></app-create-identification>
+    <button mat-button matStepperNext>Next</button>
   </mat-step>
   <mat-step>
-    <form>
-      <ng-template matStepLabel>Record Level</ng-template>
-      <app-create-record-level></app-create-record-level>
-      <div>
-        <button class="btn btn-primary" mat-button matStepperPrevious>Back</button>
-        <button mat-button matStepperNext>Next</button>
-      </div>
-    </form>
+    <ng-template matStepLabel>Record Level</ng-template>
+    <app-create-record-level></app-create-record-level>
+    <button class="btn btn-primary" mat-button matStepperPrevious>Back</button>
+    <button mat-button matStepperNext>Next</button>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>Occurrence</ng-template>
+    <app-create-occurrence></app-create-occurrence>
+    <button class="btn btn-primary" mat-button matStepperPrevious>Back</button>
+    <button mat-button matStepperNext>Next</button>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>Organism</ng-template>
+    <app-create-organism></app-create-organism>
+    <button class="btn btn-primary" mat-button matStepperPrevious>Back</button>
+    <button mat-button matStepperNext>Next</button>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>Event</ng-template>
+    <app-create-event></app-create-event>
+    <button class="btn btn-primary" mat-button matStepperPrevious>Back</button>
+    <button mat-button matStepperNext>Next</button>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>Location</ng-template>
+    <app-create-location></app-create-location>
+    <button class="btn btn-primary" mat-button matStepperPrevious>Back</button>
+    <button mat-button matStepperNext>Next</button>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>Geological Context</ng-template>
+    <app-create-geologicalcontext></app-create-geologicalcontext>
+    <button class="btn btn-primary" mat-button matStepperPrevious>Back</button>
+    <button mat-button matStepperNext>Next</button>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>Taxón</ng-template>
+    <app-create-taxon></app-create-taxon>
+    <button class="btn btn-primary" mat-button matStepperPrevious>Back</button>
+    <button mat-button matStepperNext>Next</button>
   </mat-step>
   <mat-step>
     <ng-template matStepLabel>Done</ng-template>
     You are now done.
-    <div>
-      <button mat-button matStepperPrevious>Back</button>
-      <button mat-button (click)="stepper.reset()">Reset</button>
-    </div>
+    <button mat-button matStepperPrevious>Back</button>
+    <button mat-button (click)="stepper.reset()">Reset</button>
   </mat-step>
 </mat-horizontal-stepper>
 -->

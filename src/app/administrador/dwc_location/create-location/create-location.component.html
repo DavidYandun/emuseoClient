@@ -1,8 +1,6 @@
 <div class="container">
-  <mat-form-field appearance="outline">
-    <mat-label for="identificationid">Identification</mat-label>
-    <input matInput type="text" [(ngModel)]="location.identificationid" id="identificationid">
-  </mat-form-field>
+  <br>
+  <h2>Location</h2>
   <h5>División Política</h5>
   <div class="row">
     <mat-form-field appearance="outline" class="col">
@@ -183,6 +181,6 @@
     </mat-form-field>
   </div>
   <div class="form-group">
-    <button (click)="postLocation()" type="button" class="btn btn-primary">Aceptar</button>
+    <button (click)="postLocation()" mat-raised-button color="primary">Aceptar</button>
   </div>
 </div>

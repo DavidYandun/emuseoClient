@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { OccurrenceService } from 'src/app/services/dwc_occurrence_services/occurrence.service';
 import { MatDialog } from '@angular/material';
 import { DialogCreateLifestageComponent } from '../dialog-create-lifestage/dialog-create-lifestage.component';
@@ -13,6 +13,7 @@ import { DialogCreateOrganismquantitytypeComponent } from '../dialog-create-orga
   styleUrls: ['./create-occurrence.component.css']
 })
 export class CreateOccurrenceComponent implements OnInit {
+  @Input() identificationid: number;
   occurrence: any = {
     identificationid: null,
     organismquantitytype: null,
@@ -29,14 +30,14 @@ export class CreateOccurrenceComponent implements OnInit {
     occurrenceremarks: null
   }
 
-  
+
   lifestages: any;
   reproductiveconditions: any;
   sexs: any;
   establishmentmeanss: any;
   organismquantitytypes: any;
 
-  
+
   lifestage: any;
   reproductivecondition: any;
   sex: any;
@@ -44,18 +45,21 @@ export class CreateOccurrenceComponent implements OnInit {
   organismquantitytype: any;
 
   constructor(private occurrenceService: OccurrenceService,
-    public dialog:MatDialog) { }
+    public dialog: MatDialog) { }
 
   ngOnInit() {
     this.getLists();
   }
   postOccurrence() {
-    this.occurrenceService.postOccurrence(this.occurrence).subscribe(resultado => {
-      console.log(this.occurrence);
-    },
-      error => {
-        console.log(JSON.stringify(error));
-      });
+    this.occurrence.identificationid = this.identificationid;
+    if (this.occurrence.identificationid) {
+      this.occurrenceService.postOccurrence(this.occurrence).subscribe(data => {
+        console.log(data);
+      },
+        error => {
+          console.log(JSON.stringify(error));
+        });
+    }
   }
   getLists() {
     this.occurrenceService.getOrganismquantitytypes().subscribe(data => {
@@ -89,14 +93,14 @@ export class CreateOccurrenceComponent implements OnInit {
         console.log(JSON.stringify(error));
       });
   }
-  
-  
-  
+
+
+
 
   addLifeStage(): void {
     const dialogRef = this.dialog.open(DialogCreateLifestageComponent, {
       width: '350px',
-      data:{}
+      data: {}
     });
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
@@ -107,7 +111,7 @@ export class CreateOccurrenceComponent implements OnInit {
   addReproductiveCondition(): void {
     const dialogRef = this.dialog.open(DialogCreateReproductiveconditionComponent, {
       width: '350px',
-      data:{}
+      data: {}
     });
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
@@ -118,7 +122,7 @@ export class CreateOccurrenceComponent implements OnInit {
   addSex(): void {
     const dialogRef = this.dialog.open(DialogCreateSexComponent, {
       width: '350px',
-      data:{}
+      data: {}
     });
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
@@ -129,7 +133,7 @@ export class CreateOccurrenceComponent implements OnInit {
   addEstablishmentmeans(): void {
     const dialogRef = this.dialog.open(DialogCreateEstablishmentmeansComponent, {
       width: '350px',
-      data:{}
+      data: {}
     });
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
@@ -140,7 +144,7 @@ export class CreateOccurrenceComponent implements OnInit {
   addOrganismQuantityType(): void {
     const dialogRef = this.dialog.open(DialogCreateOrganismquantitytypeComponent, {
       width: '350px',
-      data:{}
+      data: {}
     });
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');

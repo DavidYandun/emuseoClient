@@ -1,9 +1,6 @@
 <div class="container">
-  <mat-form-field appearance="outline">
-    <mat-label for="identificationid">Identification</mat-label>
-    <input matInput type="text" [(ngModel)]="geologicalcontext.identificationid" id="identificationid">
-  </mat-form-field>
-
+  <br>
+  <h2>Geological Context</h2>
   <div class="row">
     <div class="col-lg-3">
       <h5> <button (click)="addEon()" mat-mini-fab color="primary">
@@ -77,11 +74,11 @@
   <div class="row">
     <mat-form-field appearance="outline" class="col">
       <mat-label for="geologicalcontextremarks">Geological Context Remarks</mat-label>
-      <textarea matInput [(ngModel)]="geologicalcontext.geologicalcontextremarks" type="text" id="geologicalcontextremarks"
-        placeholder="Notas adicionales del contexto geológico."></textarea>
+      <textarea matInput [(ngModel)]="geologicalcontext.geologicalcontextremarks" type="text"
+        id="geologicalcontextremarks" placeholder="Notas adicionales del contexto geológico."></textarea>
     </mat-form-field>
   </div>
 
   <div>
-    <button (click)="postGeologicalContext()" type="button" class="btn btn-primary">Aceptar</button>
+    <button (click)="postGeologicalContext()" mat-raised-button color="primary">Aceptar</button>
   </div>

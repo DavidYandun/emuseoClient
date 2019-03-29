@@ -15,6 +15,9 @@ export class RecordLevelService {
   getRecordLevel(recordlevelid): Observable<any> {
     return this.httpClient.get<any>('api/recordlevel/' + recordlevelid);
   }
+  getRecordLevelId(identificationid): Observable<any> {
+    return this.httpClient.get<any>('api/recordlevel/id/' + identificationid);
+  }
   postRecordLevel(recordlevel: RecordLevel) {
     let json = JSON.stringify(recordlevel);
     let headers = new HttpHeaders().set('Content-Type', 'application/json');

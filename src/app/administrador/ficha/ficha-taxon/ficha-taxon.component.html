@@ -1,10 +1,61 @@
-<mat-grid-list cols="2" rowHeight="5:1">
-    <mat-grid-tile>1</mat-grid-tile>
-    <mat-grid-tile>2</mat-grid-tile>
-    <mat-grid-tile>3</mat-grid-tile>
-    <mat-grid-tile>4</mat-grid-tile>
-    <mat-grid-tile>1</mat-grid-tile>
-    <mat-grid-tile>2</mat-grid-tile>
-    <mat-grid-tile>3</mat-grid-tile>
-    <mat-grid-tile>4</mat-grid-tile>
-  </mat-grid-list>
+<div class="row">
+  <div class="col-lg-5">
+    <mat-list>
+      <mat-list-item>
+        <div class="col title text-right">Kingdom:</div>
+        <div class="col">{{taxon.kingdom}}</div>
+      </mat-list-item>
+      <mat-list-item>
+        <div class="col title text-right">Phylum:</div>
+        <div class="col">{{taxon.phylum}}</div>
+      </mat-list-item>
+      <mat-list-item>
+        <div class="col title text-right">Class:</div>
+        <div class="col">{{taxon.class}}</div>
+      </mat-list-item>
+      <mat-list-item>
+        <div class="col title text-right">Order:</div>
+        <div class="col">{{taxon.order}}</div>
+      </mat-list-item>
+      <mat-list-item>
+        <div class="col title text-right">Family:</div>
+        <div class="col">{{taxon.family}}</div>
+      </mat-list-item>
+      <mat-list-item>
+        <div class="col title text-right">Genus:</div>
+        <div class="col">{{taxon.genus}}</div>
+      </mat-list-item>
+      <mat-list-item>
+        <div class="col title text-right">Specie:</div>
+        <div class="col">{{taxon.specie}}</div>
+      </mat-list-item>
+    </mat-list>
+  </div>
+  <mat-divider [vertical]="true"></mat-divider>
+  <div class="col-lg-6">
+    <mat-list>
+      <mat-list-item>
+        <div class="col title text-right">Scientific Name:</div>
+        <div class="col">{{taxon.scientificname}}</div>
+      </mat-list-item>
+      <mat-list-item>
+        <div class="col title text-right">Accepted Name Usage:</div>
+        <div class="col">{{taxon.acceptednameusage}}</div>
+      </mat-list-item>
+      <mat-list-item>
+        <div class="col title text-right">Vernacular Name:</div>
+        <div class="col">{{taxon.vernacularname}}</div>
+      </mat-list-item>
+      <mat-list-item>
+        <div class="col title text-right">Original Name:</div>
+        <div class="col">{{taxon.originalname}}</div>
+      </mat-list-item>
+    </mat-list>
+  </div>
+
+  <div colspan="2">
+    <mat-divider></mat-divider>
+    <h3>Remarks:</h3>
+    <p>{{taxon.taxonremarks}}</p>
+  </div>
+</div>

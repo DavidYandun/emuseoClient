@@ -16,6 +16,9 @@ export class OccurrenceService {
   getOccurrence(occurrenceid): Observable<any> {
     return this.httpClient.get<any>('api/occurrence/' + occurrenceid);
   }
+  getOccurrenceId(identificationid): Observable<any> {
+    return this.httpClient.get<any>('api/occurrence/id/' + identificationid);
+  }
   postOccurrence(occurrence: Occurrence) {
     let json = JSON.stringify(occurrence);
     let headers = new HttpHeaders().set('Content-Type', 'application/json');

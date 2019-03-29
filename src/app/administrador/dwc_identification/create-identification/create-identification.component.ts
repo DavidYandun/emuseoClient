@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { IdentificationService } from 'src/app/services/dwc_identification_services/identification.service';
 import { VerificationService } from 'src/app/services/dwc_identification_services/verification.service';
 import { MatDialog } from '@angular/material';
@@ -10,6 +10,9 @@ import { DialogCreateVerificationstatusComponent } from '../dialog-create-verifi
   styleUrls: ['./create-identification.component.css']
 })
 export class CreateIdentificationComponent implements OnInit {
+
+  @Output() identificationid = new EventEmitter();
+
   identification: any = {
     verificationstatus: null,
     identificationqualifier: null,
@@ -28,11 +31,11 @@ export class CreateIdentificationComponent implements OnInit {
   }
   postIdentification() {
     this.identificationService.postIdentification(this.identification).subscribe(resultado => {
-      console.log(this.identification);
+      this.identificationid.emit(resultado.identificationid);
+      console.log(resultado);
     },
       error => {
         console.log(JSON.stringify(error));
-
       });
   }
 
@@ -42,14 +45,13 @@ export class CreateIdentificationComponent implements OnInit {
     },
       error => {
         console.log(JSON.stringify(error));
-
       })
   }
 
   addVerification(): void {
     const dialogRef = this.dialog.open(DialogCreateVerificationstatusComponent, {
       width: '350px',
-      data:{}
+      data: {}
     });
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');

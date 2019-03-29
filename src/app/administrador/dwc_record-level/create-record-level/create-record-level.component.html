@@ -1,8 +1,6 @@
 <div class="container">
-  <mat-form-field appearance="outline">
-    <mat-label for="identificationid">Identification</mat-label>
-    <input matInput type="text" [(ngModel)]="recordlevel.identificationid" id="identificationid">
-  </mat-form-field>
+  <br>
+  <h2>Record Level</h2>
   <div class="row">
     <mat-form-field appearance="outline" class="col">
       <mat-label for="name">Entidad</mat-label>
@@ -51,7 +49,7 @@
     <mat-form-field appearance="outline" class="col">
       <mat-label for="basisofrecord">Basis of Record</mat-label>
       <mat-select ng-model="basisofrecords" [(ngModel)]="recordlevel.basisofrecord" id="singleSelectBasisofrecord" name="singleSelectBasisofrecord">
-        <mat-option value=""></mat-option>
+        <mat-option value="">-Ninguno-</mat-option>
         <mat-option *ngFor="let basisofrecord of basisofrecords" value="{{basisofrecord.basisofrecord}}">{{basisofrecord.basisofrecord}}</mat-option>
       </mat-select>
       <mat-hint class="add" (click)="addBasisofRecord()">
@@ -65,6 +63,6 @@
   </div>
 
   <div>
-    <button (click)="postRecordLevel()" type="button" class="btn btn-primary">Aceptar</button>
+    <button (click)="postRecordLevel()" type="button" mat-raised-button color="primary">Aceptar</button>
   </div>
 </div>

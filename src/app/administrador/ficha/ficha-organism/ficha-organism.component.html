@@ -1,0 +1,19 @@
+<div class="row">
+  <div class="col-lg-5">
+    <mat-list>
+      <mat-list-item>
+        <div class="col title text-right">Organism Name:</div>
+        <div class="col">{{organism.organismname}}</div>
+      </mat-list-item>
+      <mat-list-item>
+        <div class="col title text-right">Organism Scope:</div>
+        <div class="col">{{organism.organismscope}}</div>
+      </mat-list-item>
+    </mat-list>
+  </div>
+  <mat-divider [vertical]="true"></mat-divider>
+  <div class="col-lg-6">
+    <h3>Remarks:</h3>
+    <p>{{organism.organismremarks}}</p>
+  </div>
+</div>

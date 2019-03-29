@@ -15,6 +15,9 @@ export class LocationService {
   getLocation(locationid): Observable<any> {
     return this.httpClient.get<any>('api/location/' + locationid);
   }
+  getLocationId(identificationid): Observable<any> {
+    return this.httpClient.get<any>('api/location/id/' + identificationid);
+  }
   postLocation(location: Location) {
     let json = JSON.stringify(location);
     let headers = new HttpHeaders().set('Content-Type', 'application/json');

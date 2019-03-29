@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { RecordLevelService } from 'src/app/services/dwc_record-level_services/record-level.service';
 import { BasisofrecordService } from 'src/app/services/dwc_record-level_services/basisofrecord.service';
 import { DialogCreateBasisofrecordComponent } from '../dialog-create-basisofrecord/dialog-create-basisofrecord.component';
@@ -10,6 +10,7 @@ import { MatDialog } from '@angular/material';
   styleUrls: ['./create-record-level.component.css']
 })
 export class CreateRecordLevelComponent implements OnInit {
+  @Input() identificationid: number;
   recordlevel: any = {
     identificationid: null,
     entidadid: null,
@@ -25,7 +26,7 @@ export class CreateRecordLevelComponent implements OnInit {
     dynamicproperties: null
   }
   basisofrecords: any;
-  basisofrecord:any;
+  basisofrecord: any;
   constructor(private recordLevelService: RecordLevelService,
     private basisofrecordService: BasisofrecordService,
     public dialog: MatDialog) { }
@@ -34,12 +35,15 @@ export class CreateRecordLevelComponent implements OnInit {
     this.getBasisofrecords();
   }
   postRecordLevel() {
-    this.recordLevelService.postRecordLevel(this.recordlevel).subscribe(resultado => {
-      console.log(this.recordlevel);
-    },
-      error => {
-        console.log(JSON.stringify(error));
-      });
+    this.recordlevel.identificationid = this.identificationid;
+    if (this.recordlevel.identificationid) {
+      this.recordLevelService.postRecordLevel(this.recordlevel).subscribe(data => {
+        console.log(data);
+      },
+        error => {
+          console.log(JSON.stringify(error));
+        });
+    }
   }
   getBasisofrecords() {
     this.basisofrecordService.getBasisofrecords().subscribe(data => {
@@ -53,7 +57,7 @@ export class CreateRecordLevelComponent implements OnInit {
   addBasisofRecord(): void {
     const dialogRef = this.dialog.open(DialogCreateBasisofrecordComponent, {
       width: '350px',
-      data:{}
+      data: {}
     });
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');

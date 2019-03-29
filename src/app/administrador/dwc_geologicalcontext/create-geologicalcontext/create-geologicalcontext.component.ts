@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { GeologicalcontextService } from 'src/app/services/dwc_geologicalcontext_service/geologicalcontext.service';
 import { MatDialog } from '@angular/material';
 import { DialogCreateEonComponent } from '../dialog-create-eon/dialog-create-eon.component';
@@ -12,6 +12,7 @@ import { DialogCreateEpochComponent } from '../dialog-create-epoch/dialog-create
   styleUrls: ['./create-geologicalcontext.component.css']
 })
 export class CreateGeologicalcontextComponent implements OnInit {
+  @Input() identificationid: number;
   geologicalcontext: any = {
     identificationid: null,
     earliesteonorlowesteonothem: null,
@@ -41,12 +42,15 @@ export class CreateGeologicalcontextComponent implements OnInit {
     this.getLists();
   }
   postGeologicalContext() {
-    this.geologicalcontextService.postGeologicalcontext(this.geologicalcontext).subscribe(resultado => {
-      console.log(this.geologicalcontext);
-    },
-      error => {
-        console.log(JSON.stringify(error));
-      });
+    this.geologicalcontext.identificationid = this.identificationid;
+    if (this.geologicalcontext.identificationid) {
+      this.geologicalcontextService.postGeologicalcontext(this.geologicalcontext).subscribe(data => {
+        console.log(data);
+      },
+        error => {
+          console.log(JSON.stringify(error));
+        });
+    }
   }
   getLists() {
     this.geologicalcontextService.getEons().subscribe(data => {
