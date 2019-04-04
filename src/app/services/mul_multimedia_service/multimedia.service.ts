@@ -15,6 +15,16 @@ export class MultimediaService {
   getMultimedia(multimediaid): Observable<any> {
     return this.httpClient.get<any>('api/multimedia/' + multimediaid);
   }
+
+  getMultimediaId(identificationid): Observable<any> {
+    return this.httpClient.get<any>('api/multimedia/id/' + identificationid);
+  }
+  getMultimediaIdAll(identificationid): Observable<any> {
+    return this.httpClient.get<any>('api/multimedia/all/' + identificationid);
+  }
+  getImagen(name): Observable<any> {
+    return this.httpClient.get<any>('api/multimedia/img/' + name);
+  }
   postMultimedia(multimedia: Multimedia) {
     let json = JSON.stringify(multimedia);
     let headers = new HttpHeaders().set('Content-Type', 'application/json');
@@ -46,14 +56,6 @@ export class MultimediaService {
     return this.httpClient.post('/api/multimedia/upload', datos);
 
   }
-
-  /**
-   httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type': 'multipart/form-data'
-    })
-  }
-   */
 }
 
 export interface Multimedia {

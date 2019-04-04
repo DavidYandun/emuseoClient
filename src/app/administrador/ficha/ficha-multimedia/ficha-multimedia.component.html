@@ -1,3 +1,55 @@
-<p>
-  ficha-multimedia works!
-</p>
+<mat-accordion class="example-headers-align">
+  <mat-expansion-panel hideToggle>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Imagenes
+      </mat-panel-title>
+      <mat-panel-description>
+        {{cantidadImages}} Imagenes
+        <mat-icon>photo_library</mat-icon>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <div class="row">
+      <div *ngFor="let image of images" class="col-lg-4">
+        <img src="{{image.url}}" alt="{{image.name}}" class="image img-thumbnail">
+      </div>
+    </div>
+
+  </mat-expansion-panel>
+
+  <mat-expansion-panel hideToggle>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Video
+      </mat-panel-title>
+      <mat-panel-description>
+        2 Videos
+        <mat-icon>video_library</mat-icon>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    Contenido 2
+  </mat-expansion-panel>
+
+  <mat-expansion-panel hideToggle>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Sonido
+      </mat-panel-title>
+      <mat-panel-description>
+        4 Notas de Audio
+        <mat-icon>library_music</mat-icon>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+
+    <mat-form-field>
+      <input matInput placeholder="Date" [matDatepicker]="picker" (focus)="picker.open()" readonly>
+    </mat-form-field>
+    <mat-datepicker #picker></mat-datepicker>
+
+    <mat-action-row>
+      <button mat-button color="warn" (click)="prevStep()">Previous</button>
+      <button mat-button color="primary" (click)="nextStep()">End</button>
+    </mat-action-row>
+  </mat-expansion-panel>
+
+</mat-accordion>

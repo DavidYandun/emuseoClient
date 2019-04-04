@@ -11,11 +11,6 @@
         <mat-option *ngFor="let typemedia of typemedias" value="{{typemedia.typemedia}}">{{typemedia.typemedia}}</mat-option>
       </mat-select>
     </mat-form-field>
-   
-    <mat-form-field appearance="outline" class="col-lg-12">
-      <mat-label>url</mat-label>
-      <input matInput [(ngModel)]="multimedia.url" type="text" placeholder="">
-    </mat-form-field>
     <mat-form-field appearance="outline" class="col-lg-12">
       <mat-label>Author</mat-label>
       <input matInput [(ngModel)]="multimedia.author" type="text" placeholder="">

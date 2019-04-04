@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { IdentificationService } from 'src/app/services/dwc_identification_services/identification.service';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
+import { MultimediaService } from 'src/app/services/mul_multimedia_service/multimedia.service';
 
 @Component({
   selector: 'app-list-collection',
@@ -21,7 +22,8 @@ export class ListCollectionComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
 
   collection: any;
-  constructor(private identificationService: IdentificationService) { }
+  constructor(
+    private identificationService: IdentificationService) { }
 
   ngOnInit() {
     this.getCollection();
@@ -33,6 +35,7 @@ export class ListCollectionComponent implements OnInit {
       this.collection.paginator = this.paginator;
       this.collection.sort = this.sort;
     })
+
   };
 
   applyFilter(filterValue: string) {
@@ -43,7 +46,7 @@ export class ListCollectionComponent implements OnInit {
   };
 
   displayedColumnss: string[] = ['identificationid', 'verificationstatus', 'identificationqualifier', 'identifiedby', 'dateidentified', 'identificationremarks'];
-  
+
   displayedColumns: string[] = [
     'url',
     'scientificname',

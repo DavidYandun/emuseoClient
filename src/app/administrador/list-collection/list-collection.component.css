@@ -1,3 +1,7 @@
+.title {
+  font-size: 2em;
+}
+
 table {
   width: 100%;
 }
@@ -24,16 +28,21 @@ tr.example-element-row:not(.example-expanded-row):active {
   display: flex;
 }
 
-img.miniatura{
+img.miniatura {
   width: 70px;
   height: 70px;
   padding: 10px;
 }
-img.resumen{
-  width: 200px;
+
+img.resumen {
   height: 200px;
 }
 
-.columna{
-    border-style: solid;
+.actions {
+  padding: 5px;
+  margin: 10px;
+}
+
+.columna {
+  border-style: solid;
 }

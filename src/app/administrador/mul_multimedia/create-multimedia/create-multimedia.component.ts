@@ -14,12 +14,15 @@ export class CreateMultimediaComponent implements OnInit {
     typemedia: null,
     name: null,
     url: null,
-    author: null
+    author: null,
+    principal: true
   }
   extension: any;
   max: number;
+
   typemedias: any;
   File: File;
+
 
   constructor(private multimediaService: MultimediaService, private taxoService: TaxonService) { }
 
@@ -53,14 +56,22 @@ export class CreateMultimediaComponent implements OnInit {
   }
 
   postFile() {
+    //identifica si es la primera imagen o no
+    this.multimediaService.getMultimediaId(this.multimedia.identificationid).subscribe(data => {
+      if (data) {
+        this.multimedia.principal = false;
+      } else { this.multimedia.principal = true; }
+    })
 
     //registra contenido multimedia
     ////consulta nombre del taxon
+
     this.taxoService.getTaxonId(this.multimedia.identificationid).subscribe(data => {
       //asigna nombre del archivo multimedia
       this.multimedia.name = data.scientificname
       //condiciona si no tiene nombre no registra en la BDD ni sube la imagen
-      if (this.multimedia.name != null) {
+      if (this.multimedia.name != null && this.multimedia.principal != null) {
+        this.multimedia.url = 'api/multimedia/img/' + this.multimedia.name + this.max + this.extension;
         //registra el campo multimedia en la bdd
         this.multimediaService.postMultimedia(this.multimedia).subscribe(resultado => {
           console.log(resultado)
@@ -69,10 +80,8 @@ export class CreateMultimediaComponent implements OnInit {
             console.log(JSON.stringify(error))
           })
         //asigna el nombre de la imagen
-        //let name: string;
+
         //sube el archivo al repostitorio
-
-
         this.multimediaService.postFile(this.File, this.multimedia.name + this.max + this.extension).subscribe(data => {
           if (data.type === HttpEventType.UploadProgress) {
             console.log('Upload Progress: ' + Math.round(data.loaded / data.total * 100) + '%');
@@ -84,11 +93,6 @@ export class CreateMultimediaComponent implements OnInit {
       }
       console.log(data.scientificname)
     })
-
-
-
-
-
   }
 
 
