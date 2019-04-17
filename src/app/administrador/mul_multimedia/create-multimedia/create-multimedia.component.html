@@ -1,28 +1,26 @@
-<div class="container">
-  <mat-form-field appearance="outline">
-    <mat-label>Identification</mat-label>
-    <input matInput [(ngModel)]="multimedia.identificationid" type="text" placeholder="">
-  </mat-form-field>
+<form [formGroup]="multimedia" (ngSubmit)="postFile()">
   <div class="row">
-    <mat-form-field appearance="outline" class="col-lg-12">
+    <mat-form-field appearance="outline" class="col-lg-4">
       <mat-label>Type Media</mat-label>
-      <mat-select ng-model="typemedias" [(ngModel)]="multimedia.typemedia">
+      <mat-select ng-model="typemedias" formControlName="typemedia">
         <mat-option>-Ninguno-</mat-option>
-        <mat-option *ngFor="let typemedia of typemedias" value="{{typemedia.typemedia}}">{{typemedia.typemedia}}</mat-option>
+        <mat-option *ngFor="let typemedia of typemedias" value="{{typemedia.typemedia}}">{{typemedia.typemedia}}
+        </mat-option>
       </mat-select>
     </mat-form-field>
-    <mat-form-field appearance="outline" class="col-lg-12">
+    <mat-form-field appearance="outline" class="col-lg-4">
       <mat-label>Author</mat-label>
-      <input matInput [(ngModel)]="multimedia.author" type="text" placeholder="">
+      <input matInput formControlName="author" type="text" placeholder="">
     </mat-form-field>
-    <div class="col-lg-12">
-      <input style="display:none"(change)="onFileSelected($event)" type="file" #fileInput [(ngModel)]="archivo">
-      <button mat-raised-button color="primary" (click)="fileInput.click()">Cargar Imagen</button>
+    <div class="col-lg-4">
+      <input style="display:none" (change)="onFileSelected($event)" type="file" #fileInput [(ngModel)]="archivo">
+      <button mat-raised-button color="primary" (click)="fileInput.click()"> <mat-icon>cloud_upload</mat-icon> Cargar Imagen</button>
       <label>{{archivo}}</label>
     </div>
     <div class="form-group">
-      <button (click)="postFile()" type="button" class="btn btn-primary">Aceptar</button>
+        <button mdbBtn type="submit" [disabled]="!multimedia.valid" color="primary" block="true">
+            Registrar Contenido Multimedia</button>
     </div>
   </div>
 
-</div>
+</form>

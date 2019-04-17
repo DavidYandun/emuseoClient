@@ -1,116 +1,120 @@
 <app-header-admin></app-header-admin>
-<div class="container">
-  <div class="col title">
-    Lista de Colecciones
-  </div>
-
-  <mat-form-field class="col-lg-10">
-    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Buscar">
-  </mat-form-field>
-
-
-  <button mat-raised-button class="text-right col-lg-2" routerLink="/admin-collection">
-    <mat-icon>add</mat-icon> Nueva Colección
-  </button>
-  <table class="table table-dark" mat-table matSort [dataSource]="collection" multiTemplateDataRows
-    class="mat-elevation-z8">
-    <ng-container matColumnDef="url">
-      <th mat-header-cell *matHeaderCellDef> Foto </th>
-      <td mat-cell *matCellDef="let element">
-        <img class="miniatura rounded-circle" src="{{element.url}}" alt="{{element.medianame}}">
-      </td>
-    </ng-container>
-    <ng-container matColumnDef="scientificname">
-      <th mat-header-cell *matHeaderCellDef>Scientific Name</th>
-      <td mat-cell *matCellDef="let element"> {{element.scientificname}} {{element.medianame}}</td>
-    </ng-container>
-    <ng-container matColumnDef="taxonrank">
-      <th mat-header-cell *matHeaderCellDef> Taxon Rank </th>
-      <td mat-cell *matCellDef="let element"> {{element.taxonrank}} </td>
-    </ng-container>
-    <ng-container matColumnDef="identifiedby">
-      <th mat-header-cell *matHeaderCellDef> Identified By. </th>
-      <td mat-cell *matCellDef="let element"> {{element.identifiedby}} </td>
-    </ng-container>
-    <ng-container matColumnDef="fieldnumber">
-      <th mat-header-cell *matHeaderCellDef> Field Number </th>
-      <td mat-cell *matCellDef="let element"> {{element.fieldnumber}} </td>
-    </ng-container>
-    <ng-container matColumnDef="verificationstatus">
-      <th mat-header-cell *matHeaderCellDef> Status </th>
-      <td mat-cell *matCellDef="let element"> {{element.verificationstatus}} </td>
-    </ng-container>
-
-    <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
-    <ng-container matColumnDef="expandedDetail">
-      <td mat-cell *matCellDef="let element" [attr.colspan]="displayedColumns.length">
-        <div class="example-element-detail" [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
-          <div class="example-element-diagram">
-            <div>
-              <img class="resumen img-thumbnail img-fluid" src="{{element.url}}" alt="{{element.scientificname}}">
-              <button class="col-lg-12 " mat-raised-button color="primary"
-                  routerLink="/ficha/{{element.identificationid}}">Ver Ficha</button>
-            </div>
-          </div>
-          <div class="container example-element-description">
-            <div>
-              <h4>{{element.scientificname}}</h4><span>({{element.vernacularname}})</span>
-            </div>
-
-            <div class="row">
-              <div class=" col">
-                <div class="">
-                  <strong>Kingdom:</strong>
-                  {{element.kingdom}}
-                </div>
-                <hr class="featurette-divider">
-                <div class="">
-                  <strong>Phylum:</strong>
-                  {{element.phylum}}
-                </div>
-                <hr class="featurette-divider">
-                <div class="">
-                  <strong>Class:</strong>
-                  {{element.class}}
-                </div>
-              </div>
-              <div class=" col">
-                <div class="">
-                  <strong>Order:</strong>
-                  {{element.order}}
-                </div>
-                <hr class="featurette-divider">
-                <div class="">
-                  <strong>Family:</strong>
-                  {{element.family}}
-                </div>
-                <hr class="featurette-divider">
-                <div class="">
-                  <strong>Genus:</strong>
-                  {{element.genus}}
-                </div>
-              </div>
-              <div class=" col">
-                <div class="">
-                  <strong>Specie:</strong>
-                  {{element.specie}}
-                </div>
-                <hr class="featurette-divider">
-              </div>
-            
-            </div>
-          </div>
-        </div>
-      </td>
-    </ng-container>
-
-    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
-    <tr mat-row *matRowDef="let element; columns: displayedColumns;" class="example-element-row"
-      [class.example-expanded-row]="expandedElement === element"
-      (click)="expandedElement = expandedElement === element ? null : element">
-    </tr>
-    <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
-  </table>
-  <mat-paginator [pageSizeOptions]="[5, 10, 25,100]" showFirstLastButtons></mat-paginator>
+<div *ngIf="errorMsg; else content">
+  <h3 class="error">{{errorMsg}}</h3>
 </div>
+<ng-template #content>
+  <div class="container">
+    <div class="col title">
+      Lista de Colecciones
+    </div>
+
+    <mat-form-field class="col-lg-10">
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Buscar">
+    </mat-form-field>
+
+    <button mat-raised-button class="text-right col-lg-2" routerLink="/admin-collection">
+      <mat-icon>add</mat-icon> Nueva Colección
+    </button>
+    <table class="table table-dark" mat-table matSort [dataSource]="collection" multiTemplateDataRows
+      class="mat-elevation-z8">
+      <ng-container matColumnDef="url">
+        <th mat-header-cell *matHeaderCellDef> Foto </th>
+        <td mat-cell *matCellDef="let element">
+          <img class="miniatura rounded-circle" src="{{element.url}}" alt="{{element.medianame}}">
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="scientificname">
+        <th mat-header-cell *matHeaderCellDef>Scientific Name</th>
+        <td mat-cell *matCellDef="let element"> {{element.scientificname|uppercase}}</td>
+      </ng-container>
+      <ng-container matColumnDef="taxonrank">
+        <th mat-header-cell *matHeaderCellDef> Taxon Rank </th>
+        <td mat-cell *matCellDef="let element"> {{element.taxonrank|uppercase}} </td>
+      </ng-container>
+      <ng-container matColumnDef="identifiedby">
+        <th mat-header-cell *matHeaderCellDef> Identified By. </th>
+        <td mat-cell *matCellDef="let element"> {{element.identifiedby|uppercase}} </td>
+      </ng-container>
+      <ng-container matColumnDef="fieldnumber">
+        <th mat-header-cell *matHeaderCellDef> Field Number </th>
+        <td mat-cell *matCellDef="let element"> {{element.fieldnumber|uppercase}} </td>
+      </ng-container>
+      <ng-container matColumnDef="verificationstatus">
+        <th mat-header-cell *matHeaderCellDef> Status </th>
+        <td mat-cell *matCellDef="let element"> {{element.verificationstatus|uppercase}} </td>
+      </ng-container>
+
+      <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
+      <ng-container matColumnDef="expandedDetail">
+        <td mat-cell *matCellDef="let element" [attr.colspan]="displayedColumns.length">
+          <div class="example-element-detail" [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+            <div class="example-element-diagram">
+              <div>
+                <img class="resumen img-thumbnail img-fluid" src="{{element.url}}" alt="{{element.scientificname}}">
+                <button class="col-lg-12 " mat-raised-button color="primary"
+                  routerLink="/ficha/{{element.identificationid}}">Ver Ficha</button>
+              </div>
+            </div>
+            <div class="container example-element-description">
+              <div>
+                <h4>{{element.scientificname}}</h4><span>({{element.vernacularname}})</span>
+              </div>
+
+              <div class="row">
+                <div class=" col">
+                  <div class="">
+                    <strong>Kingdom:</strong>
+                    {{element.kingdom}}
+                  </div>
+                  <hr class="featurette-divider">
+                  <div class="">
+                    <strong>Phylum:</strong>
+                    {{element.phylum}}
+                  </div>
+                  <hr class="featurette-divider">
+                  <div class="">
+                    <strong>Class:</strong>
+                    {{element.class}}
+                  </div>
+                </div>
+                <div class=" col">
+                  <div class="">
+                    <strong>Order:</strong>
+                    {{element.order}}
+                  </div>
+                  <hr class="featurette-divider">
+                  <div class="">
+                    <strong>Family:</strong>
+                    {{element.family}}
+                  </div>
+                  <hr class="featurette-divider">
+                  <div class="">
+                    <strong>Genus:</strong>
+                    {{element.genus}}
+                  </div>
+                </div>
+                <div class=" col">
+                  <div class="">
+                    <strong>Specie:</strong>
+                    {{element.specie}}
+                  </div>
+                  <hr class="featurette-divider">
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+      <tr mat-row *matRowDef="let element; columns: displayedColumns;" class="example-element-row"
+        [class.example-expanded-row]="expandedElement === element"
+        (click)="expandedElement = expandedElement === element ? null : element">
+      </tr>
+      <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
+    </table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 25,100]" showFirstLastButtons></mat-paginator>
+  </div>
+</ng-template>
 <app-footer></app-footer>

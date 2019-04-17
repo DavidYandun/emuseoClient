@@ -2,7 +2,8 @@ import { Component, OnInit, Input } from '@angular/core';
 import { RecordLevelService } from 'src/app/services/dwc_record-level_services/record-level.service';
 import { BasisofrecordService } from 'src/app/services/dwc_record-level_services/basisofrecord.service';
 import { DialogCreateBasisofrecordComponent } from '../dialog-create-basisofrecord/dialog-create-basisofrecord.component';
-import { MatDialog } from '@angular/material';
+import { MatDialog, MatSnackBar } from '@angular/material';
+import { FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-create-record-level',
@@ -11,36 +12,43 @@ import { MatDialog } from '@angular/material';
 })
 export class CreateRecordLevelComponent implements OnInit {
   @Input() identificationid: number;
-  recordlevel: any = {
-    identificationid: null,
-    entidadid: null,
-    type: null,
-    modified: null,
-    language: null,
-    license: null,
-    rightsholder: null,
-    accessrights: null,
-    bibliographiccitation: null,
-    references: null,
-    basisofrecord: null,
-    dynamicproperties: null
-  }
+
+  recordlevel= this.formBuilder.group({
+    identificationid: [null],
+    entidadid: [null],
+    type: [null],
+    modified: [null],
+    language: [null],
+    license: [null],
+    rightsholder: [null],
+    accessrights: [null],
+    bibliographiccitation: [null],
+    references: [null],
+    basisofrecord: [null,Validators.required],
+    dynamicproperties: [null]
+  });
+
   basisofrecords: any;
   basisofrecord: any;
-  constructor(private recordLevelService: RecordLevelService,
+  constructor(
+    private formBuilder: FormBuilder,
+    private recordLevelService: RecordLevelService,
     private basisofrecordService: BasisofrecordService,
-    public dialog: MatDialog) { }
+    public dialog: MatDialog,
+    private snackBar: MatSnackBar) { }
 
   ngOnInit() {
     this.getBasisofrecords();
   }
   postRecordLevel() {
-    this.recordlevel.identificationid = this.identificationid;
-    if (this.recordlevel.identificationid) {
-      this.recordLevelService.postRecordLevel(this.recordlevel).subscribe(data => {
-        console.log(data);
+    this.recordlevel.value.identificationid = this.identificationid;
+    if (this.recordlevel.value.identificationid) {
+      console.log(this.recordlevel.value);
+      this.recordLevelService.postRecordLevel(this.recordlevel.value).subscribe(data => {
+        this.openSnackBar('REGISTRO DE RECORD LEVEL EXITOSO', '✅');
       },
         error => {
+          this.openSnackBar(error.error.message, '🛑');
           console.log(JSON.stringify(error));
         });
     }
@@ -67,10 +75,16 @@ export class CreateRecordLevelComponent implements OnInit {
   }
   postBasisofRecord() {
     this.basisofrecordService.postBasisofrecord(this.basisofrecord).subscribe(data => {
-      console.log(this.basisofrecord);
+      this.openSnackBar('REGISTRO BASIS OF RECORD EXITOSO', '✅');
     }, error => {
+      this.openSnackBar(error.error.message, '🛑');
       console.log(JSON.stringify(error));
     });
     this.getBasisofrecords();
+  }
+  openSnackBar(message: string, action: string) {
+    this.snackBar.open(message, action, {
+      duration: 2000,
+    });
   }
 }

@@ -9,7 +9,10 @@ import { Phylum } from 'src/app/services/dwc_taxon_services/taxon.service';
 })
 export class DialogCreatePhylumComponent {
   constructor(public dialogRef: MatDialogRef<DialogCreatePhylumComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: Phylum) { }
+    @Inject(MAT_DIALOG_DATA) public data: Phylum) { 
+      data.phylum=null;
+      data.kingdom=null;
+    }
 
   onNoClick(): void {
     this.dialogRef.close();

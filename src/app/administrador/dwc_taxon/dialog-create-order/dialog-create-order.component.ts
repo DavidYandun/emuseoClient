@@ -10,7 +10,10 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 export class DialogCreateOrderComponent {
 
   constructor(public dialogRef: MatDialogRef<DialogCreateOrderComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: Order) { }
+    @Inject(MAT_DIALOG_DATA) public data: Order) { 
+      data.class=null;
+      data.order=null;
+    }
 
   onNoClick(): void {
     this.dialogRef.close();

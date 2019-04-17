@@ -46,3 +46,8 @@ img.resumen {
 .columna {
   border-style: solid;
 }
+
+.error {
+  color: red;
+  margin-left: 50%;
+}

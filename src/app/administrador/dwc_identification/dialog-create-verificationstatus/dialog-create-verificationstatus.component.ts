@@ -10,7 +10,10 @@ import { Verification } from 'src/app/services/dwc_identification_services/verif
 })
 export class DialogCreateVerificationstatusComponent {
   constructor(public dialogRef: MatDialogRef<DialogCreateVerificationstatusComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: Verification) { }
+    @Inject(MAT_DIALOG_DATA) public data: Verification) { 
+      data.verificationstatus=null;
+      data.description='';
+    }
     
   onNoClick(): void {
     this.dialogRef.close();

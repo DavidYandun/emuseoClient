@@ -2,7 +2,7 @@
 <div mat-dialog-content>
   <mat-form-field appearance="outline" class="col">
       <mat-label>Pais</mat-label>
-      <input matInput [(ngModel)]="data.country" cdkFocusInitial>
+      <input class="uppercase" matInput [(ngModel)]="data.country" cdkFocusInitial required>
   </mat-form-field>
 </div>
 <div mat-dialog-actions>

@@ -112,12 +112,10 @@ export class TaxonService {
 export interface Taxon {
   taxonid: number,
   identificationid: number,
-  lineoid: number,
   taxonrank: string,
   taxonomicstatus: string,
   scientificname: string,
   acceptednameusage: string,
-  parentnameusage: string,
   originalnameusage: string,
   vernacularname: string,
   taxonremarks: string,
@@ -128,8 +126,6 @@ export interface Taxon {
   family: string,
   genus: string,
   specie: string
-
-
 }
 export interface Phylum { kingdom: string, phylum: string }
 export interface Class { phylum: string, class: string }

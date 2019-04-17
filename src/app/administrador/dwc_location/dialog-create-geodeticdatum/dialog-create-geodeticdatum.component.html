@@ -2,7 +2,7 @@
 <div mat-dialog-content>
   <mat-form-field appearance="outline" class="col">
     <mat-label>Geodetic Datum: {{data.county}}</mat-label>
-    <input matInput [(ngModel)]="data.geodeticdatum" cdkFocusInitial>
+    <input class="uppercase" matInput [(ngModel)]="data.geodeticdatum" cdkFocusInitial required>
   </mat-form-field>
 </div>
 <div mat-dialog-actions>

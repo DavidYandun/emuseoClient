@@ -1,13 +1,14 @@
-<div class="container">
+<form [formGroup]="identification" (ngSubmit)="postIdentification()">
   <br>
   <h2>Identification</h2>
   <div class="row">
     <mat-form-field appearance="outline" class="col">
       <mat-label>Verification Status</mat-label>
-      <mat-select ng-model="verifications" [(ngModel)]="identification.verificationstatus" id="singleSelectVerificationstatus"
-        name="singleSelectVerificationstatus">
+      <mat-select ng-model="verifications" formControlName="verificationstatus" name="singleSelectVerificationstatus"
+        required>
         <mat-option>-Ninguno-</mat-option>
-        <mat-option *ngFor="let verification of verifications" value="{{verification.verificationstatus}}">{{verification.verificationstatus}}</mat-option>
+        <mat-option *ngFor="let verification of verifications" value="{{verification.verificationstatus}}">
+          {{verification.verificationstatus}}</mat-option>
       </mat-select>
       <mat-hint class="add" (click)="addVerification()">
         <mat-icon>add</mat-icon> Add Verification
@@ -15,19 +16,20 @@
     </mat-form-field>
     <mat-form-field appearance="outline" class="col">
       <mat-label>Identification Qualifier</mat-label>
-      <input matInput [(ngModel)]="identification.identificationqualifier" type="text" id="identificationqualifier"
+      <input matInput formControlName="identificationqualifier" class="uppercase" type="text"
         placeholder="Una breve frase o un término estándar (cf., aff.)">
     </mat-form-field>
   </div>
   <div class="row">
     <mat-form-field appearance="outline" class="col">
       <mat-label>Identified By</mat-label>
-      <input matInput [(ngModel)]="identification.identifiedby" type="text" id="identifiedby" placeholder="Responsable de la identificación de la muestra">
+      <input matInput formControlName="identifiedby" class="uppercase" type="text"
+        placeholder="Responsable de la identificación de la muestra" required>
     </mat-form-field>
     <mat-form-field appearance="outline" class="col">
       <mat-label>Date Identified</mat-label>
-      <input matInput [matDatepicker]="dateidentified" [(ngModel)]="identification.dateidentified" type="text" id="dateidentified"
-        placeholder="dd/mm/yyyy" disabled>
+      <input matInput [matDatepicker]="dateidentified" formControlName="dateidentified" type="text"
+        placeholder="dd/mm/yyyy" disabled required>
       <mat-datepicker-toggle matSuffix [for]="dateidentified"></mat-datepicker-toggle>
       <mat-datepicker #dateidentified disabled="false"></mat-datepicker>
     </mat-form-field>
@@ -35,11 +37,12 @@
   <div class="row">
     <mat-form-field appearance="outline" class="col">
       <mat-label>Identification Remarks</mat-label>
-      <textarea matInput [(ngModel)]="identification.identificationremarks" type="text" id="identificationremarks"
-        placeholder="Comentarios o notas sobre la Identificación."></textarea>
+      <textarea matInput formControlName="identificationremarks" class="uppercase" type="text"
+        id="identificationremarks" placeholder="Comentarios o notas sobre la Identificación."></textarea>
     </mat-form-field>
   </div>
-  <div class="form-group">
-    <button (click)="postIdentification()" mat-raised-button color="primary">Aceptar</button>
+  <div class="form-group text-right">
+    <button mdbBtn type="submit" [disabled]="!identification.valid" color="primary" block="true">
+      Registrar Nueva Muestra</button>
   </div>
-</div>
+</form>

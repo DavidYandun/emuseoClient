@@ -22,6 +22,7 @@ export class ListCollectionComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
 
   collection: any;
+  public errorMsg;
   constructor(
     private identificationService: IdentificationService) { }
 
@@ -34,8 +35,8 @@ export class ListCollectionComponent implements OnInit {
       this.collection = new MatTableDataSource(data);
       this.collection.paginator = this.paginator;
       this.collection.sort = this.sort;
-    })
-
+    },
+      error => this.errorMsg = error)
   };
 
   applyFilter(filterValue: string) {
@@ -58,7 +59,6 @@ export class ListCollectionComponent implements OnInit {
   /* 'identificationid',
     'verificationstatus',
     'identifiedby',
-    'lineoid',
     'kingdom',
     'phylum',
     'class',

@@ -2,14 +2,14 @@
 <div mat-dialog-content>
   <mat-form-field appearance="outline" class="col">
     <mat-label>Basis of Record</mat-label>
-    <input matInput [(ngModel)]="data.basisofrecord" cdkFocusInitial>
+    <input class="uppercase" matInput [(ngModel)]="data.basisofrecord" cdkFocusInitial required>
   </mat-form-field>
   <mat-form-field appearance="outline" class="col">
       <mat-label>Description</mat-label>
-      <textarea matInput [(ngModel)]="data.description"></textarea>
+      <textarea class="uppercase" matInput [(ngModel)]="data.description"></textarea>
     </mat-form-field>
 </div>
 <div mat-dialog-actions>
   <button class="col" mat-flat-button (click)="onNoClick()">No Gracias</button>
-  <button class="col" mat-flat-button [mat-dialog-close]="data" color="primary">Ok</button>
+  <button class="col" mat-flat-button [mat-dialog-close]="data" color="primary">Aceptar</button>
 </div>

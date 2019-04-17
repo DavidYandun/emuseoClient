@@ -3,14 +3,14 @@
 <div class="container">
   <mat-card>
     <mat-tab-group backgroundColor="">
-      <mat-tab>
-        <ng-template mat-tab-label>
-          <mat-icon class="icon">filter_1</mat-icon> Identification
-        </ng-template>
-        <app-create-identification (identificationid)="postIdentificationid($event)"></app-create-identification>
-      </mat-tab>
       <div *ngIf="identificationid; else elseBlock">
-
+        <mat-tab>
+          <ng-template mat-tab-label>
+            <mat-icon class="icon">filter_1</mat-icon> Identification
+          </ng-template>
+          <h3>Identification #: {{identificationid}}</h3>
+          <p>Registre los enunciados faltantes (Ejemplo: Taxón, Record Level,etc)...</p>
+        </mat-tab>
         <mat-tab>
           <ng-template mat-tab-label>
             <mat-icon class="icon">filter_2</mat-icon> Taxon
@@ -53,10 +53,23 @@
           </ng-template>
           <app-create-geologicalcontext [identificationid]="identificationid"></app-create-geologicalcontext>
         </mat-tab>
+        <mat-tab>
+          <ng-template mat-tab-label>
+            <mat-icon class="icon">filter_9</mat-icon> Multimedia
+          </ng-template>
+          <app-create-multimedia [identificationid]="identificationid"></app-create-multimedia>
+        </mat-tab>
       </div>
       <!--Tabs deshabilitadas-->
       <ng-template #elseBlock>
-        <mat-tab disabled disabled>
+        <mat-tab>
+          <ng-template mat-tab-label>
+            <mat-icon class="icon">filter_1</mat-icon> Identification
+          </ng-template>
+          <app-create-identification (identificationid)="postIdentificationid($event)"></app-create-identification>
+        </mat-tab>
+
+        <mat-tab disabled>
           <ng-template mat-tab-label>
             <mat-icon class="icon">filter_2</mat-icon> Taxon
           </ng-template>
@@ -91,66 +104,14 @@
             <mat-icon class="icon">filter_8</mat-icon> Geological Context
           </ng-template>
         </mat-tab>
+        <mat-tab disabled>
+          <ng-template mat-tab-label>
+            <mat-icon class="icon">filter_9</mat-icon> Multimedia
+          </ng-template>
+        </mat-tab>
       </ng-template>
     </mat-tab-group>
   </mat-card>
 </div>
-<!--
-<mat-horizontal-stepper [linear]="isLinear" #stepper>
-  <mat-step>
-    <ng-template matStepLabel>Identification</ng-template>
-    <app-create-identification></app-create-identification>
-    <button mat-button matStepperNext>Next</button>
-  </mat-step>
-  <mat-step>
-    <ng-template matStepLabel>Record Level</ng-template>
-    <app-create-record-level></app-create-record-level>
-    <button class="btn btn-primary" mat-button matStepperPrevious>Back</button>
-    <button mat-button matStepperNext>Next</button>
-  </mat-step>
-  <mat-step>
-    <ng-template matStepLabel>Occurrence</ng-template>
-    <app-create-occurrence></app-create-occurrence>
-    <button class="btn btn-primary" mat-button matStepperPrevious>Back</button>
-    <button mat-button matStepperNext>Next</button>
-  </mat-step>
-  <mat-step>
-    <ng-template matStepLabel>Organism</ng-template>
-    <app-create-organism></app-create-organism>
-    <button class="btn btn-primary" mat-button matStepperPrevious>Back</button>
-    <button mat-button matStepperNext>Next</button>
-  </mat-step>
-  <mat-step>
-    <ng-template matStepLabel>Event</ng-template>
-    <app-create-event></app-create-event>
-    <button class="btn btn-primary" mat-button matStepperPrevious>Back</button>
-    <button mat-button matStepperNext>Next</button>
-  </mat-step>
-  <mat-step>
-    <ng-template matStepLabel>Location</ng-template>
-    <app-create-location></app-create-location>
-    <button class="btn btn-primary" mat-button matStepperPrevious>Back</button>
-    <button mat-button matStepperNext>Next</button>
-  </mat-step>
-  <mat-step>
-    <ng-template matStepLabel>Geological Context</ng-template>
-    <app-create-geologicalcontext></app-create-geologicalcontext>
-    <button class="btn btn-primary" mat-button matStepperPrevious>Back</button>
-    <button mat-button matStepperNext>Next</button>
-  </mat-step>
-  <mat-step>
-    <ng-template matStepLabel>Taxón</ng-template>
-    <app-create-taxon></app-create-taxon>
-    <button class="btn btn-primary" mat-button matStepperPrevious>Back</button>
-    <button mat-button matStepperNext>Next</button>
-  </mat-step>
-  <mat-step>
-    <ng-template matStepLabel>Done</ng-template>
-    You are now done.
-    <button mat-button matStepperPrevious>Back</button>
-    <button mat-button (click)="stepper.reset()">Reset</button>
-  </mat-step>
-</mat-horizontal-stepper>
--->
 <br>
 <app-footer></app-footer>

@@ -1,11 +1,12 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { OccurrenceService } from 'src/app/services/dwc_occurrence_services/occurrence.service';
-import { MatDialog } from '@angular/material';
+import { MatDialog, MatSnackBar } from '@angular/material';
 import { DialogCreateLifestageComponent } from '../dialog-create-lifestage/dialog-create-lifestage.component';
 import { DialogCreateReproductiveconditionComponent } from '../dialog-create-reproductivecondition/dialog-create-reproductivecondition.component';
 import { DialogCreateSexComponent } from '../dialog-create-sex/dialog-create-sex.component';
 import { DialogCreateEstablishmentmeansComponent } from '../dialog-create-establishmentmeans/dialog-create-establishmentmeans.component';
 import { DialogCreateOrganismquantitytypeComponent } from '../dialog-create-organismquantitytype/dialog-create-organismquantitytype.component';
+import { FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-create-occurrence',
@@ -14,21 +15,22 @@ import { DialogCreateOrganismquantitytypeComponent } from '../dialog-create-orga
 })
 export class CreateOccurrenceComponent implements OnInit {
   @Input() identificationid: number;
-  occurrence: any = {
-    identificationid: null,
-    organismquantitytype: null,
-    lifestage: null,
-    reproductivecondition: null,
-    sex: null,
-    establishmentmeans: null,
-    recordnumber: null,
-    individualcount: null,
-    organismquantity: null,
-    behavior: null,
-    preparations: null,
-    associatedreferences: null,
-    occurrenceremarks: null
-  }
+
+  occurrence= this.formBuilder.group({
+    identificationid:[null],
+    organismquantitytype:[null],
+    lifestage:[null,Validators.required],
+    reproductivecondition:[null],
+    sex:[null,Validators.required],
+    establishmentmeans:[null],
+    recordnumber:[null,Validators.required],
+    individualcount:[null,Validators.min(0)],
+    organismquantity:[null,Validators.min(0)],
+    behavior:[null],
+    preparations:[null],
+    associatedreferences:[null],
+    occurrenceremarks:[null]
+  });
 
 
   lifestages: any;
@@ -44,19 +46,23 @@ export class CreateOccurrenceComponent implements OnInit {
   establishmentmeans: any;
   organismquantitytype: any;
 
-  constructor(private occurrenceService: OccurrenceService,
-    public dialog: MatDialog) { }
+  constructor(
+    private formBuilder: FormBuilder,
+    private occurrenceService: OccurrenceService,
+    public dialog: MatDialog,
+    private snackBar: MatSnackBar) { }
 
   ngOnInit() {
     this.getLists();
   }
   postOccurrence() {
-    this.occurrence.identificationid = this.identificationid;
-    if (this.occurrence.identificationid) {
-      this.occurrenceService.postOccurrence(this.occurrence).subscribe(data => {
-        console.log(data);
+    this.occurrence.value.identificationid = this.identificationid;
+    if (this.occurrence.value.identificationid) {
+      this.occurrenceService.postOccurrence(this.occurrence.value).subscribe(data => {
+        this.openSnackBar('REGISTRO DE OCCURRENCE EXITOSO', '✅');
       },
         error => {
+          this.openSnackBar(error.error.message, '🛑');
           console.log(JSON.stringify(error));
         });
     }
@@ -155,42 +161,52 @@ export class CreateOccurrenceComponent implements OnInit {
 
   postLifeStage() {
     this.occurrenceService.postLifeStage(this.lifestage).subscribe(data => {
-      console.log(this.lifestage);
+      this.openSnackBar('REGISTRO DE LIFE STAGE EXITOSO', '✅');
     }, error => {
+      this.openSnackBar(error.error.message, '🛑');
       console.log(JSON.stringify(error));
     });
     this.getLists();
   }
   postReproductiveCondition() {
     this.occurrenceService.postReproductiveCondition(this.reproductivecondition).subscribe(data => {
-      console.log(this.reproductivecondition);
+      this.openSnackBar('REGISTRO DE REPRODUCTIVE CONDITION EXITOSO', '✅');
     }, error => {
+      this.openSnackBar(error.error.message, '🛑');
       console.log(JSON.stringify(error));
     });
     this.getLists();
   }
   postSex() {
     this.occurrenceService.postSex(this.sex).subscribe(data => {
-      console.log(this.sex);
+      this.openSnackBar('REGISTRO DE SEX EXITOSO', '✅');
     }, error => {
+      this.openSnackBar(error.error.message, '🛑');
       console.log(JSON.stringify(error));
     });
     this.getLists();
   }
   postEstablishmentmeans() {
     this.occurrenceService.postEstablishmentmeans(this.establishmentmeans).subscribe(data => {
-      console.log(this.establishmentmeans);
+      this.openSnackBar('REGISTRO DE ESTABLISHMENT MEANS EXITOSO', '✅');
     }, error => {
+      this.openSnackBar(error.error.message, '🛑');
       console.log(JSON.stringify(error));
     });
     this.getLists();
   }
   postOrganismQuantityType() {
     this.occurrenceService.postOrganismQuantityType(this.organismquantitytype).subscribe(data => {
-      console.log(this.organismquantitytype);
+      this.openSnackBar('REGISTRO DE ORGANISM QUANTITY TYPE EXITOSO', '✅');
     }, error => {
+      this.openSnackBar(error.error.message, '🛑');
       console.log(JSON.stringify(error));
     });
     this.getLists();
+  }
+  openSnackBar(message: string, action: string) {
+    this.snackBar.open(message, action, {
+      duration: 2000,
+    });
   }
 }

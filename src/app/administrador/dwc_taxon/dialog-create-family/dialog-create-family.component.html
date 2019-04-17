@@ -2,7 +2,7 @@
 <div mat-dialog-content>
   <mat-form-field appearance="outline" class="col">
     <mat-label>Nueva Family</mat-label>
-    <input matInput [(ngModel)]="data.family" cdkFocusInitial>
+    <input class="uppercase" matInput [(ngModel)]="data.family" cdkFocusInitial required>
   </mat-form-field>
 </div>
 <div mat-dialog-actions>

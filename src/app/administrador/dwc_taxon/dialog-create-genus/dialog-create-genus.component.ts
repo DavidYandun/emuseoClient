@@ -1,6 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-import { Order } from 'src/app/services/dwc_taxon_services/taxon.service';
+import { Genus } from 'src/app/services/dwc_taxon_services/taxon.service';
 
 @Component({
   selector: 'app-dialog-create-genus',
@@ -9,7 +9,10 @@ import { Order } from 'src/app/services/dwc_taxon_services/taxon.service';
 })
 export class DialogCreateGenusComponent {
   constructor(public dialogRef: MatDialogRef<DialogCreateGenusComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: Order) { }
+    @Inject(MAT_DIALOG_DATA) public data: Genus) { 
+      data.family=null;
+      data.genus=null;
+    }
 
   onNoClick(): void {
     this.dialogRef.close();

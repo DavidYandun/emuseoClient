@@ -112,7 +112,6 @@ export class LocationService {
 export interface Location {
   locationid: number,
   identificationid: number,
-  divpoliticaid: number,
   continent: string,
   waterbody: string,
   island: string,

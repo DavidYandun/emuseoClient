@@ -10,7 +10,10 @@ import { Class } from 'src/app/services/dwc_taxon_services/taxon.service';
 export class DialogCreateClassComponent {
 
   constructor(public dialogRef: MatDialogRef<DialogCreateClassComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: Class) { }
+    @Inject(MAT_DIALOG_DATA) public data: Class) {
+    data.phylum = null;
+    data.class = null;
+  }
 
   onNoClick(): void {
     this.dialogRef.close();

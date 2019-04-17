@@ -1,10 +1,11 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { GeologicalcontextService } from 'src/app/services/dwc_geologicalcontext_service/geologicalcontext.service';
-import { MatDialog } from '@angular/material';
+import { MatDialog, MatSnackBar } from '@angular/material';
 import { DialogCreateEonComponent } from '../dialog-create-eon/dialog-create-eon.component';
 import { DialogCreateEraComponent } from '../dialog-create-era/dialog-create-era.component';
 import { DialogCreatePeriodComponent } from '../dialog-create-period/dialog-create-period.component';
 import { DialogCreateEpochComponent } from '../dialog-create-epoch/dialog-create-epoch.component';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-create-geologicalcontext',
@@ -13,18 +14,18 @@ import { DialogCreateEpochComponent } from '../dialog-create-epoch/dialog-create
 })
 export class CreateGeologicalcontextComponent implements OnInit {
   @Input() identificationid: number;
-  geologicalcontext: any = {
-    identificationid: null,
-    earliesteonorlowesteonothem: null,
-    latesteonorhighesteonothem: null,
-    earliesteraorlowesterathem: null,
-    latesteraorhighesterathem: null,
-    earliestperiodorlowestsystem: null,
-    latestperiodorhighestsystem: null,
-    earliestepochorlowestseries: null,
-    latestepochorhighestseries: null,
-    geologicalcontextremarks: null
-  }
+  geologicalcontext = this.formBuilder.group({
+    identificationid: [null],
+    earliesteonorlowesteonothem: [null],
+    latesteonorhighesteonothem: [null],
+    earliesteraorlowesterathem: [null],
+    latesteraorhighesterathem: [null],
+    earliestperiodorlowestsystem: [null],
+    latestperiodorhighestsystem: [null],
+    earliestepochorlowestseries: [null],
+    latestepochorhighestseries: [null],
+    geologicalcontextremarks: [null]
+  });
   //arrays
   eons: any;
   eras: any;
@@ -35,19 +36,24 @@ export class CreateGeologicalcontextComponent implements OnInit {
   era: any;
   period: any;
   epoch: any;
-  constructor(private geologicalcontextService: GeologicalcontextService,
-    public dialog: MatDialog) { }
+  constructor(
+    private formBuilder: FormBuilder,
+    private geologicalcontextService: GeologicalcontextService,
+    public dialog: MatDialog,
+    private snackBar: MatSnackBar
+  ) { }
 
   ngOnInit() {
     this.getLists();
   }
   postGeologicalContext() {
-    this.geologicalcontext.identificationid = this.identificationid;
-    if (this.geologicalcontext.identificationid) {
-      this.geologicalcontextService.postGeologicalcontext(this.geologicalcontext).subscribe(data => {
-        console.log(data);
+    this.geologicalcontext.value.identificationid = this.identificationid;
+    if (this.geologicalcontext.value.identificationid) {
+      this.geologicalcontextService.postGeologicalcontext(this.geologicalcontext.value).subscribe(data => {
+        this.openSnackBar('REGISTRO GEOLOGICAL CONTEXT EXITOSO', '✅');
       },
         error => {
+          this.openSnackBar(error.error.message, '🛑');
           console.log(JSON.stringify(error));
         });
     }
@@ -57,24 +63,28 @@ export class CreateGeologicalcontextComponent implements OnInit {
       this.eons = data;
     },
       error => {
+        this.openSnackBar(error.error.message, '🛑');
         console.log(JSON.stringify(error));
       });
     this.geologicalcontextService.getEras().subscribe(data => {
       this.eras = data;
     },
       error => {
+        this.openSnackBar(error.error.message, '🛑');
         console.log(JSON.stringify(error));
       });
     this.geologicalcontextService.getPeriods().subscribe(data => {
       this.periods = data;
     },
       error => {
+        this.openSnackBar(error.error.message, '🛑');
         console.log(JSON.stringify(error));
       });
     this.geologicalcontextService.getEpochs().subscribe(data => {
       this.epochs = data;
     },
       error => {
+        this.openSnackBar(error.error.message, '🛑');
         console.log(JSON.stringify(error));
       });
   }
@@ -126,35 +136,43 @@ export class CreateGeologicalcontextComponent implements OnInit {
 
   postEon() {
     this.geologicalcontextService.postEon(this.eon).subscribe(data => {
-      console.log(this.eon);
+      this.openSnackBar('REGISTRO EON EXITOSO', '✅');
     }, error => {
+      this.openSnackBar(error.error.message, '🛑');
       console.log(JSON.stringify(error));
     });
     this.getLists();
   }
   postEra() {
     this.geologicalcontextService.postEra(this.era).subscribe(data => {
-      console.log(this.era);
+      this.openSnackBar('REGISTRO ERA EXITOSO', '✅');
     }, error => {
+      this.openSnackBar(error.error.message, '🛑');
       console.log(JSON.stringify(error));
     });
     this.getLists();
   }
   postPeriod() {
     this.geologicalcontextService.postPeriod(this.period).subscribe(data => {
-      console.log(this.period);
+      this.openSnackBar('REGISTRO PERIOD EXITOSO', '✅');
     }, error => {
+      this.openSnackBar(error.error.message, '🛑');
       console.log(JSON.stringify(error));
     });
     this.getLists();
   }
   postEpoch() {
     this.geologicalcontextService.postEpoch(this.epoch).subscribe(data => {
-      console.log(this.epoch);
+      this.openSnackBar('REGISTRO EPOCH EXITOSO', '✅');
     }, error => {
+      this.openSnackBar(error.error.message, '🛑');
       console.log(JSON.stringify(error));
     });
     this.getLists();
   }
-
+  openSnackBar(message: string, action: string) {
+    this.snackBar.open(message, action, {
+      duration: 2000,
+    });
+  }
 }

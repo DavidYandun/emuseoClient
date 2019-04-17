@@ -5,12 +5,17 @@ import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 //Animations
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 //Material
 import { MaterialModule } from './material';
+//import { LightboxModule } from 'ngx-lightbox';
+//import { NgxGalleryModule } from 'ngx-gallery';
+import { GalleryModule } from '@ngx-gallery/core';
+import { LightboxModule } from '@ngx-gallery/lightbox';
+import { GallerizeModule } from '@ngx-gallery/gallerize';
 
 
 ///////////////COMPONENTS//////////////////
@@ -139,6 +144,7 @@ import { TaxonService } from './services/dwc_taxon_services/taxon.service';
 import { EntidadService } from './services/usu_institution/entidad.service';
 //multimedia
 import { MultimediaService } from './services/mul_multimedia_service/multimedia.service';
+import { GalleryComponent } from './gallery/gallery.component';
 
 
 
@@ -219,6 +225,7 @@ import { MultimediaService } from './services/mul_multimedia_service/multimedia.
     FichaLocationComponent,
     FichaGeologicalcontextComponent,
     FichaMultimediaComponent,
+    GalleryComponent,
 
   ],
   imports: [
@@ -228,6 +235,10 @@ import { MultimediaService } from './services/mul_multimedia_service/multimedia.
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    ReactiveFormsModule,
+    LightboxModule,
+    GalleryModule,
+    GallerizeModule,
     RouterModule.forRoot([
       //clientes
       {
@@ -287,12 +298,16 @@ import { MultimediaService } from './services/mul_multimedia_service/multimedia.
       },
       //identification
       {
-        path:'multimedia',
-        component:CreateMultimediaComponent
+        path: 'multimedia',
+        component: CreateMultimediaComponent
       },
       {
-        path:'ficha/:id',
-        component:ReadFichaComponent
+        path: 'ficha/:id',
+        component: ReadFichaComponent
+      },
+      {
+        path: 'gallery',
+        component: GalleryComponent
       },
       {
         path: '',

@@ -8,3 +8,10 @@
 .color-border {
   border-color: #5D5C5C;
 }
+
+.uppercase{
+  text-transform: uppercase;
+}
+.add{
+  color: blue;
+ }

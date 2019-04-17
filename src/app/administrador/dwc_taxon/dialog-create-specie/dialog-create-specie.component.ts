@@ -9,7 +9,10 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 })
 export class DialogCreateSpecieComponent{
   constructor(public dialogRef: MatDialogRef<DialogCreateSpecieComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: Specie) { }
+    @Inject(MAT_DIALOG_DATA) public data: Specie) { 
+      data.genus=null;
+      data.specie=null;
+    }
 
   onNoClick(): void {
     this.dialogRef.close();

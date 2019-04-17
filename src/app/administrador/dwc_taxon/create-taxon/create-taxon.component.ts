@@ -1,6 +1,7 @@
 import { Component, OnInit, Inject, Input } from '@angular/core';
+import { Validators, FormBuilder } from '@angular/forms';
 import { TaxonService } from 'src/app/services/dwc_taxon_services/taxon.service';
-import { MatDialog } from '@angular/material';
+import { MatDialog, MatSnackBar } from '@angular/material';
 import { DialogCreatePhylumComponent } from '../dialog-create-phylum/dialog-create-phylum.component';
 import { DialogCreateClassComponent } from '../dialog-create-class/dialog-create-class.component';
 import { DialogCreateOrderComponent } from '../dialog-create-order/dialog-create-order.component';
@@ -14,26 +15,26 @@ import { DialogCreateSpecieComponent } from '../dialog-create-specie/dialog-crea
   styleUrls: ['./create-taxon.component.css']
 })
 export class CreateTaxonComponent implements OnInit {
+
   @Input() identificationid: number;
-  taxon: any = {
-    identificationid: null,
-    lineoid: null,
-    taxonrank: null,
-    taxonomicstatus: null,
-    scientificname: null,
-    acceptednameusage: null,
-    parentnameusage: null,
-    originalnameusage: null,
-    vernacularname: null,
-    taxonremarks: null,
-    kingdom: null,
-    phylum: null,
-    class: null,
-    order: null,
-    genus: null,
-    family: null,
-    specie: null
-  }
+
+  taxon = this.formBuilder.group({
+    identificationid: [null],
+    taxonrank: [null],
+    taxonomicstatus: ['', Validators.required],
+    scientificname: ['', Validators.required],
+    acceptednameusage: [''],
+    originalnameusage: [''],
+    vernacularname: [''],
+    taxonremarks: [''],
+    kingdom: [null, Validators.required],
+    phylum: [null],
+    class: [null],
+    order: [null],
+    genus: [null],
+    family: [null],
+    specie: [null]
+  });
 
   //arrays
   kingdoms: any;
@@ -65,7 +66,11 @@ export class CreateTaxonComponent implements OnInit {
   genusshow: boolean = true;
   specieshow: boolean = true;
 
-  constructor(private taxonService: TaxonService, public dialog: MatDialog) { }
+  constructor(
+    private formBuilder: FormBuilder,
+    private taxonService: TaxonService,
+    public dialog: MatDialog,
+    private snackBar: MatSnackBar) { }
 
   ngOnInit() {
     this.getKingdoms();
@@ -73,11 +78,13 @@ export class CreateTaxonComponent implements OnInit {
     this.getTaxonomicStatus();
   }
   postTaxon() {
-    this.taxon.identificationid = this.identificationid;
-    if (this.taxon.identificationid) {
-      this.taxonService.postTaxon(this.taxon).subscribe(data => {
-        console.log(data);
+    this.taxon.value.identificationid = this.identificationid;
+    this.llenarTaxonRank();
+    if (this.taxon.value.identificationid && this.taxon.value.taxonrank) {
+      this.taxonService.postTaxon(this.taxon.value).subscribe(data => {
+        this.openSnackBar('REGISTRO DE TAXÓN EXITOSO', '✅');
       }, error => {
+        this.openSnackBar(error.error.message, '🛑');
         console.log(JSON.stringify(error));
       });
     }
@@ -94,14 +101,14 @@ export class CreateTaxonComponent implements OnInit {
             if (this.classshow == true) {
               if (this.phylumshow == true) {
                 if (this.kingdomshow == true) {
-                  this.taxon.taxonrank = '';
-                } else { this.taxon.taxonrank = 'Kingdom'; }
-              } else { this.taxon.taxonrank = 'Phylum'; }
-            } else { this.taxon.taxonrank = 'Class'; }
-          } else { this.taxon.taxonrank = 'Order'; }
-        } else { this.taxon.taxonrank = 'Family'; }
-      } else { this.taxon.taxonrank = 'Genus'; }
-    } else { this.taxon.taxonrank = 'Specie'; }
+                  this.taxon.value.taxonrank = '';
+                } else { this.taxon.value.taxonrank = 'Kingdom'; }
+              } else { this.taxon.value.taxonrank = 'Phylum'; }
+            } else { this.taxon.value.taxonrank = 'Class'; }
+          } else { this.taxon.value.taxonrank = 'Order'; }
+        } else { this.taxon.value.taxonrank = 'Family'; }
+      } else { this.taxon.value.taxonrank = 'Genus'; }
+    } else { this.taxon.value.taxonrank = 'Specie'; }
   }
   getKingdoms() {
     this.taxonService.getKingdoms().subscribe(data => {
@@ -113,13 +120,13 @@ export class CreateTaxonComponent implements OnInit {
 
   }
   getPhylums() {
-    if (this.taxon.kingdom != null) {
+    if (this.taxon.value.kingdom != null) {
       this.kingdomshow = false;
     } else {
       this.kingdomshow = true;
     }
-    this.taxon.phylum = null;
-    this.taxonService.getPhylums(this.taxon.kingdom).subscribe(data => {
+    this.taxon.value.phylum = null;
+    this.taxonService.getPhylums(this.taxon.value.kingdom).subscribe(data => {
       this.phylums = data;
     },
       error => {
@@ -128,16 +135,15 @@ export class CreateTaxonComponent implements OnInit {
     this.getClasses();
     this.specieshow = true;
     this.llenarTaxonRank();
-
   }
   getClasses() {
-    if (this.taxon.phylum != null) {
+    if (this.taxon.value.phylum != null) {
       this.phylumshow = false;
     } else {
       this.phylumshow = true;
     }
-    this.taxon.class = null
-    this.taxonService.getClasses(this.taxon.phylum).subscribe(data => {
+    this.taxon.value.class = null
+    this.taxonService.getClasses(this.taxon.value.phylum).subscribe(data => {
       this.classs = data;
     },
       error => {
@@ -148,13 +154,13 @@ export class CreateTaxonComponent implements OnInit {
     this.llenarTaxonRank();
   }
   getOrders() {
-    if (this.taxon.class != null) {
+    if (this.taxon.value.class != null) {
       this.classshow = false;
     } else {
       this.classshow = true;
     }
-    this.taxon.order = null;
-    this.taxonService.getOrders(this.taxon.class).subscribe(data => {
+    this.taxon.value.order = null;
+    this.taxonService.getOrders(this.taxon.value.class).subscribe(data => {
       this.orders = data;
     },
       error => {
@@ -165,13 +171,13 @@ export class CreateTaxonComponent implements OnInit {
     this.llenarTaxonRank();
   }
   getFamilys() {
-    if (this.taxon.order != null) {
+    if (this.taxon.value.order != null) {
       this.ordershow = false;
     } else {
       this.ordershow = true;
     }
-    this.taxon.family = null;
-    this.taxonService.getFamilys(this.taxon.order).subscribe(data => {
+    this.taxon.value.family = null;
+    this.taxonService.getFamilys(this.taxon.value.order).subscribe(data => {
       this.familys = data;
     },
       error => {
@@ -182,13 +188,13 @@ export class CreateTaxonComponent implements OnInit {
     this.llenarTaxonRank();
   }
   getGenuss() {
-    if (this.taxon.family != null) {
+    if (this.taxon.value.family != null) {
       this.familyshow = false;
     } else {
       this.familyshow = true;
     }
-    this.taxon.genus = null;
-    this.taxonService.getGenuss(this.taxon.family).subscribe(data => {
+    this.taxon.value.genus = null;
+    this.taxonService.getGenuss(this.taxon.value.family).subscribe(data => {
       this.genuss = data;
     },
       error => {
@@ -199,12 +205,12 @@ export class CreateTaxonComponent implements OnInit {
     this.llenarTaxonRank();
   }
   getSpecies() {
-    if (this.taxon.genus != null) {
+    if (this.taxon.value.genus != null) {
       this.genusshow = false;
     } else {
       this.genusshow = true;
     }
-    this.taxonService.getSpecies(this.taxon.genus).subscribe(data => {
+    this.taxonService.getSpecies(this.taxon.value.genus).subscribe(data => {
       this.species = data;
     },
       error => {
@@ -233,7 +239,7 @@ export class CreateTaxonComponent implements OnInit {
   addPhylum(): void {
     const dialogRef = this.dialog.open(DialogCreatePhylumComponent, {
       width: '350px',
-      data: { kingdom: this.taxon.kingdom }
+      data: { kingdom: this.taxon.value.kingdom }
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -247,7 +253,7 @@ export class CreateTaxonComponent implements OnInit {
   addClass(): void {
     const dialogRef = this.dialog.open(DialogCreateClassComponent, {
       width: '350px',
-      data: { phylum: this.taxon.phylum }
+      data: { phylum: this.taxon.value.phylum }
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -261,7 +267,7 @@ export class CreateTaxonComponent implements OnInit {
   addOrder(): void {
     const dialogRef = this.dialog.open(DialogCreateOrderComponent, {
       width: '350px',
-      data: { class: this.taxon.class }
+      data: { class: this.taxon.value.class }
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -275,7 +281,7 @@ export class CreateTaxonComponent implements OnInit {
   addFamily(): void {
     const dialogRef = this.dialog.open(DialogCreateFamilyComponent, {
       width: '350px',
-      data: { order: this.taxon.order }
+      data: { order: this.taxon.value.order }
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -289,7 +295,7 @@ export class CreateTaxonComponent implements OnInit {
   addGenus(): void {
     const dialogRef = this.dialog.open(DialogCreateGenusComponent, {
       width: '350px',
-      data: { family: this.taxon.family }
+      data: { family: this.taxon.value.family }
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -303,7 +309,7 @@ export class CreateTaxonComponent implements OnInit {
   addSpecie(): void {
     const dialogRef = this.dialog.open(DialogCreateSpecieComponent, {
       width: '350px',
-      data: { genus: this.taxon.genus }
+      data: { genus: this.taxon.value.genus }
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -316,51 +322,63 @@ export class CreateTaxonComponent implements OnInit {
   }
   postPhylum() {
     this.taxonService.postPhylum(this.phylum).subscribe(data => {
-      console.log(this.phylum);
+      this.openSnackBar('Phylum Registrado', '✅');
     }, error => {
+      this.openSnackBar(error.error.message, '🛑');
       console.log(JSON.stringify(error));
     });
     this.getPhylums();
   }
   postClass() {
     this.taxonService.postClass(this.class).subscribe(data => {
-      console.log(this.class);
+      this.openSnackBar('Class Registrado', '✅');
     }, error => {
+      this.openSnackBar(error.error.message, '🛑');
       console.log(JSON.stringify(error));
     });
     this.getClasses();
   }
   postOrder() {
     this.taxonService.postOrder(this.order).subscribe(data => {
-      console.log(this.order);
+      this.openSnackBar('Order Registrado', '✅');
     }, error => {
+      this.openSnackBar(error.error.message, '🛑');
       console.log(JSON.stringify(error));
     });
     this.getOrders();
   }
   postFamily() {
     this.taxonService.postFamily(this.family).subscribe(data => {
-      console.log(this.family);
+      this.openSnackBar('Family Registrado', '✅');
     }, error => {
+      this.openSnackBar(error.error.message, '🛑');
       console.log(JSON.stringify(error));
     });
     this.getFamilys();
   }
   postGenus() {
     this.taxonService.postGenus(this.genus).subscribe(data => {
-      console.log(this.genus);
+      this.openSnackBar('Genus Registrado', '✅');
     }, error => {
+      this.openSnackBar(error.error.message, '🛑');
       console.log(JSON.stringify(error));
     });
     this.getGenuss();
   }
   postSpecie() {
     this.taxonService.postSpecie(this.specie).subscribe(data => {
-      console.log(this.specie);
+      this.openSnackBar('Specie Registrado', '✅');
     }, error => {
-      console.log(JSON.stringify(error));
+      this.openSnackBar(error.error.message, '🛑');
+      console.log(JSON.stringify(error.message));
     });
     this.getSpecies();
+  }
+
+  openSnackBar(message: string, action: string) {
+    this.snackBar.open(message, action, {
+      duration: 2000,
+    });
   }
 
 }

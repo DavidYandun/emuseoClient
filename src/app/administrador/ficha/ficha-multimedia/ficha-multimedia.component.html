@@ -9,12 +9,10 @@
         <mat-icon>photo_library</mat-icon>
       </mat-panel-description>
     </mat-expansion-panel-header>
-    <div class="row">
-      <div *ngFor="let image of images" class="col-lg-4">
-        <img src="{{image.url}}" alt="{{image.name}}" class="image img-thumbnail">
-      </div>
-    </div>
-
+    <img (click)="basicLightboxExample()" *ngFor="let item of images; index as i" 
+           [lightbox]="i"
+           [src]="item.data.thumb"
+           class="image img-thumbnail col-lg-4">
   </mat-expansion-panel>
 
   <mat-expansion-panel hideToggle>
