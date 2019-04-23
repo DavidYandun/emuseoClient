@@ -33,7 +33,7 @@ export class ReadFichaComponent implements OnInit {
 
   ngOnInit() {
     this.identificationid = this.route.snapshot.params['id'];
-    if (!this.identificationid) return;
+    
     this.taxonService.getTaxonId(this.identificationid).subscribe(data => {
       this.fichaTitle1 = data.scientificname;
     })

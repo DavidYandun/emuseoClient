@@ -1,11 +1,11 @@
-<h1 mat-dialog-title>Nuevo Organism Quantity Type</h1>
+<h1 mat-dialog-title>Nuevo Tipo de Organismo</h1>
 <div mat-dialog-content>
   <mat-form-field appearance="outline" class="col">
-    <mat-label>Organism Quantity Type</mat-label>
+    <mat-label>Tipo de Organismo</mat-label>
     <input class="uppercase" matInput [(ngModel)]="data.organismquantitytype" cdkFocusInitial required>
   </mat-form-field>
 </div>
 <div mat-dialog-actions>
   <button class="col" mat-flat-button (click)="onNoClick()">No Gracias</button>
-  <button class="col" mat-flat-button [mat-dialog-close]="data" color="primary">Ok</button>
+  <button class="col" mat-flat-button [mat-dialog-close]="data" color="primary">Aceptar</button>
 </div>

@@ -1,69 +1,77 @@
 <form [formGroup]="recordlevel" (ngSubmit)="postRecordLevel()">
   <br>
-  <h2>Record Level</h2>
+  <h2>Nivel de Registro</h2>
   <div class="row">
     <mat-form-field appearance="outline" class="col">
       <mat-label for="name">Entidad</mat-label>
-      <input class="uppercase" matInput formControlName="entidadid" type="text" id="entidadid" placeholder="Ingrese una entidadid">
+      <input class="uppercase" matInput formControlName="entidadid" type="text" id="entidadid"
+        placeholder="Ingrese una entidadid">
     </mat-form-field>
     <mat-form-field appearance="outline" class="col">
-      <mat-label for="modified">Modified At</mat-label>
+      <mat-label for="modified">Modificado en</mat-label>
       <input class="uppercase" matInput [matDatepicker]="modified" formControlName="modified" type="text" id="modified"
-        placeholder="Ingrese una modified" disabled>
+        placeholder="Ingrese una modificación" disabled>
       <mat-datepicker-toggle matSuffix [for]="modified"></mat-datepicker-toggle>
       <mat-datepicker #modified disabled="false"></mat-datepicker>
     </mat-form-field>
   </div>
   <div class="row">
     <mat-form-field appearance="outline" class="col">
-      <mat-label for="language">Language</mat-label>
-      <input class="uppercase" matInput formControlName="language" type="text" id="language" placeholder="Un lenguaje del recurso. en(para inglés), es(para español)">
+      <mat-label for="language">Lenguaje</mat-label>
+      <input class="uppercase" matInput formControlName="language" type="text" id="language"
+        placeholder="Un lenguaje del recurso. en(para inglés), es(para español)">
     </mat-form-field>
     <mat-form-field appearance="outline" class="col">
-      <mat-label for="license">License</mat-label>
-      <input class="uppercase" matInput formControlName="license" type="text" id="license" placeholder="Documento legal que da permiso oficial para tratar con el recurso.">
+      <mat-label for="license">Licencia</mat-label>
+      <input class="uppercase" matInput formControlName="license" type="text" id="license"
+        placeholder="Documento legal que da permiso oficial para tratar con el recurso.">
     </mat-form-field>
   </div>
   <div class="row">
     <mat-form-field appearance="outline" class="col">
-      <mat-label for="rightsholder">Rights Holder</mat-label>
-      <input class="uppercase" matInput formControlName="rightsholder" type="text" id="rightsholder" placeholder="Persona que administra derechos sobre el recurso.">
+      <mat-label for="rightsholder">Titular de Derechos</mat-label>
+      <input class="uppercase" matInput formControlName="rightsholder" type="text" id="rightsholder"
+        placeholder="Persona que administra derechos sobre el recurso.">
     </mat-form-field>
     <mat-form-field appearance="outline" class="col">
-      <mat-label for="accessrights">Access Rights</mat-label>
-      <input class="uppercase" matInput formControlName="accessrights" type="text" id="accessrights" placeholder="Info. acerca de las restricciones basadas en la privacidad.">
+      <mat-label for="accessrights">Derechos de Acceso</mat-label>
+      <input class="uppercase" matInput formControlName="accessrights" type="text" id="accessrights"
+        placeholder="Info. acerca de las restricciones basadas en la privacidad.">
     </mat-form-field>
   </div>
   <div class="row">
     <mat-form-field appearance="outline" class="col-lg-12">
-      <mat-label for="bibliographiccitation">Bibliographic Citation</mat-label>
+      <mat-label for="bibliographiccitation">Citación Bibliográfica</mat-label>
       <input class="uppercase" matInput formControlName="bibliographiccitation" type="text" id="bibliographiccitation"
         placeholder="Referencia bibliográfica para el recurso como una declaración que indica cómo se debe citar (atribuir) este registro cuando se utiliza.">
     </mat-form-field>
     <mat-form-field appearance="outline" class="col-lg-12">
-      <mat-label for="references">References</mat-label>
-      <input class="uppercase" matInput formControlName="references" type="text" id="references" placeholder="Un recurso relacionado al que se hace referencia, se cita o se señala de otro modo por el recurso descrito.">
+      <mat-label for="references">Referencias</mat-label>
+      <input class="uppercase" matInput formControlName="references" type="text" id="references"
+        placeholder="Un recurso relacionado al que se hace referencia, se cita o se señala de otro modo por el recurso descrito.">
     </mat-form-field>
   </div>
   <div class="row">
     <mat-form-field appearance="outline" class="col">
-      <mat-label for="basisofrecord">Basis of Record</mat-label>
+      <mat-label for="basisofrecord">Bases de Registro</mat-label>
       <mat-select ng-model="basisofrecords" formControlName="basisofrecord" name="singleSelectBasisofrecord" required>
         <mat-option value="">-Ninguno-</mat-option>
-        <mat-option *ngFor="let basisofrecord of basisofrecords" value="{{basisofrecord.basisofrecord}}">{{basisofrecord.basisofrecord}}</mat-option>
+        <mat-option *ngFor="let basisofrecord of basisofrecords" value="{{basisofrecord.basisofrecord}}">
+          {{basisofrecord.basisofrecord}}</mat-option>
       </mat-select>
       <mat-hint class="add" (click)="addBasisofRecord()">
-        <mat-icon>add</mat-icon> Add Basis of Record
+        <mat-icon>add</mat-icon> Add Bases de Registro
       </mat-hint>
     </mat-form-field>
     <mat-form-field appearance="outline" class="col">
-      <mat-label for="dynamicproperties">Dynamic Properties</mat-label>
-      <textarea class="uppercase" matInput formControlName="dynamicproperties" type="text" id="dynamicproperties" placeholder="Una lista de mediciones adicionales, hechos, características o aseveraciones sobre el registro."></textarea>
+      <mat-label for="dynamicproperties">Propiedades Dinámicas</mat-label>
+      <textarea class="uppercase" matInput formControlName="dynamicproperties" type="text" id="dynamicproperties"
+        placeholder="Una lista de mediciones adicionales, hechos, características o aseveraciones sobre el registro."></textarea>
     </mat-form-field>
   </div>
 
   <div>
-      <button mdbBtn type="submit" [disabled]="!recordlevel.valid" color="primary" block="true">
-          Registrar Record Level</button>
+    <button mdbBtn type="submit" [disabled]="!recordlevel.valid" color="primary" block="true">
+      Registrar Nivel de Registro</button>
   </div>
 </form>

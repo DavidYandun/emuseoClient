@@ -34,6 +34,11 @@ errorHandler(error:HttpErrorResponse){
   }
   getCollection(): Observable<any>{
     return this.httpClient.get('/api/identifications/collection').pipe(
+      catchError(this.errorHandler));
+  }
+
+  getReinos(kingdom){
+    return this.httpClient.get('/api/identifications/collection/'+kingdom).pipe(
       catchError(this.errorHandler));;
   }
 }

@@ -1,11 +1,11 @@
-<h1 mat-dialog-title>Nuevo Phylum del Kingdom {{data.kingdom}}</h1>
+<h1 mat-dialog-title>Nuevo Filo del Reino {{data.kingdom}}</h1>
 <div mat-dialog-content>
   <mat-form-field appearance="outline" class="col">
-      <mat-label>Nuevo Phylum</mat-label>
+      <mat-label>Nuevo Filo</mat-label>
       <input class="uppercase" matInput [(ngModel)]="data.phylum" cdkFocusInitial required>
   </mat-form-field>
 </div>
 <div mat-dialog-actions>
   <button class="col" mat-flat-button (click)="onNoClick()">No Gracias</button>
-  <button class="col" mat-flat-button [mat-dialog-close]="data" color="primary">Ok</button>
+  <button class="col" mat-flat-button [mat-dialog-close]="data" color="primary">Aceptar</button>
 </div>

@@ -53,7 +53,6 @@ export class ListCollectionComponent implements OnInit {
     'scientificname',
     'taxonrank',
     'identifiedby',
-    'fieldnumber',
     'verificationstatus',
   ];
   /* 'identificationid',
@@ -69,7 +68,7 @@ export class ListCollectionComponent implements OnInit {
     'taxonrank',
     'scientificname',
     'vernacularname',
-    'fieldnumber',
+
     'typemedia',
     'medianame',
     'url' */

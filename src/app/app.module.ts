@@ -262,7 +262,7 @@ import { GalleryComponent } from './gallery/gallery.component';
         component: ContactosComponent
       },
       {
-        path: 'reinos',
+        path: 'reinos/:kingdom',
         component: ReinosComponent
       },
       //Adminisitradores

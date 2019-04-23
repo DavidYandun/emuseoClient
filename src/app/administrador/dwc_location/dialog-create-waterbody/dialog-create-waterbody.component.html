@@ -1,11 +1,11 @@
-<h1 mat-dialog-title>Nuevo Water Body</h1>
+<h1 mat-dialog-title>Nuevo Cuerpo de Agua</h1>
 <div mat-dialog-content>
   <mat-form-field appearance="outline" class="col">
-    <mat-label>Water Body</mat-label>
+    <mat-label>Cuerpo de Agua</mat-label>
     <input class="uppercase" matInput [(ngModel)]="data.waterbody" cdkFocusInitial required>
   </mat-form-field>
 </div>
 <div mat-dialog-actions>
   <button class="col" mat-flat-button (click)="onNoClick()">No Gracias</button>
-  <button class="col" mat-flat-button [mat-dialog-close]="data" color="primary">Ok</button>
+  <button class="col" mat-flat-button [mat-dialog-close]="data" color="primary">Aceptar</button>
 </div>

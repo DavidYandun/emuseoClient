@@ -5,14 +5,18 @@
         Imagenes
       </mat-panel-title>
       <mat-panel-description>
-        {{cantidadImages}} Imagenes
+        {{cantidadImages}} Fotografias
         <mat-icon>photo_library</mat-icon>
       </mat-panel-description>
     </mat-expansion-panel-header>
-    <img (click)="basicLightboxExample()" *ngFor="let item of images; index as i" 
-           [lightbox]="i"
-           [src]="item.data.thumb"
-           class="image img-thumbnail col-lg-4">
+    <div class="row justify-content-center">
+      <div *ngFor="let img of multimedia" class="col-lg-4">
+        <a href="{{img.url}}" data-toggle="lightbox" data-gallery="example-gallery"
+        data-max-height="600">
+          <img src="{{img.url}}" class="img-fluid thumbnail">
+        </a>
+      </div>
+    </div>
   </mat-expansion-panel>
 
   <mat-expansion-panel hideToggle>
@@ -26,6 +30,8 @@
       </mat-panel-description>
     </mat-expansion-panel-header>
     Contenido 2
+
+
   </mat-expansion-panel>
 
   <mat-expansion-panel hideToggle>
@@ -39,15 +45,6 @@
       </mat-panel-description>
     </mat-expansion-panel-header>
 
-    <mat-form-field>
-      <input matInput placeholder="Date" [matDatepicker]="picker" (focus)="picker.open()" readonly>
-    </mat-form-field>
-    <mat-datepicker #picker></mat-datepicker>
-
-    <mat-action-row>
-      <button mat-button color="warn" (click)="prevStep()">Previous</button>
-      <button mat-button color="primary" (click)="nextStep()">End</button>
-    </mat-action-row>
   </mat-expansion-panel>
 
 </mat-accordion>

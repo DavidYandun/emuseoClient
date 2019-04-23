@@ -1,9 +1,9 @@
 <form [formGroup]="identification" (ngSubmit)="postIdentification()">
   <br>
-  <h2>Identification</h2>
+  <h2>Identificación</h2>
   <div class="row">
     <mat-form-field appearance="outline" class="col">
-      <mat-label>Verification Status</mat-label>
+      <mat-label>Estado de Verificación</mat-label>
       <mat-select ng-model="verifications" formControlName="verificationstatus" name="singleSelectVerificationstatus"
         required>
         <mat-option>-Ninguno-</mat-option>
@@ -11,23 +11,23 @@
           {{verification.verificationstatus}}</mat-option>
       </mat-select>
       <mat-hint class="add" (click)="addVerification()">
-        <mat-icon>add</mat-icon> Add Verification
+        <mat-icon>add</mat-icon> Add Verificación
       </mat-hint>
     </mat-form-field>
     <mat-form-field appearance="outline" class="col">
-      <mat-label>Identification Qualifier</mat-label>
+      <mat-label>Índice de Identificación</mat-label>
       <input matInput formControlName="identificationqualifier" class="uppercase" type="text"
         placeholder="Una breve frase o un término estándar (cf., aff.)">
     </mat-form-field>
   </div>
   <div class="row">
     <mat-form-field appearance="outline" class="col">
-      <mat-label>Identified By</mat-label>
+      <mat-label>Identificado por</mat-label>
       <input matInput formControlName="identifiedby" class="uppercase" type="text"
         placeholder="Responsable de la identificación de la muestra" required>
     </mat-form-field>
     <mat-form-field appearance="outline" class="col">
-      <mat-label>Date Identified</mat-label>
+      <mat-label>Fecha de Identificación</mat-label>
       <input matInput [matDatepicker]="dateidentified" formControlName="dateidentified" type="text"
         placeholder="dd/mm/yyyy" disabled required>
       <mat-datepicker-toggle matSuffix [for]="dateidentified"></mat-datepicker-toggle>
@@ -36,7 +36,7 @@
   </div>
   <div class="row">
     <mat-form-field appearance="outline" class="col">
-      <mat-label>Identification Remarks</mat-label>
+      <mat-label>Observación de Identificación</mat-label>
       <textarea matInput formControlName="identificationremarks" class="uppercase" type="text"
         id="identificationremarks" placeholder="Comentarios o notas sobre la Identificación."></textarea>
     </mat-form-field>

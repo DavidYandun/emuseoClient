@@ -1,20 +1,20 @@
 <form [formGroup]="occurrence" (ngSubmit)="postOccurrence()">
-<br>
-  <h2>Occurrence</h2>
+  <br>
+  <h2>Ocurrencia</h2>
   <div class="row">
     <mat-form-field appearance="outline" class="col">
-      <mat-label for="lifestage">Life Stage</mat-label>
+      <mat-label for="lifestage">Estado de Vida</mat-label>
       <mat-select ng-model="lifestages" formControlName="lifestage" required>
         <mat-option>-Ninguno-</mat-option>
         <mat-option *ngFor="let lifestage of lifestages" value="{{lifestage.lifestage}}">{{lifestage.lifestage}}
         </mat-option>
       </mat-select>
       <mat-hint class="add" (click)="addLifeStage()">
-        <mat-icon>add</mat-icon> Add Life Stage
+        <mat-icon>add</mat-icon> Add Estado de Vida
       </mat-hint>
     </mat-form-field>
     <mat-form-field appearance="outline" class="col">
-      <mat-label for="reproductivecondition">Reproductive Condition</mat-label>
+      <mat-label for="reproductivecondition">Condición Reproductiva</mat-label>
       <mat-select ng-model="reproductiveconditions" formControlName="reproductivecondition">
         <mat-option>-Ninguno-</mat-option>
         <mat-option *ngFor="let reproductivecondition of reproductiveconditions"
@@ -22,51 +22,51 @@
         </mat-option>
       </mat-select>
       <mat-hint class="add" (click)="addReproductiveCondition()">
-        <mat-icon>add</mat-icon> Add Reproductive Condition
+        <mat-icon>add</mat-icon> Add Condición Reproductiva
       </mat-hint>
     </mat-form-field>
     <mat-form-field appearance="outline" class="col">
-      <mat-label for="sex">Sex</mat-label >
+      <mat-label for="sex">Sexo</mat-label>
       <mat-select ng-model="sexs" formControlName="sex" required>
         <mat-option>-Ninguno-</mat-option>
         <mat-option *ngFor="let sex of sexs" value="{{sex.sex}}">{{sex.sex}}</mat-option>
       </mat-select>
       <mat-hint class="add" (click)="addSex()">
-        <mat-icon>add</mat-icon> Add Sex
+        <mat-icon>add</mat-icon> Add Sexo
       </mat-hint>
     </mat-form-field>
     <mat-form-field appearance="outline" class="col">
-      <mat-label for="establishmentmeans">Establishment Means</mat-label>
+      <mat-label for="establishmentmeans">Establecimiento de medios</mat-label>
       <mat-select ng-model="establishmentmeanss" formControlName="establishmentmeans">
         <mat-option>-Ninguno-</mat-option>
         <mat-option *ngFor="let establishmentmeans of establishmentmeanss"
           value="{{establishmentmeans.establishmentmeans}}">{{establishmentmeans.establishmentmeans}}</mat-option>
       </mat-select>
       <mat-hint class="add" (click)="addEstablishmentmeans()">
-        <mat-icon>add</mat-icon> Add Establishment Means
+        <mat-icon>add</mat-icon> Add Establecimiento de medios
       </mat-hint>
     </mat-form-field>
   </div>
   <div class="row">
     <mat-form-field appearance="outline" class="col">
-      <mat-label for="recordnumber">Record Number</mat-label>
+      <mat-label for="recordnumber">Número de Registro</mat-label>
       <input class="uppercase" matInput formControlName="recordnumber" type="text"
         placeholder="Un identificador dado a la Ocurrencia en el momento en que se registró. " required>
     </mat-form-field>
   </div>
   <div class="row">
     <mat-form-field appearance="outline" class="col">
-      <mat-label for="individualcount">Individual Count</mat-label>
+      <mat-label for="individualcount">Conteo Individual</mat-label>
       <input class="uppercase" matInput formControlName="individualcount" type="number" id="individualcount"
         placeholder="Individuos presentes al registrar.">
     </mat-form-field>
     <mat-form-field appearance="outline" class="col">
-      <mat-label for="organismquantity">Organism Quantity</mat-label>
+      <mat-label for="organismquantity">Cantidad de organismos </mat-label>
       <input class="uppercase" matInput formControlName="organismquantity" type="number" id="organismquantity"
         placeholder="Cantidad de organismos.">
     </mat-form-field>
     <mat-form-field appearance="outline" class="col">
-      <mat-label for="organismquantitytype">Organism Quantity Type</mat-label>
+      <mat-label for="organismquantitytype">Tipo de organismos </mat-label>
       <mat-select ng-model="organismquantitytypes" formControlName="organismquantitytype">
         <mat-option>-Ninguno-</mat-option>
         <mat-option *ngFor="let organismquantitytype of organismquantitytypes"
@@ -74,34 +74,34 @@
         </mat-option>
       </mat-select>
       <mat-hint class="add" (click)="addOrganismQuantityType()">
-        <mat-icon>add</mat-icon> Add Organism Quantity Type
+        <mat-icon>add</mat-icon> Add Tipo de organismos
       </mat-hint>
     </mat-form-field>
   </div>
   <div class="row">
     <mat-form-field appearance="outline" class="col-lg-12">
-      <mat-label for="behavior">Behavior</mat-label>
+      <mat-label for="behavior">Comportamiento</mat-label>
       <input class="uppercase" matInput formControlName="behavior" type="text" id="behavior"
         placeholder="Comportamiento mostrado por el sujeto en el momento en que se registró la ocurrencia">
     </mat-form-field>
     <mat-form-field appearance="outline" class="col-lg-12">
-      <mat-label for="preparations">Preparations</mat-label>
+      <mat-label for="preparations">Preparaciones</mat-label>
       <textarea matInput formControlName="preparations" type="text" id="preparations"
         placeholder="Una lista (concatenada y separada) de preparaciones y métodos de conservación para un espécimen."></textarea>
     </mat-form-field>
     <mat-form-field appearance="outline" class="col-lg-12">
-      <mat-label for="associatedreferences">Associated References</mat-label>
+      <mat-label for="associatedreferences">Referencias Asociadas </mat-label>
       <textarea matInput formControlName="associatedreferences" type="text" id="associatedreferences"
         placeholder="Lista (concatenada y separada) de identificadores de la literatura asociada con la Ocurrencia."></textarea>
     </mat-form-field>
     <mat-form-field appearance="outline" class="col-lg-12">
-      <mat-label for="occurrenceremarks">Occurrence Remarks</mat-label>
+      <mat-label for="occurrenceremarks">Observaciones de Ocurrencia</mat-label>
       <textarea class="uppercase" matInput formControlName="occurrenceremarks" type="text" id="occurrenceremarks"
         placeholder="Comentarios o notas sobre la ocurrencia."></textarea>
     </mat-form-field>
   </div>
-  <div  class="form-group">
-      <button mdbBtn type="submit" [disabled]="!occurrence.valid" color="primary" block="true">
-          Registrar Occurrence</button>
+  <div class="form-group">
+    <button mdbBtn type="submit" [disabled]="!occurrence.valid" color="primary" block="true">
+      Registrar Ocurrencia</button>
   </div>
 </form>

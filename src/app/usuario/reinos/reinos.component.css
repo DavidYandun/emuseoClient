@@ -1,0 +1,19 @@
+.card {
+    max-width: 250px;
+    margin: 4px;
+  }
+  .row{
+      margin-left: auto;
+      margin-right: auto;
+  }
+  
+.imagen{
+    height: 200px;
+}
+
+.backgroundTitle {
+    background-color: #E1DEDD;
+  }
+  .title{
+    width: 100%;
+  }

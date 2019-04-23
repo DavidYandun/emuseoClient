@@ -1,3 +1,24 @@
-<p>
-  reinos works!
-</p>
+<app-header-client></app-header-client>
+<div class="title text-center backgroundTitle">
+  <h1>{{kingdom}}</h1>
+  <h5>{{collection.length}} Registros</h5>
+</div>
+<div class="container">
+  <div class="row">
+    <mat-card *ngFor="let element of collection" class="card col-lg-3">
+      <mat-card-header>
+        <mat-card-title>{{element.scientificname}}</mat-card-title>
+      </mat-card-header>
+      <img class="imagen" mat-card-image src="{{getFoto(element.identificationid)}}" alt="">
+      <mat-card-content>
+        <p>
+         hola
+        </p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-raised-button>VER FICHA</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>
+<app-footer></app-footer>

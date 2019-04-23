@@ -17,6 +17,7 @@ export class FichaEventComponent implements OnInit {
   getEvent() {
     this.eventService.getEventId(this.identificationid).subscribe(data => {
       this.event = data;
+      console.log(data);
     },
       error => {
         console.log(JSON.stringify(error));

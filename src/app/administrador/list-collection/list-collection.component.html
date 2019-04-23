@@ -21,26 +21,23 @@
         <th mat-header-cell *matHeaderCellDef> Foto </th>
         <td mat-cell *matCellDef="let element">
           <img class="miniatura rounded-circle" src="{{element.url}}" alt="{{element.medianame}}">
+          {{element.identificationid}}
         </td>
       </ng-container>
       <ng-container matColumnDef="scientificname">
-        <th mat-header-cell *matHeaderCellDef>Scientific Name</th>
+        <th mat-header-cell *matHeaderCellDef>Nombre Científico</th>
         <td mat-cell *matCellDef="let element"> {{element.scientificname|uppercase}}</td>
       </ng-container>
       <ng-container matColumnDef="taxonrank">
-        <th mat-header-cell *matHeaderCellDef> Taxon Rank </th>
+        <th mat-header-cell *matHeaderCellDef> Rango del Taxón </th>
         <td mat-cell *matCellDef="let element"> {{element.taxonrank|uppercase}} </td>
       </ng-container>
       <ng-container matColumnDef="identifiedby">
-        <th mat-header-cell *matHeaderCellDef> Identified By. </th>
+        <th mat-header-cell *matHeaderCellDef> Identificado por. </th>
         <td mat-cell *matCellDef="let element"> {{element.identifiedby|uppercase}} </td>
       </ng-container>
-      <ng-container matColumnDef="fieldnumber">
-        <th mat-header-cell *matHeaderCellDef> Field Number </th>
-        <td mat-cell *matCellDef="let element"> {{element.fieldnumber|uppercase}} </td>
-      </ng-container>
       <ng-container matColumnDef="verificationstatus">
-        <th mat-header-cell *matHeaderCellDef> Status </th>
+        <th mat-header-cell *matHeaderCellDef> Estado </th>
         <td mat-cell *matCellDef="let element"> {{element.verificationstatus|uppercase}} </td>
       </ng-container>
 
@@ -63,39 +60,39 @@
               <div class="row">
                 <div class=" col">
                   <div class="">
-                    <strong>Kingdom:</strong>
+                    <strong>Reino:</strong>
                     {{element.kingdom}}
                   </div>
                   <hr class="featurette-divider">
                   <div class="">
-                    <strong>Phylum:</strong>
+                    <strong>Filo:</strong>
                     {{element.phylum}}
                   </div>
                   <hr class="featurette-divider">
                   <div class="">
-                    <strong>Class:</strong>
+                    <strong>Clase:</strong>
                     {{element.class}}
                   </div>
                 </div>
                 <div class=" col">
                   <div class="">
-                    <strong>Order:</strong>
+                    <strong>Orden:</strong>
                     {{element.order}}
                   </div>
                   <hr class="featurette-divider">
                   <div class="">
-                    <strong>Family:</strong>
+                    <strong>Familia:</strong>
                     {{element.family}}
                   </div>
                   <hr class="featurette-divider">
                   <div class="">
-                    <strong>Genus:</strong>
+                    <strong>Género:</strong>
                     {{element.genus}}
                   </div>
                 </div>
                 <div class=" col">
                   <div class="">
-                    <strong>Specie:</strong>
+                    <strong>Especie:</strong>
                     {{element.specie}}
                   </div>
                   <hr class="featurette-divider">

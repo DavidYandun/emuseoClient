@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TaxonService } from 'src/app/services/dwc_taxon_services/taxon.service';
 
 
 @Component({
@@ -8,15 +9,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminCollectionComponent implements OnInit {
   isLinear = true;
-  identificationid:number;
-
+  identificationid: number;
+  taxonBool: boolean = false;
   constructor() { }
 
   ngOnInit() {
   }
 
-  postIdentificationid(e){
-    this.identificationid=e;
+  postTaxon(e) {
+    this.taxonBool = e;
+  }
+
+  postIdentificationid(e) {
+    this.identificationid = e;
     console.log(this.identificationid);
   }
 }

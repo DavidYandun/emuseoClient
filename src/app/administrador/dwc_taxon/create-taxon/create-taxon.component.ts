@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject, Input } from '@angular/core';
+import { Component, OnInit, Inject, Input, EventEmitter, Output } from '@angular/core';
 import { Validators, FormBuilder } from '@angular/forms';
 import { TaxonService } from 'src/app/services/dwc_taxon_services/taxon.service';
 import { MatDialog, MatSnackBar } from '@angular/material';
@@ -17,6 +17,7 @@ import { DialogCreateSpecieComponent } from '../dialog-create-specie/dialog-crea
 export class CreateTaxonComponent implements OnInit {
 
   @Input() identificationid: number;
+  @Output() taxonBool = new EventEmitter();
 
   taxon = this.formBuilder.group({
     identificationid: [null],
@@ -82,8 +83,10 @@ export class CreateTaxonComponent implements OnInit {
     this.llenarTaxonRank();
     if (this.taxon.value.identificationid && this.taxon.value.taxonrank) {
       this.taxonService.postTaxon(this.taxon.value).subscribe(data => {
+        this.taxonBool.emit(true);
         this.openSnackBar('REGISTRO DE TAXÓN EXITOSO', '✅');
       }, error => {
+        this.taxonBool.emit(false);
         this.openSnackBar(error.error.message, '🛑');
         console.log(JSON.stringify(error));
       });

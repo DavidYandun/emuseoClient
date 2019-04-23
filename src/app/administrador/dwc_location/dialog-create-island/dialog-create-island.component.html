@@ -1,11 +1,11 @@
-<h1 mat-dialog-title>Nueva Island</h1>
+<h1 mat-dialog-title>Nueva Isla</h1>
 <div mat-dialog-content>
   <mat-form-field appearance="outline" class="col">
-    <mat-label>Island</mat-label>
+    <mat-label>Isla</mat-label>
     <input class="uppercase" matInput [(ngModel)]="data.island" cdkFocusInitial required>
   </mat-form-field>
 </div>
 <div mat-dialog-actions>
   <button mat-flat-button (click)="onNoClick()">No Gracias</button>
-  <button mat-flat-button [mat-dialog-close]="data" color="primary">Ok</button>
+  <button mat-flat-button [mat-dialog-close]="data" color="primary">Aceptar</button>
 </div>
