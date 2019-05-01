@@ -1,6 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { UserService } from 'src/app/services/users/user.service';
+import { UserService, User } from 'src/app/services/users/user.service';
 import { RolService } from 'src/app/services/users/rol.service';
+import { MatDialog, MatSnackBar } from '@angular/material';
+import { DialogEditUserComponent } from '../dialog-edit-user/dialog-edit-user.component';
 
 @Component({
   selector: 'app-control-user',
@@ -11,7 +13,12 @@ export class ControlUserComponent implements OnInit {
   users: any;
   rols: any;
   user = null;
-  constructor(private userService: UserService, private rolService: RolService) { }
+  editUser: any;
+  constructor(
+    private userService: UserService,
+    private rolService: RolService,
+    public dialog: MatDialog,
+    private snackBar: MatSnackBar) { }
 
   ngOnInit() {
     this.getUsers();
@@ -26,10 +33,14 @@ export class ControlUserComponent implements OnInit {
       }
     }
   }
-  
+
   getUsers() {
     this.userService.getUsersRol().subscribe(data => {
       this.users = data;
+      for (let user of this.users) {
+        if (user.url == null)
+          user.url = '../../../../assets/img/perfil.jpg';
+      }
     },
       error => {
         console.log(JSON.stringify(error));
@@ -55,5 +66,43 @@ export class ControlUserComponent implements OnInit {
   }
   cerrarDetalles() {
     this.user = null;
+  }
+
+
+  //modal
+  openDialogEditUser(user): void {
+    const dialogRef = this.dialog.open(DialogEditUserComponent, {
+      width: '400px',
+      data: {
+        userid: user.userid,
+        //rolid: user.rolid,
+        name: user.name,
+        lastname: user.lastname,
+        email: user.email,
+        direction: user.direction,
+        phone: user.phone,
+        state: user.state,
+        created_at: user.created_at,
+        url: user.url
+      }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      this.editUser = result;
+      this.updateUser();
+      this.getUsers();
+    });
+  }
+
+  updateUser() {
+    this.userService.putUser(this.editUser.userid, this.editUser).subscribe(data => {
+      this.openSnackBar('Actualización exitosa', '✅');
+    }, error => {
+      this.openSnackBar(error.error.message, '🛑');
+    });
+  }
+  openSnackBar(message: string, action: string) {
+    this.snackBar.open(message, action, {
+      duration: 2000,
+    });
   }
 }

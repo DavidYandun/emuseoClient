@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { TaxonService } from 'src/app/services/dwc_taxon_services/taxon.service';
 import { MultimediaService } from 'src/app/services/mul_multimedia_service/multimedia.service';
+import { MediaMatcher } from '@angular/cdk/layout';
 
 @Component({
   selector: 'app-read-ficha',
@@ -10,6 +11,9 @@ import { MultimediaService } from 'src/app/services/mul_multimedia_service/multi
 })
 
 export class ReadFichaComponent implements OnInit {
+  
+  mobileQuery: MediaQueryList;
+
   identificationid = null;
   image: any;
   //title
@@ -24,12 +28,23 @@ export class ReadFichaComponent implements OnInit {
   locationBool: boolean = false;
   geologicalcontextBool: boolean = false;
   multimediaBool: boolean = false;
+
+  private _mobileQueryListener: () => void;
   constructor(
     private multimediaService: MultimediaService,
     private taxonService: TaxonService,
     private route: ActivatedRoute,
-    private router: Router
-  ) { }
+    private router: Router,
+    changeDetectorRef: ChangeDetectorRef, 
+    media: MediaMatcher
+  ) { 
+    this.mobileQuery = media.matchMedia('(max-width: 600px)');
+    this._mobileQueryListener = () => changeDetectorRef.detectChanges();
+    this.mobileQuery.addListener(this._mobileQueryListener);
+  }
+  ngOnDestroy(): void {
+    this.mobileQuery.removeListener(this._mobileQueryListener);
+  }
 
   ngOnInit() {
     this.identificationid = this.route.snapshot.params['id'];
@@ -53,7 +68,7 @@ export class ReadFichaComponent implements OnInit {
     this.multimediaBool = false;
   }
   onClickRecordlevel() {
-    this.fichaTitle2 = "Record Level";
+    this.fichaTitle2 = "Nivel de Registro";
     this.taxonBool = false;
     this.recordlevelBool = true;
     this.occurrenceBool = false;
@@ -64,7 +79,7 @@ export class ReadFichaComponent implements OnInit {
     this.multimediaBool = false;
   }
   onClickOccurrence() {
-    this.fichaTitle2 = "Occurrence";
+    this.fichaTitle2 = "Ocurrencia";
     this.taxonBool = false;
     this.recordlevelBool = false;
     this.occurrenceBool = true;
@@ -75,7 +90,7 @@ export class ReadFichaComponent implements OnInit {
     this.multimediaBool = false;
   }
   onClickOrganism() {
-    this.fichaTitle2 = "Organism";
+    this.fichaTitle2 = "Organismo";
     this.taxonBool = false;
     this.recordlevelBool = false;
     this.occurrenceBool = false;
@@ -86,7 +101,7 @@ export class ReadFichaComponent implements OnInit {
     this.multimediaBool = false;
   }
   onClickEvent() {
-    this.fichaTitle2 = "Event";
+    this.fichaTitle2 = "Evento";
     this.taxonBool = false;
     this.recordlevelBool = false;
     this.occurrenceBool = false;
@@ -97,7 +112,7 @@ export class ReadFichaComponent implements OnInit {
     this.multimediaBool = false;
   }
   onClickLocation() {
-    this.fichaTitle2 = "Location";
+    this.fichaTitle2 = "Ubicación";
     this.taxonBool = false;
     this.recordlevelBool = false;
     this.occurrenceBool = false;
@@ -108,7 +123,7 @@ export class ReadFichaComponent implements OnInit {
     this.multimediaBool = false;
   }
   onClickGeologicalContext() {
-    this.fichaTitle2 = "Geological Context";
+    this.fichaTitle2 = "Contexto Geológico";
     this.taxonBool = false;
     this.recordlevelBool = false;
     this.occurrenceBool = false;

@@ -47,8 +47,8 @@ import { CollectionComponent } from './administrador/collection/collection.compo
 //users
 import { CreateUserComponent } from './administrador/users/create-user/create-user.component';
 import { ControlUserComponent } from './administrador/users/control-user/control-user.component';
-import { EditUserComponent } from './administrador/users/edit-user/edit-user.component';
 import { RolComponent } from './administrador/rol/rol.component';
+import { DialogEditUserComponent } from './administrador/users/dialog-edit-user/dialog-edit-user.component';
 
 //dwc_identification
 import { CreateIdentificationComponent } from './administrador/dwc_identification/create-identification/create-identification.component';
@@ -158,6 +158,7 @@ import { GalleryComponent } from './gallery/gallery.component';
 
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -177,7 +178,6 @@ import { GalleryComponent } from './gallery/gallery.component';
     CreateUserComponent,
     ControlUserComponent,
     RolComponent,
-    EditUserComponent,
     CreateIdentificationComponent,
     AdminCollectionComponent,
     CreateRecordLevelComponent,
@@ -226,6 +226,7 @@ import { GalleryComponent } from './gallery/gallery.component';
     FichaGeologicalcontextComponent,
     FichaMultimediaComponent,
     GalleryComponent,
+    DialogEditUserComponent,
 
   ],
   imports: [
@@ -325,7 +326,8 @@ import { GalleryComponent } from './gallery/gallery.component';
     DialogCreateCountryComponent, DialogCreateStateprovinceComponent, DialogCreateCountyComponent, DialogCreateMunicipalityComponent,
     DialogCreateContinentComponent, DialogCreateWaterbodyComponent, DialogCreateIslandComponent, DialogCreateGeodeticdatumComponent,
     DialogCreateGeoreferenceverificationstatusComponent,
-    DialogCreateEonComponent, DialogCreateEraComponent, DialogCreatePeriodComponent, DialogCreateEpochComponent
+    DialogCreateEonComponent, DialogCreateEraComponent, DialogCreatePeriodComponent, DialogCreateEpochComponent,
+    DialogEditUserComponent
   ],
   providers: [RolService, UserService, AuthService, VerificationService, IdentificationService,
     RecordLevelService, OccurrenceService, OrganismService, EventService, LocationService,

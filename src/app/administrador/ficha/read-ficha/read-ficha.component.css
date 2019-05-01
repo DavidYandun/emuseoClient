@@ -12,9 +12,6 @@ mat-list {
   height: 100%;
 }
 
-.nav {
-  width: 15%;
-}
 
 .list {
   height: 100%;
@@ -33,8 +30,13 @@ mat-list {
   width: 350px;
 }
 
+.boton{
+  margin-left: 20px;
+  
+}
 .backgroundTitle {
   background-color: #E1DEDD;
+  width: 100%;
 }
 .title{
   width: 100%;

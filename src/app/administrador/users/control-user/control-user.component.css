@@ -1,17 +1,18 @@
 .perfil {
-  width: 6em;
-  height: 6em;
-  align-self: auto;
+  height: 150px;
+  width: 150px;
+  
 }
 
-.card {
-  border-radius: 10px;
-  border-style: solid;
-  width: 50px;
+.cards {
+  min-width: 250px;
   margin: 10px;
 }
 
-.container{
-    margin-left: auto;
-    margin-right: auto;
+.container {
+  margin-left: auto;
+  margin-right: auto;
+}
+.new-user{
+  margin: 20px;
 }

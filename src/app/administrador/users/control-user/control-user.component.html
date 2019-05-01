@@ -1,30 +1,34 @@
 <app-header-admin></app-header-admin>
 
-<div class="container row">
-  <div *ngFor="let user of users" class="card" style="width: 18rem;">
-    <div  class="text-center">
-      <img src="{{user.url}}" class="card-img-top perfil" alt="">
-    </div>
-    
-    <div class="card-body">
-      <h5 class="card-title text-center">{{user.name}} {{user.lastname}}
-        <br>
-        <small class="text-muted">{{user.rolname}}</small>
-      </h5>
 
-      <div class="card-text">
+<div class="container row ">
+  <button mdbBtn type="button" color="primary" mdbWavesEffect block="true" outline="true" class="new-user"
+    routerLink="/create-user">Nuevo Usuario</button>
+
+  <div *ngFor="let user of users">
+    <mat-card class="cards">
+      <mat-card-header class="x">
+        <div class="text-center">
+          <h5> <strong>{{user.name}} {{user.lastname}}</strong></h5>
+          <h6>{{user.rolname}}</h6>
+              <img mat-card-image src="{{user.url}}" alt="" class="perfil rounded-circle ">
+        </div>
+      </mat-card-header>
+
+      
+      <mat-card-content>
         <ul>
-          <li>Email: {{user.email}}</li>
-          <li>Dirección: {{user.direction}}</li>
-          <li>Teléfono: {{user.phone}}</li>
+          <li> <strong>Email:</strong>  {{user.email}}</li>
+          <li><strong>Dirección:</strong> {{user.direction}}</li>
+          <li><strong>Teléfono:</strong> {{user.phone}}</li>
         </ul>
-      </div>
-      <button (click)="getUser(user)" class="btn btn-link" data-toggle="modal" data-target="#modalEditUser"> Editar</button>
-    </div>
+      </mat-card-content>
+      <mat-card-actions>
+        <button (click)="openDialogEditUser(user)" type="button" mdbBtn color="link" mdbWavesEffect>
+          Editar</button>
+      </mat-card-actions>
+    </mat-card>
   </div>
 </div>
-
-<!-- Modal -->
-<app-edit-user [user]="user"></app-edit-user>
 
 <app-footer></app-footer>

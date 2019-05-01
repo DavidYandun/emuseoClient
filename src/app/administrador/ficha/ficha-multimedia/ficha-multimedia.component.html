@@ -10,9 +10,9 @@
       </mat-panel-description>
     </mat-expansion-panel-header>
     <div class="row justify-content-center">
-      <div *ngFor="let img of multimedia" class="col-lg-4">
+      <div *ngFor="let img of multimedia" class=" text-center">
         <a href="{{img.url}}" data-toggle="lightbox" data-gallery="example-gallery"
-        data-max-height="600">
+        data-height="800">
           <img src="{{img.url}}" class="img-fluid thumbnail">
         </a>
       </div>

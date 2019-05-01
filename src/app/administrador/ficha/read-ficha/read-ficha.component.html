@@ -1,42 +1,61 @@
 <app-header-admin></app-header-admin>
+<table class="backgroundTitle">
+  <tr>
+    <td class="text-center">
+      <h1>{{fichaTitle1}}</h1>
+    </td>
+  </tr>
+  <tr>
+    <td class="text-center">
+      <h5>{{fichaTitle2}}</h5>
+    </td>
+  </tr>
 
+
+</table>
 <mat-sidenav-container class="  ">
-  <mat-sidenav mode="side" opened class="nav">
+  <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'"
+  [fixedInViewport]="mobileQuery.matches" fixedTopGap="100"  class="nav">
     <mat-card>
       <mat-card-header>
-        <mat-card-title>Índice de la Ficha</mat-card-title>
+        <mat-card-title class="text-right">
+            <button mat-icon-button (click)="snav.toggle()" >
+            <mat-icon>arrow_back</mat-icon> 
+          </button>
+          Indice de Ficha
+          </mat-card-title>
       </mat-card-header>
       <mat-divider></mat-divider>
       <mat-card-content>
         <mat-list>
           <mat-list-item>
-            <button (click)="onClickTaxon()" mat-button color="primary"> Taxón
+            <button (click)="onClickTaxon()" mdbBtn type="button" color="primary" outline="true" block="true"> Taxón
             </button> </mat-list-item>
           <mat-list-item>
-            <button (click)="onClickRecordlevel()" mat-button color="primary">
+            <button (click)="onClickRecordlevel()" mdbBtn type="button" color="primary" outline="true" block="true">
               Nivel de Registro </button>
           </mat-list-item>
           <mat-list-item>
-            <button (click)="onClickOccurrence()" mat-button color="primary">
+            <button (click)="onClickOccurrence()" mdbBtn type="button" color="primary" outline="true" block="true">
               Ocurrencia </button>
           </mat-list-item>
           <mat-list-item>
-            <button (click)="onClickOrganism()" mat-button color="primary">
+            <button (click)="onClickOrganism()" mdbBtn type="button" color="primary" outline="true" block="true">
               Organismo </button>
           </mat-list-item>
           <mat-list-item>
-            <button (click)="onClickEvent()" mat-button color="primary"> Event
+            <button (click)="onClickEvent()" mdbBtn type="button" color="primary" outline="true" block="true"> Event
             </button> </mat-list-item>
           <mat-list-item>
-            <button (click)="onClickLocation()" mat-button color="primary">
+            <button (click)="onClickLocation()" mdbBtn type="button" color="primary" outline="true" block="true">
               Ubicación </button>
-
           </mat-list-item>
           <mat-list-item>
-            <button (click)="onClickGeologicalContext()" mat-button color="primary"> Geológico </button>
+            <button (click)="onClickGeologicalContext()" mdbBtn type="button" color="primary" outline="true"
+              block="true"> Geológico </button>
           </mat-list-item>
           <mat-list-item>
-            <button (click)="onClickMultimedia()" mat-button color="primary">
+            <button (click)="onClickMultimedia()" mdbBtn type="button" color="primary" outline="true" block="true">
               Multimedia</button>
           </mat-list-item>
         </mat-list>
@@ -45,17 +64,13 @@
   </mat-sidenav>
   <mat-sidenav-content>
     <mat-card>
-      <mat-card-header class="backgroundTitle">
-        <div class="title text-center">
-          <mat-card-title>
-            <h1>{{fichaTitle1}}</h1>
-            <h5>{{fichaTitle2}}</h5>
-          </mat-card-title>
-        </div>
-      </mat-card-header>
+      
       <mat-card-content>
         <div class="row">
           <div class="col-lg-3">
+              <button mdbBtn type="button" color="primary" outline="true" block="true" (click)="snav.toggle()" >
+                  <mat-icon>menu</mat-icon>
+                </button>
             <img class="img-thumbnail banner" src="{{image}}" alt="">
             <button (click)="onClickMultimedia()" mdbBtn type="button" color="primary" outline="true" block="true">
               Multimedia </button>
