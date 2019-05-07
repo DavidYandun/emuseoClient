@@ -11,7 +11,7 @@ import { MediaMatcher } from '@angular/cdk/layout';
 })
 
 export class ReadFichaComponent implements OnInit {
-  
+  loggedin = false;
   mobileQuery: MediaQueryList;
 
   identificationid = null;
@@ -35,9 +35,9 @@ export class ReadFichaComponent implements OnInit {
     private taxonService: TaxonService,
     private route: ActivatedRoute,
     private router: Router,
-    changeDetectorRef: ChangeDetectorRef, 
+    changeDetectorRef: ChangeDetectorRef,
     media: MediaMatcher
-  ) { 
+  ) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
@@ -47,8 +47,14 @@ export class ReadFichaComponent implements OnInit {
   }
 
   ngOnInit() {
+    if (sessionStorage.getItem('loggedin') == 'true') {
+      this.loggedin = true;
+    } else {
+      this.loggedin = false;
+    }
+
     this.identificationid = this.route.snapshot.params['id'];
-    
+
     this.taxonService.getTaxonId(this.identificationid).subscribe(data => {
       this.fichaTitle1 = data.scientificname;
     })

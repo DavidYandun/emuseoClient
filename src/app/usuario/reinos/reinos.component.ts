@@ -11,6 +11,7 @@ import { MultimediaService } from 'src/app/services/mul_multimedia_service/multi
 
 export class ReinosComponent implements OnInit {
 
+  loggedin = false;
   kingdom: any;
   collection: any;
   errorMsg: any;
@@ -22,8 +23,13 @@ export class ReinosComponent implements OnInit {
     private route: ActivatedRoute) { }
 
   ngOnInit() {
+    if (sessionStorage.getItem('loggedin') == 'true') {
+      this.loggedin = true;
+    } else {
+      this.loggedin = false;
+    }
     this.getCollection();
-    
+
   }
 
   getCollection() {
@@ -43,8 +49,8 @@ export class ReinosComponent implements OnInit {
       }
       console.log(this.collection);
     }, error => this.errorMsg = error);
-    
-    
+
+
   };
 
   getFoto(identificationid) {

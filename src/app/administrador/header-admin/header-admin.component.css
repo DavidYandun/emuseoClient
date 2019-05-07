@@ -2,3 +2,11 @@
     justify-content: flex-end;
   }
  
+  .perfil{
+    width: 32px;
+    height: 32px;
+    margin-right: 10px;
+}
+mat-icon{
+  margin-right: 10px;
+}

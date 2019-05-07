@@ -1,19 +1,27 @@
 <div class="row">
   <div class="col-lg-5">
-    <mat-list>
-      <mat-list-item>
-        <div class="col title text-right">Nombre del Organismo:</div>
-        <div class="col">{{organism.organismname}}</div>
-      </mat-list-item>
-      <mat-list-item>
-        <div class="col title text-right">Alcance del Organismo:</div>
-        <div class="col">{{organism.organismscope}}</div>
-      </mat-list-item>
-    </mat-list>
+    <ul class="list-group list-group-flush col">
+      <li class="list-group-item row">
+        <table>
+          <tr>
+            <td class="col-lg-4"><strong>Nombre del Organismo:</strong></td>
+            <td class="col-lg-8"> {{organism.organismname|uppercase}}</td>
+          </tr>
+        </table>
+      </li>
+      <li class="list-group-item row">
+        <table>
+          <tr>
+            <td class="col-lg-4"><strong>Alcance del Organismo:</strong></td>
+            <td class="col-lg-8"> {{organism.organismscope|uppercase}}</td>
+          </tr>
+        </table>
+      </li>
+    </ul>
   </div>
   <mat-divider [vertical]="true"></mat-divider>
   <div class="col-lg-6">
     <h3>Observaciones:</h3>
-    <p>{{organism.organismremarks}}</p>
+    <p>{{organism.organismremarks|uppercase}}</p>
   </div>
 </div>

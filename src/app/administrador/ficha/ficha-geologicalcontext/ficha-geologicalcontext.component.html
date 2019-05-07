@@ -1,55 +1,88 @@
 <div class="row">
   <div class="col-lg-5">
-    <mat-list>
-      <mat-list-item>
-        <div class="col title text-right">Eon:</div>
-        <div class="col">
-          <div class="row">
-            Más Bajo {{geologicalcontext.earliesteonorlowesteonothem}}
-          </div>
-          <div class="row">
-            Más Alto {{geologicalcontext.latesteonorhighesteonothem}}
-          </div>
-        </div>
-      </mat-list-item>
-      <mat-list-item>
-        <div class="col title text-right">Era:</div>
-        <div class="col">
-          <div class="row">
-            Más Bajo {{geologicalcontext.earliesteraorlowesterathem}}
-          </div>
-          <div class="row">
-            Más Alto {{geologicalcontext.latesteraorhighesterathem}}
-          </div>
-        </div>
-      </mat-list-item>
-      <mat-list-item>
-        <div class="col title text-right">Period:</div>
-        <div class="col">
-          <div class="row">
-            Más Bajo {{geologicalcontext.earliestperiodorlowestsystem}}
-          </div>
-          <div class="row">
-            Más Alto {{geologicalcontext.latestperiodorhighestsystem}}
-          </div>
-        </div>
-      </mat-list-item>
-      <mat-list-item>
-        <div class="col title text-right">Epoch:</div>
-        <div class="col">
-          <div class="row">
-            Más Bajo {{geologicalcontext.earliestepochorlowestseries}}
-          </div>
-          <div class="row">
-            Más Alto {{geologicalcontext.latestepochorhighestseries}}
-          </div>
-        </div>
-      </mat-list-item>
-    </mat-list>
+    <ul class="list-group list-group-flush col">
+      <li class="list-group-item row">
+        <h3>Eón</h3>
+        <table>
+          <tr>
+            <td class="col-lg-4"><strong>Eon más Alto:</strong></td>
+            <td class="col-lg-8"> {{geologicalcontext.latesteonorhighesteonothem|uppercase}}</td>
+          </tr>
+        </table>
+      </li>
+      <li class="list-group-item row">
+        <table>
+          <tr>
+            <td class="col-lg-4"><strong>Eon más Bajo:</strong></td>
+            <td class="col-lg-8"> {{geologicalcontext.earliesteonorlowesteonothem|uppercase}}</td>
+          </tr>
+        </table>
+      </li>
+    </ul>
+    <ul class="list-group list-group-flush col">
+      <li class="list-group-item row">
+        <h3>Era</h3>
+        <table>
+          <tr>
+            <td class="col-lg-4"><strong>Era más Alta:</strong></td>
+            <td class="col-lg-8"> {{geologicalcontext.latesteraorhighesterathem|uppercase}}</td>
+          </tr>
+        </table>
+      </li>
+      <li class="list-group-item row">
+        <table>
+          <tr>
+            <td class="col-lg-4"><strong>Era más Baja:</strong></td>
+            <td class="col-lg-8"> {{geologicalcontext.earliesteraorlowesterathem|uppercase}}</td>
+          </tr>
+        </table>
+      </li>
+    </ul>
   </div>
   <mat-divider [vertical]="true"></mat-divider>
   <div class="col-lg-6">
-    <h3>Observaciones:</h3>
-    <p>{{geologicalcontext.geologicalcontextremarks}}</p>
+    <ul class="list-group list-group-flush col">
+      <li class="list-group-item row">
+        <h3>Periodo</h3>
+        <table>
+          <tr>
+            <td class="col-lg-4"><strong>Periodo más Alto:</strong></td>
+            <td class="col-lg-8"> {{geologicalcontext.latestperiodorhighestsystem|uppercase}}</td>
+          </tr>
+        </table>
+      </li>
+      <li class="list-group-item row">
+        <table>
+          <tr>
+            <td class="col-lg-4"><strong>Periodo más Bajo:</strong></td>
+            <td class="col-lg-8"> {{geologicalcontext.earliestperiodorlowestsystem|uppercase}}</td>
+          </tr>
+        </table>
+      </li>
+    </ul>
+    <ul class="list-group list-group-flush col">
+      <li class="list-group-item row">
+        <h3>Época</h3>
+        <table>
+          <tr>
+            <td class="col-lg-4"><strong>Época más Alta:</strong></td>
+            <td class="col-lg-8"> {{geologicalcontext.latestepochorhighestseries|uppercase}}</td>
+          </tr>
+        </table>
+      </li>
+      <li class="list-group-item row">
+        <table>
+          <tr>
+            <td class="col-lg-4"><strong>Época más Baja:</strong></td>
+            <td class="col-lg-8"> {{geologicalcontext.earliestepochorlowestseries|uppercase}}</td>
+          </tr>
+        </table>
+      </li>
+    </ul>
   </div>
+  <div colspan="2">
+      <mat-divider></mat-divider>
+      <h3>Observaciones:</h3>
+      <p>{{geologicalcontext.geologicalcontextremarks|uppercase}}</p>
+    </div>
 </div>

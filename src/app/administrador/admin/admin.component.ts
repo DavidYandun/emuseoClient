@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-admin',
@@ -6,11 +7,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./admin.component.css']
 })
 export class AdminComponent implements OnInit {
+  loggedin=false;
   message = "Loading....";
-  constructor() { }
+  constructor(private router:Router) { }
 
   ngOnInit() {
-    this.message = "Estas en admin";
+if(sessionStorage.getItem('loggedin')=='true'){
+  this.loggedin=true;
+  this.message = "Estas en admin";
+}else{
+  this.loggedin=false;
+  this.router.navigate(['/']);
+}
+    
     
   }
 

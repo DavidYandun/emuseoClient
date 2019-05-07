@@ -1,61 +1,98 @@
 <div class="row">
   <div class="col-lg-5">
-    <mat-list>
-      <mat-list-item>
-        <div class="col title text-right">Reino:</div>
-        <div class="col">{{taxon.kingdom}}</div>
-      </mat-list-item>
-      <mat-list-item>
-        <div class="col title text-right">Filo:</div>
-        <div class="col">{{taxon.phylum}}</div>
-      </mat-list-item>
-      <mat-list-item>
-        <div class="col title text-right">Clase:</div>
-        <div class="col">{{taxon.class}}</div>
-      </mat-list-item>
-      <mat-list-item>
-        <div class="col title text-right">Orden:</div>
-        <div class="col">{{taxon.order}}</div>
-      </mat-list-item>
-      <mat-list-item>
-        <div class="col title text-right">Familia:</div>
-        <div class="col">{{taxon.family}}</div>
-      </mat-list-item>
-      <mat-list-item>
-        <div class="col title text-right">Género:</div>
-        <div class="col">{{taxon.genus}}</div>
-      </mat-list-item>
-      <mat-list-item>
-        <div class="col title text-right">Especie:</div>
-        <div class="col">{{taxon.specie}}</div>
-      </mat-list-item>
-    </mat-list>
+    <ul class="list-group list-group-flush col">
+      <li class="list-group-item row">
+        <table>
+          <tr>
+            <td class="col-lg-4"><strong>Reino:</strong></td>
+            <td class="col-lg-8"> {{taxon.kingdom|uppercase}}</td>
+          </tr>
+        </table>
+      </li>
+      <li class="list-group-item row">
+        <table>
+          <tr>
+            <td class="col"><strong>Filo:</strong></td>
+            <td class="col"> {{taxon.phylum|uppercase}}</td>
+          </tr>
+        </table>
+      </li>
+      <li class="list-group-item row">
+        <table>
+          <tr>
+            <td class="col"><strong>Clase:</strong></td>
+            <td class="col"> {{taxon.class|uppercase}}</td>
+          </tr>
+        </table>
+      </li>
+      <li class="list-group-item row">
+        <table>
+          <tr>
+            <td class="col"><strong>Orden:</strong></td>
+            <td class="col"> {{taxon.order|uppercase}}</td>
+          </tr>
+        </table>
+      </li>
+      <li class="list-group-item row">
+        <table>
+          <tr>
+            <td class="col"><strong>Familia:</strong></td>
+            <td class="col"> {{taxon.family|uppercase}}</td>
+          </tr>
+        </table>
+      </li>
+
+      <li class="list-group-item row">
+        <table>
+          <tr>
+            <td class="col"><strong>Especie:</strong></td>
+            <td class="col"> {{taxon.specie|uppercase}}</td>
+          </tr>
+        </table>
+      </li>
+    </ul>
   </div>
   <mat-divider [vertical]="true"></mat-divider>
   <div class="col-lg-6">
-    <mat-list>
-      <mat-list-item>
-        <div class="col title text-right">Nombre Científico:</div>
-        <div class="col">{{taxon.scientificname}}</div>
-      </mat-list-item>
-      <mat-list-item>
-        <div class="col title text-right">Nombre de uso aceptado:</div>
-        <div class="col">{{taxon.acceptednameusage}}</div>
-      </mat-list-item>
-      <mat-list-item>
-        <div class="col title text-right">Nombre Común:</div>
-        <div class="col">{{taxon.vernacularname}}</div>
-      </mat-list-item>
-      <mat-list-item>
-        <div class="col title text-right">Nombre Original:</div>
-        <div class="col">{{taxon.originalname}}</div>
-      </mat-list-item>
-    </mat-list>
+    <ul class="list-group list-group-flush col">
+      <li class="list-group-item row">
+        <table>
+          <tr>
+            <td class="col-lg-4"><strong>Nombre Científico:</strong></td>
+            <td class="col-lg-8"> {{taxon.scientificname|uppercase}}</td>
+          </tr>
+        </table>
+      </li>
+      <li class="list-group-item row">
+        <table>
+          <tr>
+            <td class="col-lg-4"><strong>Nombre de uso aceptado:</strong></td>
+            <td class="col-lg-8"> {{taxon.acceptednameusage|uppercase}}</td>
+          </tr>
+        </table>
+      </li>
+      <li class="list-group-item row">
+        <table>
+          <tr>
+            <td class="col-lg-4"><strong>Nombre Común:</strong></td>
+            <td class="col-lg-8"> {{taxon.vernacularname|uppercase}}</td>
+          </tr>
+        </table>
+      </li>
+      <li class="list-group-item row">
+        <table>
+          <tr>
+            <td class="col-lg-4"><strong>Nombre Original:</strong></td>
+            <td class="col-lg-8"> {{taxon.originalname|uppercase}}</td>
+          </tr>
+        </table>
+      </li>
+    </ul>
   </div>
 
   <div colspan="2">
     <mat-divider></mat-divider>
-    <h3>Remarks:</h3>
-    <p>{{taxon.taxonremarks}}</p>
+    <h3>Observaciones:</h3>
+    <p>{{taxon.taxonremarks|uppercase}}</p>
   </div>
 </div>

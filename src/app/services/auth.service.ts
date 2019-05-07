@@ -18,20 +18,26 @@ export class AuthService {
 
   setLoggedIn(value: boolean) {
     this.loggedInStatus = value;
-    //localStorage.setItem('loggedIn', 'true');
+    sessionStorage.setItem('loggedin', 'true');
+
   }
 
   get isLoggedIn() {
-  //  return JSON.parse(localStorage.getItem('loggedIn') || this.loggedInStatus.toString());
+    //  return JSON.parse(localStorage.getItem('loggedIn') || this.loggedInStatus.toString());
     return this.loggedInStatus;
   }
 
   getUserDetails(user: any) {
     let json = JSON.stringify(user);
     let headers = new HttpHeaders().set('Content-Type', 'application/json');
-    const prueba = this.httpClient.post<myData>('/auth/login', json, { headers: headers });
-    console.log(json);
-    return prueba;
+    const login = this.httpClient.post<myData>('/auth/login', json, { headers: headers });
+    return login;
   };
-  
+
+  logout() {
+    sessionStorage.removeItem('loggedin');
+    sessionStorage.removeItem('email');
+    return this.httpClient.get('/auth/logout');
+
+  }
 }

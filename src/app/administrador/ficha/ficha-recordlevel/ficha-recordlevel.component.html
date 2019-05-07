@@ -1,51 +1,91 @@
 <div class="row">
   <div class="col-lg-5">
-    <mat-list>
-      <mat-list-item>
-        <div class="col title text-right">Bases de Registro:</div>
-        <div class="col">{{recordlevel.basisofrecord}}</div>
-      </mat-list-item>
-      <mat-list-item>
-        <div class="col title text-right">Tipo:</div>
-        <div class="col">{{recordlevel.type}}</div>
-      </mat-list-item>
-      <mat-list-item>
-        <div class="col title text-right">Modificado:</div>
-        <div class="col">{{recordlevel.modified}}</div>
-      </mat-list-item>
-      <mat-list-item>
-        <div class="col title text-right">Lenguaje:</div>
-        <div class="col">{{recordlevel.language}}</div>
-      </mat-list-item>
-      <mat-list-item>
-        <div class="col title text-right">Licencia:</div>
-        <div class="col">{{recordlevel.license}}</div>
-      </mat-list-item>
-    </mat-list>
+    <ul class="list-group list-group-flush col">
+      <li class="list-group-item row">
+        <table>
+          <tr>
+            <td class="col-lg-4"><strong>Bases de Registro:</strong></td>
+            <td class="col-lg-8"> {{recordlevel.basisofrecord|uppercase}}</td>
+          </tr>
+        </table>
+      </li>
+      <li class="list-group-item row">
+        <table>
+          <tr>
+            <td class="col-lg-4"><strong>Tipo:</strong></td>
+            <td class="col-lg-8"> {{recordlevel.type|uppercase}}</td>
+          </tr>
+        </table>
+      </li>
+      <li class="list-group-item row">
+        <table>
+          <tr>
+            <td class="col-lg-4"><strong>Modificado:</strong></td>
+            <td class="col-lg-8"> {{recordlevel.modified|uppercase}}</td>
+          </tr>
+        </table>
+      </li>
+      <li class="list-group-item row">
+        <table>
+          <tr>
+            <td class="col-lg-4"><strong>Lenguaje:</strong></td>
+            <td class="col-lg-8"> {{recordlevel.language|uppercase}}</td>
+          </tr>
+        </table>
+      </li>
+      <li class="list-group-item row">
+        <table>
+          <tr>
+            <td class="col-lg-4"><strong>Licencia:</strong></td>
+            <td class="col-lg-8"> {{recordlevel.license|uppercase}}</td>
+          </tr>
+        </table>
+      </li>
+    </ul>
   </div>
   <mat-divider [vertical]="true"></mat-divider>
   <div class="col-lg-6">
-    <mat-list>
-      <mat-list-item>
-        <div class="col title text-right">Titular de Derechos:</div>
-        <div class="col">{{recordlevel.rightsholde}}</div>
-      </mat-list-item>
-      <mat-list-item>
-        <div class="col title text-right">Derechos de Acceso:</div>
-        <div class="col">{{recordlevel.accessrights}}</div>
-      </mat-list-item>
-      <mat-list-item>
-        <div class="col title text-right">Citas Bibliográficas:</div>
-        <div class="col">{{recordlevel.bibliographiccitation}}</div>
-      </mat-list-item>
-      <mat-list-item>
-        <div class="col title text-right">Referencias:</div>
-        <div class="col">{{recordlevel.references}}</div>
-      </mat-list-item>
-      <mat-list-item>
-        <div class="col title text-right">Propiedades Dinámicas:</div>
-        <div class="col">{{recordlevel.dynamicproperties}}</div>
-      </mat-list-item>
-    </mat-list>
+    <ul class="list-group list-group-flush col">
+      <li class="list-group-item row">
+        <table>
+          <tr>
+            <td class="col-lg-4"><strong>Titular de Derechos:</strong></td>
+            <td class="col-lg-8"> {{recordlevel.rightsholde|uppercase}}</td>
+          </tr>
+        </table>
+      </li>
+      <li class="list-group-item row">
+        <table>
+          <tr>
+            <td class="col-lg-4"><strong>Derechos de Acceso:</strong></td>
+            <td class="col-lg-8"> {{recordlevel.accessrights|uppercase}}</td>
+          </tr>
+        </table>
+      </li>
+      <li class="list-group-item row">
+        <table>
+          <tr>
+            <td class="col-lg-4"><strong>Citas Bibliográficas:</strong></td>
+            <td class="col-lg-8"> {{recordlevel.bibliographiccitation|uppercase}}</td>
+          </tr>
+        </table>
+      </li>
+      <li class="list-group-item row">
+        <table>
+          <tr>
+            <td class="col-lg-4"><strong>Referencias:</strong></td>
+            <td class="col-lg-8"> {{recordlevel.references|uppercase}}</td>
+          </tr>
+        </table>
+      </li>
+      <li class="list-group-item row">
+        <table>
+          <tr>
+            <td class="col-lg-4"><strong>Propiedades Dinámicas:</strong></td>
+            <td class="col-lg-8"> {{recordlevel.dynamicproperties|uppercase}}</td>
+          </tr>
+        </table>
+      </li>
+    </ul>
   </div>
 </div>

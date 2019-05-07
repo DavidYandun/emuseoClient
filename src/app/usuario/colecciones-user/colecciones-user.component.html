@@ -1,4 +1,7 @@
-<app-header-client></app-header-client>
+<app-header-admin *ngIf="loggedin;else loggedout"></app-header-admin>
+<ng-template #loggedout>
+  <app-header-client></app-header-client>
+</ng-template>
 
 <div id="corouselColecciones" class="carousel slide" data-ride="carousel">
   <ol class="carousel-indicators">
@@ -55,35 +58,35 @@
         <img src="../../assets/img/ejemplos/colibri.jpg" class="rounded-circle imgredonda" alt="...">
       </a>
       <h3>Animalia</h3>
-      <small class="text-muted">543 Registros</small>
+      <small class="text-muted">{{animalia.length}} Registros</small>
     </div>
     <div class="col-lg col-sm-6">
-      <a routerLink="/reinos">
+      <a routerLink="/reinos/Plantae">
         <img src="../../assets/img/ejemplos/girasol.jpg" class="rounded-circle imgredonda" alt="...">
       </a>
       <h3>Plantae</h3>
-      <small class="text-muted">2622 Registros</small>
+      <small class="text-muted">{{plantae.length}} Registros</small>
     </div>
     <div class="col-lg col-sm-6">
-      <a routerLink="/reinos">
+      <a routerLink="/reinos/Fungi">
         <img src="../../assets/img/ejemplos/hongo.jpg" class="rounded-circle imgredonda" alt="...">
       </a>
       <h3>Fungi</h3>
-      <small class="text-muted">652 Registros</small>
+      <small class="text-muted">{{fungi.length}} Registros</small>
     </div>
     <div class="col-lg col-sm-6">
-      <a routerLink="/reinos">
+      <a routerLink="/reinos/Monera">
         <img src="../../assets/img/ejemplos/bacteria.jpg" class="rounded-circle imgredonda" alt="...">
       </a>
       <h3>Monera</h3>
-      <small class="text-muted">234 Registros</small>
+      <small class="text-muted">{{monera.length}} Registros</small>
     </div>
     <div class="col-lg col-sm-6">
-      <a routerLink="/reinos">
+      <a routerLink="/reinos/Protista">
         <img src="../../assets/img/ejemplos/protista.jpg" class="rounded-circle imgredonda" alt="...">
       </a>
       <h3>Protista</h3>
-      <small class="text-muted">543 Registros</small>
+      <small class="text-muted">{{protista.length}} Registros</small>
     </div>
   </div><!-- /.row -->
 
@@ -100,11 +103,7 @@
         commodo.</p>
     </div>
     <div class="col-md-5">
-      <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500"
-        xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 500x500">
-        <title>Placeholder</title>
-        <rect fill="#eee" width="100%" height="100%"></rect><text fill="#aaa" dy=".3em" x="50%" y="50%">500x500</text>
-      </svg>
+        <img src="../../assets/img/ejemplos/hongo.jpg" width="500" alt="...">
     </div>
   </div>
 
@@ -118,11 +117,7 @@
         commodo.</p>
     </div>
     <div class="col-md-5 order-md-1">
-      <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500"
-        xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 500x500">
-        <title>Placeholder</title>
-        <rect fill="#eee" width="100%" height="100%"></rect><text fill="#aaa" dy=".3em" x="50%" y="50%">500x500</text>
-      </svg>
+        <img src="../../assets/img/ejemplos/girasol.jpg" width="500" alt="...">
     </div>
   </div>
 
@@ -136,11 +131,7 @@
         commodo.</p>
     </div>
     <div class="col-md-5">
-      <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500"
-        xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 500x500">
-        <title>Placeholder</title>
-        <rect fill="#eee" width="100%" height="100%"></rect><text fill="#aaa" dy=".3em" x="50%" y="50%">500x500</text>
-      </svg>
+        <img src="../../assets/img/ejemplos/colibri.jpg" width="500" alt="...">
     </div>
   </div>
 

@@ -1,29 +1,89 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-    <a class="navbar-brand" routerLink="/">
-      <img src="../../assets/img/logo_utn_blanco.png" height="50px" alt="Museo UTN">
-    </a>
-    
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown"
-      aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse espaciado" id="navbarNavDropdown">
-      <ul class="navbar-nav ">
-        <li class="nav-item active">
-          <a class="nav-link" routerLink="/">Inicio</a>
-        </li>
-        <li class="nav-item active">
-          <a class="nav-link" routerLink="/control-user">Usuarios</a>
-        </li>
-        <li class="nav-item active">
-          <a class="nav-link" routerLink="/list-collection">Colecciones</a>
-        </li>
-        <li class="nav-item active">
-          <a class="nav-link" routerLink="/multimedia-admin">Multimedia</a>
-        </li>
-        <li class="nav-item active">
-          <a class="nav-link" routerLink="/">Cerrar Sesión</a>
-        </li>
-      </ul>
-    </div>
-  </nav>
+  <a class="navbar-brand" routerLink="/admin">
+    <img src="../../assets/img/logo_utn_blanco.png" height="50px" alt="Museo UTN">
+  </a>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+    aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse espaciado" id="navbarNavDropdown">
+    <ul class="navbar-nav ">
+      <li class="nav-item active">
+        <a class="nav-link" routerLink="/admin">Inicio</a>
+      </li>
+      <li class="nav-item active dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true"
+          aria-expanded="false">
+          Colecciones
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" routerLink="/admin-collection">
+            <mat-icon>create_new_folder</mat-icon> Nueva Colección
+          </a>
+          <a class="dropdown-item" routerLink="/list-collection">
+            <mat-icon>horizontal_split</mat-icon> Lista de Colecciones
+          </a>
+          <a class="dropdown-item" routerLink="/colecciones-user">
+            <mat-icon>group_work </mat-icon> Reinos
+          </a>
+        </div>
+      </li>
+      <li class="nav-item active dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true"
+          aria-expanded="false">
+          Control de Usuarios
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" routerLink="/create-user">
+            <mat-icon>person_add</mat-icon>
+            Nuevo Usuario
+          </a>
+          <a class="dropdown-item" routerLink="/control-user">
+            <mat-icon>group </mat-icon>
+            Lista de Usuarios
+          </a>
+        </div>
+      </li>
+
+      <li class="nav-item active dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true"
+          aria-expanded="false">
+          Acerca de
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" routerLink="/contactos">
+            <mat-icon>contacts</mat-icon>
+            Contactos
+          </a>
+          <a class="dropdown-item" routerLink="/nosotros">
+            <mat-icon>toys</mat-icon>
+            Nosotros
+          </a>
+          <a class="dropdown-item" routerLink="/noticias">
+            <mat-icon>chrome_reader_mode </mat-icon>
+            Noticias
+          </a>
+        </div>
+      </li>
+      <li class="nav-item active dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true"
+          aria-expanded="false">
+          <img src="{{user.url}}" alt="" class="rounded-circle perfil">
+        </a>
+        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+          <h6 class="dropdown-header"> <img src="{{user.url}}" alt="" class="rounded-circle perfil">{{user.name}}
+            {{user.lastname}}</h6>
+          <a class="dropdown-item">
+            <mat-icon>account_circle </mat-icon>
+            Ver Perfil
+          </a>
+          <a class="dropdown-item" routerLink="/" (click)="logout()">
+            <mat-icon>power_settings_new </mat-icon>
+            Cerrar Sesión
+          </a>
+        </div>
+      </li>
+    </ul>
+  </div>
+</nav>

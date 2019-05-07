@@ -1,84 +1,152 @@
 <div class="row">
   <div class="col-lg-5">
-    <mat-list>
-      <mat-list-item>
-        <div class="col title text-right">Continente:</div>
-        <div class="col">{{location.continent}}</div>
-      </mat-list-item>
-      <mat-list-item>
-        <div class="col title text-right">Cuerpo de Agua:</div>
-        <div class="col">{{location.waterbody}}</div>
-      </mat-list-item>
-      <mat-list-item>
-        <div class="col title text-right">Isla:</div>
-        <div class="col">{{location.island}}</div>
-      </mat-list-item>
-      <mat-list-item>
-        <div class="col title text-right">Dato geodésico:</div>
-        <div class="col">{{location.geodeticdatum}}</div>
-      </mat-list-item>
-      <mat-list-item>
-        <div class="col title text-right">País:</div>
-        <div class="col">{{location.country}}</div>
-      </mat-list-item>
-      <mat-list-item>
-        <div class="col title text-right">Provincia:</div>
-        <div class="col">{{location.stateprovince}}</div>
-      </mat-list-item>
-      <mat-list-item>
-        <div class="col title text-right">Cantón:</div>
-        <div class="col">{{location.county}}</div>
-      </mat-list-item>
-      <mat-list-item>
-        <div class="col title text-right">Parroquia:</div>
-        <div class="col">{{location.municipality}}</div>
-      </mat-list-item>
-      <mat-list-item>
-        <div class="col title text-right">Ubicación Común:</div>
-        <div class="col">{{location.verbatimlocality}}</div>
-      </mat-list-item>
-    </mat-list>
+    <ul class="list-group list-group-flush col">
+      <li class="list-group-item row">
+        <table>
+          <tr>
+            <td class="col-lg-4"><strong>Continente:</strong></td>
+            <td class="col-lg-8"> {{location.continent|uppercase}}</td>
+          </tr>
+        </table>
+      </li>
+      <li class="list-group-item row">
+        <table>
+          <tr>
+            <td class="col-lg-4"><strong>Cuerpo de Agua:</strong></td>
+            <td class="col-lg-8"> {{location.waterbody|uppercase}}</td>
+          </tr>
+        </table>
+      </li>
+      <li class="list-group-item row">
+        <table>
+          <tr>
+            <td class="col-lg-4"><strong>Isla:</strong></td>
+            <td class="col-lg-8"> {{location.island|uppercase}}</td>
+          </tr>
+        </table>
+      </li>
+      <li class="list-group-item row">
+        <table>
+          <tr>
+            <td class="col-lg-4"><strong>Dato geodésico:</strong></td>
+            <td class="col-lg-8"> {{location.geodeticdatum|uppercase}}</td>
+          </tr>
+        </table>
+      </li>
+      <li class="list-group-item row">
+        <table>
+          <tr>
+            <td class="col-lg-4"><strong>País:</strong></td>
+            <td class="col-lg-8"> {{location.country|uppercase}}</td>
+          </tr>
+        </table>
+      </li>
+      <li class="list-group-item row">
+        <table>
+          <tr>
+            <td class="col-lg-4"><strong>Provincia:</strong></td>
+            <td class="col-lg-8"> {{location.stateprovince|uppercase}}</td>
+          </tr>
+        </table>
+      </li>
+      <li class="list-group-item row">
+        <table>
+          <tr>
+            <td class="col-lg-4"><strong>Cantón:</strong></td>
+            <td class="col-lg-8"> {{location.county|uppercase}}</td>
+          </tr>
+        </table>
+      </li>
+      <li class="list-group-item row">
+        <table>
+          <tr>
+            <td class="col-lg-4"><strong>Parroquia:</strong></td>
+            <td class="col-lg-8"> {{location.municipality|uppercase}}</td>
+          </tr>
+        </table>
+      </li>
+      <li class="list-group-item row">
+        <table>
+          <tr>
+            <td class="col-lg-4"><strong>Ubicación Común:</strong></td>
+            <td class="col-lg-8"> {{location.verbatimlocality|uppercase}}</td>
+          </tr>
+        </table>
+      </li>
+    </ul>
   </div>
   <mat-divider [vertical]="true"></mat-divider>
   <div class="col-lg-6">
-    <mat-list>
-      <mat-list-item>
-        <div class="col title text-right">Elevación Mínima:</div>
-        <div class="col">{{location.minimumelevationinmeters}} metros</div>
-      </mat-list-item>
-      <mat-list-item>
-        <div class="col title text-right">Elevación Máxima:</div>
-        <div class="col">{{location.maximumelevationinmeters}} metros</div>
-      </mat-list-item>
-      <mat-list-item>
-        <div class="col title text-right">Ubicación de Acuerdo con:</div>
-        <div class="col">{{location.locationaccordingto}}</div>
-      </mat-list-item>
-      <mat-list-item>
-        <div class="col title text-right">Latitud:</div>
-        <div class="col">{{location.decimallatitude}}</div>
-      </mat-list-item>
-      <mat-list-item>
-        <div class="col title text-right">Longitud:</div>
-        <div class="col">{{location.decimallongitude}}</div>
-      </mat-list-item>
-      <mat-list-item>
-        <div class="col title text-right">Incertidumbre en metros:</div>
-        <div class="col">{{location.coordinateuncertaintyinmeters}}</div>
-      </mat-list-item>
-      <mat-list-item>
-        <div class="col title text-right">Georeferenciado por:</div>
-        <div class="col">{{location.georeferecedby}}</div>
-      </mat-list-item>
-      <mat-list-item>
-        <div class="col title text-right">Precisión de coordenadas:</div>
-        <div class="col">{{location.coordinateprecision}}</div>
-      </mat-list-item>
-    </mat-list>
+    <ul class="list-group list-group-flush col">
+      <li class="list-group-item row">
+        <table>
+          <tr>
+            <td class="col-lg-4"><strong>Elevación Mínima:</strong></td>
+            <td class="col-lg-8"> {{location.minimumelevationinmeters|uppercase}}</td>
+          </tr>
+        </table>
+      </li>
+      <li class="list-group-item row">
+        <table>
+          <tr>
+            <td class="col-lg-4"><strong>Elevación Máxima:</strong></td>
+            <td class="col-lg-8"> {{location.maximumelevationinmeters|uppercase}}</td>
+          </tr>
+        </table>
+      </li>
+      <li class="list-group-item row">
+        <table>
+          <tr>
+            <td class="col-lg-4"><strong>Ubicación de Acuerdo con:</strong></td>
+            <td class="col-lg-8"> {{location.locationaccordingto|uppercase}}</td>
+          </tr>
+        </table>
+      </li>
+      <li class="list-group-item row">
+        <table>
+          <tr>
+            <td class="col-lg-4"><strong>Latitud:</strong></td>
+            <td class="col-lg-8"> {{location.decimallatitude|uppercase}}</td>
+          </tr>
+        </table>
+      </li>
+      <li class="list-group-item row">
+        <table>
+          <tr>
+            <td class="col-lg-4"><strong>Longitud:</strong></td>
+            <td class="col-lg-8"> {{location.decimallongitude|uppercase}}</td>
+          </tr>
+        </table>
+      </li>
+      <li class="list-group-item row">
+        <table>
+          <tr>
+            <td class="col-lg-4"><strong>Incertidumbre en metros:</strong></td>
+            <td class="col-lg-8"> {{location.coordinateuncertaintyinmeters|uppercase}}</td>
+          </tr>
+        </table>
+      </li>
+      <li class="list-group-item row">
+        <table>
+          <tr>
+            <td class="col-lg-4"><strong>Georeferenciado por:</strong></td>
+            <td class="col-lg-8"> {{location.georeferecedby|uppercase}}</td>
+          </tr>
+        </table>
+      </li>
+      <li class="list-group-item row">
+        <table>
+          <tr>
+            <td class="col-lg-4"><strong>Precisión de coordenadas:</strong></td>
+            <td class="col-lg-8"> {{location.coordinateprecision|uppercase}}</td>
+          </tr>
+        </table>
+      </li>
+    </ul>
   </div>
   <div colspan="2">
     <mat-divider></mat-divider>
     <h3>Observaciones:</h3>
-    <p>{{location.locationremarks}}</p>
+    <p>{{location.locationremarks|uppercase}}</p>
   </div>
 </div>

@@ -1,52 +1,89 @@
 <div class="row">
   <div class="col-lg-5">
-    <mat-list>
-      <mat-list-item>
-        <div class="col title text-right">Cantidad de organismos:</div>
-        <div class="col">{{occurrence.organismquantity}} en {{occurrence.organismquantitytype}}</div>
-      </mat-list-item>
-      <mat-list-item>
-        <div class="col title text-right">Estado de Vida:</div>
-        <div class="col">{{occurrence.lifestage}}</div>
-      </mat-list-item>
-      <mat-list-item>
-        <div class="col title text-right">Condición Reproductiva:</div>
-        <div class="col">{{occurrence.reproductivecondition}}</div>
-      </mat-list-item>
-      <mat-list-item>
-        <div class="col title text-right">Sexo:</div>
-        <div class="col">{{occurrence.sex}}</div>
-      </mat-list-item>
-      <mat-list-item>
-        <div class="col title text-right">Establecimiento de medios:</div>
-        <div class="col">{{occurrence.establishmentmeans}}</div>
-      </mat-list-item>
-      <mat-list-item>
-        <div class="col title text-right">Conteo Individual:</div>
-        <div class="col">{{occurrence.individualcount}}</div>
-      </mat-list-item>
-    </mat-list>
+    <ul class="list-group list-group-flush col">
+      <li class="list-group-item row">
+        <table>
+          <tr>
+            <td class="col-lg-4"><strong>Cantidad de organismos:</strong></td>
+            <td class="col-lg-8"> {{occurrence.organismquantity|uppercase}} en
+              {{occurrence.organismquantitytype|uppercase}}</td>
+          </tr>
+        </table>
+      </li>
+      <li class="list-group-item row">
+        <table>
+          <tr>
+            <td class="col-lg-4"><strong>Estado de Vida:</strong></td>
+            <td class="col-lg-8">{{occurrence.lifestage|uppercase}}</td>
+          </tr>
+        </table>
+      </li>
+      <li class="list-group-item row">
+        <table>
+          <tr>
+            <td class="col-lg-4"><strong>Condición Reproductiva:</strong></td>
+            <td class="col-lg-8">{{occurrence.reproductivecondition|uppercase}}</td>
+          </tr>
+        </table>
+      </li>
+      <li class="list-group-item row">
+        <table>
+          <tr>
+            <td class="col-lg-4"><strong>Sexo:</strong></td>
+            <td class="col-lg-8">{{occurrence.sex|uppercase}}</td>
+          </tr>
+        </table>
+      </li>
+      <li class="list-group-item row">
+        <table>
+          <tr>
+            <td class="col-lg-4"><strong>Establecimiento de medios:</strong></td>
+            <td class="col-lg-8">{{occurrence.establishmentmeans|uppercase}}</td>
+          </tr>
+        </table>
+      </li>
+      <li class="list-group-item row">
+        <table>
+          <tr>
+            <td class="col-lg-4"><strong>Conteo Individual:</strong></td>
+            <td class="col-lg-8">{{occurrence.individualcount|uppercase}}</td>
+          </tr>
+        </table>
+      </li>
+    </ul>
   </div>
   <mat-divider [vertical]="true"></mat-divider>
   <div class="col-lg-6">
-    <mat-list>
-      <mat-list-item>
-        <div class="col title text-right">Comportamiento:</div>
-        <div class="col">{{occurrence.behavior}}</div>
-      </mat-list-item>
-      <mat-list-item>
-        <div class="col title text-right">Preparaciones:</div>
-        <div class="col">{{occurrence.preparations}}</div>
-      </mat-list-item>
-      <mat-list-item>
-        <div class="col title text-right">Referencias Asociadas:</div>
-        <div class="col">{{occurrence.associatedreferences}}</div>
-      </mat-list-item>
-    </mat-list>
+    <ul class="list-group list-group-flush col">
+      <li class="list-group-item row">
+        <table>
+          <tr>
+            <td class="col-lg-4"><strong>Comportamiento:</strong></td>
+            <td class="col-lg-8">{{occurrence.behavior|uppercase}}</td>
+          </tr>
+        </table>
+      </li>
+      <li class="list-group-item row">
+        <table>
+          <tr>
+            <td class="col-lg-4"><strong>Preparaciones:</strong></td>
+            <td class="col-lg-8">{{occurrence.preparations|uppercase}}</td>
+          </tr>
+        </table>
+      </li>
+      <li class="list-group-item row">
+        <table>
+          <tr>
+            <td class="col-lg-4"><strong>Referencias Asociadas:</strong></td>
+            <td class="col-lg-8">{{occurrence.associatedreferences|uppercase}}</td>
+          </tr>
+        </table>
+      </li>
+    </ul>
   </div>
   <div colspan="2">
     <mat-divider></mat-divider>
     <h3>Observaciones:</h3>
-    <p>{{occurrence.occurrenceremarks}}</p>
+    <p>{{occurrence.occurrenceremarks|uppercase}}</p>
   </div>
 </div>

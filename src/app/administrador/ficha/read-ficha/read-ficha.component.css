@@ -12,7 +12,9 @@ mat-list {
   height: 100%;
 }
 
-
+mat-icon{
+  margin-left: 10px;
+}
 .list {
   height: 100%;
   width: 100%;

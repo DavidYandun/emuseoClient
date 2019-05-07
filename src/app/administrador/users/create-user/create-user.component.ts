@@ -4,6 +4,7 @@ import { RolService } from 'src/app/services/users/rol.service';
 import { MatSnackBar } from '@angular/material';
 import { FormBuilder, Validators } from '@angular/forms';
 import { HttpEventType } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-user',
@@ -35,11 +36,15 @@ export class CreateUserComponent implements OnInit {
     private formBuilder: FormBuilder,
     private userService: UserService,
     private rolService: RolService,
-    private snackBar: MatSnackBar) { }
+    private snackBar: MatSnackBar,
+    private router: Router) { }
 
   ngOnInit() {
+    if (sessionStorage.getItem('loggedin')!='true') {
+      this.router.navigate(['/admin']);
+    }
     this.getRols();
-
+    
   }
 
   getRols() {
@@ -84,6 +89,7 @@ export class CreateUserComponent implements OnInit {
         this.openSnackBar('REGISTRO EXITOSO', '✅');
         this.userBool = true
         this.user = this.userRecord.value
+        this.router.navigate(['control-user'])
       },
         error => {
           this.openSnackBar(error.error.message, '🛑');

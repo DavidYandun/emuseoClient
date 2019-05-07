@@ -9,9 +9,7 @@ import { Observable } from 'rxjs';
 export class UserService {
 
   constructor(private httpClient: HttpClient) { }
-  isLoggedIn(): Observable<isLoggedIn> {
-    return this.httpClient.get<isLoggedIn>('/api/isLoggeIn')
-  }
+ 
 
   getUsers(): Observable<any> {
     return this.httpClient.get("/api/users");
@@ -24,7 +22,9 @@ export class UserService {
   getUser(userid): Observable<any> {
     return this.httpClient.get('api/users/' + userid);
   }
-
+  getPerfil(email): Observable<any> {
+    return this.httpClient.get('api/users/perfil/' + email);
+  }
 
   postUser(user: any) {
     let json = JSON.stringify(user);
@@ -72,9 +72,4 @@ export interface User {
   password: string,
   state: boolean,
   created_at: Date
-}
-
-
-interface isLoggedIn {
-  status: boolean
 }

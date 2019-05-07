@@ -1,4 +1,7 @@
-<app-header-admin></app-header-admin>
+<app-header-admin *ngIf="loggedin;else loggedout"></app-header-admin>
+<ng-template #loggedout>
+  <app-header-client></app-header-client>
+</ng-template>
 <div *ngIf="errorMsg; else content">
   <h3 class="error">{{errorMsg}}</h3>
 </div>
@@ -12,7 +15,7 @@
       <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Buscar">
     </mat-form-field>
 
-    <button mat-raised-button class="text-right col-lg-2" routerLink="/admin-collection">
+    <button *ngIf="loggedin" mat-raised-button class="text-right col-lg-2" routerLink="/admin-collection">
       <mat-icon>add</mat-icon> Nueva Colección
     </button>
     <table class="table table-dark" mat-table matSort [dataSource]="collection" multiTemplateDataRows

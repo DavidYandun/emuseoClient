@@ -1,41 +1,65 @@
 <div class="row">
   <div class="col-lg-5">
-    <mat-list>
-      <mat-list-item>
-        <div class="col title text-right">Numero de Campo:</div>
-        <div class="col">{{event.fieldnumber}}</div>
-      </mat-list-item>
-      <mat-list-item>
-        <div class="col title text-right">Fecha del Evento:</div>
-        <div class="col">{{event.eventdate}}</div>
-      </mat-list-item>
-      <mat-list-item>
-        <div class="col title text-right">Hora del Evento:</div>
-        <div class="col">{{event.eventtime}}</div>
-      </mat-list-item>
-      <mat-list-item>
-        <div class="col title text-right">Hábitat:</div>
-        <div class="col">{{event.habitat}}</div>
-      </mat-list-item>
-      <mat-list-item>
-        <div class="col title text-right">Protocolo de Muestreo:</div>
-        <div class="col">{{event.samplingprotocol}}</div>
-      </mat-list-item>
-      <mat-list-item>
-        <div class="col title text-right">Tamaño de la Muestra:</div>
-        <div class="col">{{event.samplesizevalue}} {{event.samplesizeunit}} </div>
-      </mat-list-item>
-    </mat-list>
+    <ul class="list-group list-group-flush col">
+      <li class="list-group-item row">
+        <table>
+          <tr>
+            <td class="col-lg-4"><strong>Numero de Campo:</strong></td>
+            <td class="col-lg-8"> {{event.fieldnumber|uppercase}}</td>
+          </tr>
+        </table>
+      </li>
+      <li class="list-group-item row">
+        <table>
+          <tr>
+            <td class="col-lg-4"><strong>Fecha del Evento:</strong></td>
+            <td class="col-lg-8"> {{event.eventdate|uppercase}}</td>
+          </tr>
+        </table>
+      </li>
+      <li class="list-group-item row">
+        <table>
+          <tr>
+            <td class="col-lg-4"><strong>Hora del Evento:</strong></td>
+            <td class="col-lg-8"> {{event.eventtime|uppercase}}</td>
+          </tr>
+        </table>
+      </li>
+      <li class="list-group-item row">
+        <table>
+          <tr>
+            <td class="col-lg-4"><strong>Hábitat:</strong></td>
+            <td class="col-lg-8"> {{event.habitat|uppercase}}</td>
+          </tr>
+        </table>
+      </li>
+      <li class="list-group-item row">
+        <table>
+          <tr>
+            <td class="col-lg-4"><strong>Protocolo de Muestreo:</strong></td>
+            <td class="col-lg-8"> {{event.samplingprotocol|uppercase}}</td>
+          </tr>
+        </table>
+      </li>
+      <li class="list-group-item row">
+        <table>
+          <tr>
+            <td class="col-lg-4"><strong>Tamaño de la Muestra:</strong></td>
+            <td class="col-lg-8"> {{event.samplesizevalue|uppercase}}</td>
+          </tr>
+        </table>
+      </li>
+    </ul>
   </div>
   <mat-divider [vertical]="true"></mat-divider>
   <div class="col-lg-6">
     <div class="row">
       <h3>Notas de Campo:</h3>
-      <p>{{event.fieldnotes}}</p>
+      <p>{{event.fieldnotes|uppercase}}</p>
     </div>
     <div class="row">
       <h3>Observaciones:</h3>
-      <p>{{event.eventremarks}}</p>
+      <p>{{event.eventremarks|uppercase}}</p>
     </div>
   </div>
 </div>

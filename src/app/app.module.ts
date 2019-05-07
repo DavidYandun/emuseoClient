@@ -4,6 +4,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { CookieService } from 'ngx-cookie-service';
+
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
@@ -11,8 +13,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 //Material
 import { MaterialModule } from './material';
-//import { LightboxModule } from 'ngx-lightbox';
-//import { NgxGalleryModule } from 'ngx-gallery';
 import { GalleryModule } from '@ngx-gallery/core';
 import { LightboxModule } from '@ngx-gallery/lightbox';
 import { GallerizeModule } from '@ngx-gallery/gallerize';
@@ -112,7 +112,7 @@ import { FichaMultimediaComponent } from './administrador/ficha/ficha-multimedia
 
 
 
-import { AuthGuard } from './guards/auth.guard';
+//import { AuthGuard } from './guards/auth.guard';
 ///////////SERVICES///////////////////
 //users
 import { RolService } from './services/users/rol.service';
@@ -147,39 +147,16 @@ import { MultimediaService } from './services/mul_multimedia_service/multimedia.
 import { GalleryComponent } from './gallery/gallery.component';
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     AdminComponent,
-    HomeComponent,
-    HeaderClientComponent,
-    FooterComponent,
+    AdminCollectionComponent,
     ColeccionesUserComponent,
-    ReinosComponent,
-    TaxonomiaComponent,
-    MultimediaComponent,
-    NosotrosComponent,
     ContactosComponent,
-    NoticiasComponent,
-    HeaderAdminComponent,
     CreateUserComponent,
     ControlUserComponent,
-    RolComponent,
-    CreateIdentificationComponent,
-    AdminCollectionComponent,
     CreateRecordLevelComponent,
     CreateOccurrenceComponent,
     CreateOrganismComponent,
@@ -187,8 +164,9 @@ import { GalleryComponent } from './gallery/gallery.component';
     CreateLocationComponent,
     CreateGeologicalcontextComponent,
     CreateTaxonComponent,
-    ListCollectionComponent,
+    CreateIdentificationComponent,
     CollectionComponent,
+    CreateMultimediaComponent,
     DialogCreatePhylumComponent,
     DialogCreateClassComponent,
     DialogCreateOrderComponent,
@@ -215,8 +193,7 @@ import { GalleryComponent } from './gallery/gallery.component';
     DialogCreateEraComponent,
     DialogCreatePeriodComponent,
     DialogCreateEpochComponent,
-    CreateMultimediaComponent,
-    ReadFichaComponent,
+    DialogEditUserComponent,
     FichaTaxonComponent,
     FichaRecordlevelComponent,
     FichaOccurrenceComponent,
@@ -225,8 +202,20 @@ import { GalleryComponent } from './gallery/gallery.component';
     FichaLocationComponent,
     FichaGeologicalcontextComponent,
     FichaMultimediaComponent,
+    FooterComponent,
     GalleryComponent,
-    DialogEditUserComponent,
+    HomeComponent,
+    HeaderClientComponent,
+    HeaderAdminComponent,
+    ListCollectionComponent,
+    ReinosComponent,
+    MultimediaComponent,
+    NosotrosComponent,
+    NoticiasComponent,
+    RolComponent, 
+    ReadFichaComponent,
+    TaxonomiaComponent,
+ 
 
   ],
   imports: [
@@ -270,7 +259,6 @@ import { GalleryComponent } from './gallery/gallery.component';
       {
         path: 'admin',
         component: AdminComponent,
-        canActivate: [AuthGuard]
       },
       {
         path: 'admin-collection',
@@ -329,10 +317,10 @@ import { GalleryComponent } from './gallery/gallery.component';
     DialogCreateEonComponent, DialogCreateEraComponent, DialogCreatePeriodComponent, DialogCreateEpochComponent,
     DialogEditUserComponent
   ],
-  providers: [RolService, UserService, AuthService, VerificationService, IdentificationService,
+  providers: [CookieService,RolService, UserService, AuthService, VerificationService, IdentificationService,
     RecordLevelService, OccurrenceService, OrganismService, EventService, LocationService,
     GeologicalcontextService, TaxonService, EntidadService, BasisofrecordService,
-    MultimediaService, AuthGuard],
+    MultimediaService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

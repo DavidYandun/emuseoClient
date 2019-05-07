@@ -1,4 +1,8 @@
-<app-header-admin></app-header-admin>
+<app-header-admin *ngIf="loggedin;else loggedout"></app-header-admin>
+<ng-template #loggedout>
+  <app-header-client></app-header-client>
+</ng-template>
+
 <table class="backgroundTitle">
   <tr>
     <td class="text-center">
@@ -14,16 +18,16 @@
 
 </table>
 <mat-sidenav-container class="  ">
-  <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'"
-  [fixedInViewport]="mobileQuery.matches" fixedTopGap="100"  class="nav">
+  <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches"
+    fixedTopGap="100" class="nav">
     <mat-card>
       <mat-card-header>
         <mat-card-title class="text-right">
-            <button mat-icon-button (click)="snav.toggle()" >
-            <mat-icon>arrow_back</mat-icon> 
+          <button mat-icon-button (click)="snav.toggle()">
+            <mat-icon>arrow_back</mat-icon>
           </button>
           Indice de Ficha
-          </mat-card-title>
+        </mat-card-title>
       </mat-card-header>
       <mat-divider></mat-divider>
       <mat-card-content>
@@ -64,17 +68,21 @@
   </mat-sidenav>
   <mat-sidenav-content>
     <mat-card>
-      
+
       <mat-card-content>
         <div class="row">
           <div class="col-lg-3">
-              <button mdbBtn type="button" color="primary" outline="true" block="true" (click)="snav.toggle()" >
-                  <mat-icon>menu</mat-icon>
-                </button>
+            <button mdbBtn type="button" color="primary" outline="true" block="true" (click)="snav.toggle()">
+              <mat-icon>menu</mat-icon>
+            </button>
             <img class="img-thumbnail banner" src="{{image}}" alt="">
-            <button (click)="onClickMultimedia()" mdbBtn type="button" color="primary" outline="true" block="true">
+            <button (click)="onClickMultimedia()" mdbBtn type="button" color="primary" block="true">
               Multimedia </button>
-            <button mdbBtn type="button" color="secondary" outline="true" block="true"> Editar Ficha</button>
+            <button *ngIf="loggedin" mdbBtn type="button" color="primary" outline="true" block="true">
+              Editar Ficha
+            </button>
+            <button mdbBtn type="button" color="secondary" outline="true" block="true" routerLink="/list-collection">
+              Cerrar Ficha </button>
           </div>
           <div class="col-lg-9">
             <div *ngIf="taxonBool">

@@ -1,7 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
-import { FormControl, Validators } from '@angular/forms';
+import { FormControl, Validators, FormBuilder, FormGroupDirective, NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material';
+//import {ErrorStateMatcher} from '@angular/material/core';
+
+/** Error when invalid control is dirty, touched, or submitted. 
+
+export class MyErrorStateMatcher implements ErrorStateMatcher {
+  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
+    const isSubmitted = form && form.submitted;
+    return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
+  }
+}*/
 
 @Component({
   selector: 'app-login',
@@ -9,35 +20,43 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  constructor(private Auth: AuthService, private router:Router) { }
+  //matcher = new MyErrorStateMatcher();
+  constructor(
+    private formBuilder: FormBuilder,
+    private Auth: AuthService,
+    private router: Router,
+    private snackBar: MatSnackBar) { }
 
   ngOnInit() {
   }
-  user: any = { email: '', password: '' };
+  user = this.formBuilder.group({
+    email: ['', [Validators.required, Validators.email]],
+    password: ['', [Validators.required,Validators.minLength(6)]]
+  });
   //error de correo incorrecto
   email = new FormControl('', [Validators.required, Validators.email]);
+  password=new FormControl(['', Validators.required,Validators.minLength(6)]);
   hide = true;
-  getErrorMessage() {
-    return this.email.hasError('required') ? 'Ingrese un email' :
-      this.email.hasError('email') ? 'email invalido' : '';
-  }
 
   //crear nuevo user
 
   loginUser() {
-    this.Auth.getUserDetails(this.user).subscribe(data => {
-      console.log(data);
-
+    this.Auth.getUserDetails(this.user.value).subscribe(data => {
+      this.openSnackBar(data.message,'')
       if (data.success) {
         this.router.navigate(['admin'])
         this.Auth.setLoggedIn(true)
+        sessionStorage.setItem('email', this.user.value.email);
       }
-
-      //redirect the person to /admin
-
+    }, error => {
+      this.openSnackBar(error.error.message, '🛑');
+      console.log(JSON.stringify(error));
     });
-
-
   }
 
+  openSnackBar(message: string, action: string) {
+    this.snackBar.open(message, action, {
+      duration: 3000,
+    });
+  }
 }

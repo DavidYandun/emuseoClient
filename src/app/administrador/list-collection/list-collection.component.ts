@@ -20,13 +20,18 @@ export class ListCollectionComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-
+  loggedin= false;
   collection: any;
   public errorMsg;
   constructor(
     private identificationService: IdentificationService) { }
 
   ngOnInit() {
+    if (sessionStorage.getItem('loggedin') == 'true') {
+      this.loggedin = true;
+    } else {
+      this.loggedin = false;
+    }
     this.getCollection();
   }
 

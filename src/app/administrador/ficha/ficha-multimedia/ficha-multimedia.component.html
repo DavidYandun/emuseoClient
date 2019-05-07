@@ -6,13 +6,13 @@
       </mat-panel-title>
       <mat-panel-description>
         {{cantidadImages}} Fotografias
-        <mat-icon>photo_library</mat-icon>
+
       </mat-panel-description>
+      <mat-icon>photo_library</mat-icon>
     </mat-expansion-panel-header>
     <div class="row justify-content-center">
       <div *ngFor="let img of multimedia" class=" text-center">
-        <a href="{{img.url}}" data-toggle="lightbox" data-gallery="example-gallery"
-        data-height="800">
+        <a href="{{img.url}}" data-toggle="lightbox" data-gallery="example-gallery" data-height="800">
           <img src="{{img.url}}" class="img-fluid thumbnail">
         </a>
       </div>
@@ -26,8 +26,8 @@
       </mat-panel-title>
       <mat-panel-description>
         2 Videos
-        <mat-icon>video_library</mat-icon>
       </mat-panel-description>
+      <mat-icon>video_library</mat-icon>
     </mat-expansion-panel-header>
     Contenido 2
 
@@ -41,8 +41,8 @@
       </mat-panel-title>
       <mat-panel-description>
         4 Notas de Audio
-        <mat-icon>library_music</mat-icon>
       </mat-panel-description>
+      <mat-icon>library_music</mat-icon>
     </mat-expansion-panel-header>
 
   </mat-expansion-panel>

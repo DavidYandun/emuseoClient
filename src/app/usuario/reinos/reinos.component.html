@@ -1,4 +1,8 @@
-<app-header-client></app-header-client>
+<app-header-admin *ngIf="loggedin; else loggedout"></app-header-admin>
+<ng-template #loggedout>
+  <app-header-client></app-header-client>
+</ng-template>
+
 <div class="title text-center backgroundTitle">
   <h1>{{kingdom}}</h1>
   <h5>{{collection.length}} Registros</h5>
@@ -12,11 +16,11 @@
       <img class="imagen" mat-card-image src="{{getFoto(element.identificationid)}}" alt="">
       <mat-card-content>
         <p>
-         hola
+          {{element.vernacularname}}
         </p>
       </mat-card-content>
       <mat-card-actions>
-        <button mat-raised-button>VER FICHA</button>
+        <button mdbBtn color="primary" block="true" outline="true" routerLink="/ficha/{{element.identificationid}}">VER FICHA</button>
       </mat-card-actions>
     </mat-card>
   </div>

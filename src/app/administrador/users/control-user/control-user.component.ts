@@ -3,6 +3,7 @@ import { UserService, User } from 'src/app/services/users/user.service';
 import { RolService } from 'src/app/services/users/rol.service';
 import { MatDialog, MatSnackBar } from '@angular/material';
 import { DialogEditUserComponent } from '../dialog-edit-user/dialog-edit-user.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-control-user',
@@ -18,7 +19,8 @@ export class ControlUserComponent implements OnInit {
     private userService: UserService,
     private rolService: RolService,
     public dialog: MatDialog,
-    private snackBar: MatSnackBar) { }
+    private snackBar: MatSnackBar,
+    private router:Router) { }
 
   ngOnInit() {
     this.getUsers();
@@ -43,7 +45,11 @@ export class ControlUserComponent implements OnInit {
       }
     },
       error => {
-        console.log(JSON.stringify(error));
+        console.log(JSON.stringify(error.error.message));
+        if(error.error.message=='No Autorizado'){
+          this.openSnackBar(error.error.message, '🛑');
+          this.router.navigate(['/'])
+        }
       });
   }
 

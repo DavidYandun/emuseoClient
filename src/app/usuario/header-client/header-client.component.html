@@ -2,9 +2,9 @@
   <a class="navbar-brand" routerLink="/">
     <img src="../../assets/img/logo_utn_blanco.png" height="50px" alt="Museo UTN">
   </a>
-  
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown"
-    aria-expanded="false" aria-label="Toggle navigation">
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+    aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse espaciado" id="navbarNavDropdown">
@@ -12,11 +12,22 @@
       <li class="nav-item active">
         <a class="nav-link" routerLink="/">Inicio</a>
       </li>
-      <li class="nav-item active">
-        <a class="nav-link" routerLink="/nosotros">Nosotros</a>
+      <li class="nav-item active dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true"
+          aria-expanded="false">
+          Colecciones
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" routerLink="/list-collection">
+            <mat-icon>horizontal_split</mat-icon> Lista de Colecciones
+          </a>
+          <a class="dropdown-item" routerLink="/colecciones-user">
+            <mat-icon>group_work </mat-icon> Reinos
+          </a>
+        </div>
       </li>
       <li class="nav-item active">
-        <a class="nav-link" routerLink="/colecciones-user">Colecciones</a>
+        <a class="nav-link" routerLink="/nosotros">Nosotros</a>
       </li>
       <li class="nav-item active">
         <a class="nav-link" routerLink="/noticias">Noticias</a>

@@ -1,3 +1,6 @@
-<app-header-client></app-header-client>
+<app-header-admin *ngIf="loggedin;else loggedout"></app-header-admin>
+<ng-template #loggedout>
+  <app-header-client></app-header-client>
+</ng-template>
   contactos works!
 <app-footer></app-footer>
