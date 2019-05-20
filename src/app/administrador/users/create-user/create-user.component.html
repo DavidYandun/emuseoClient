@@ -47,7 +47,7 @@
         </mat-select>
       </mat-form-field>
       <div class="col-lg-4">
-        <input (change)="onFileSelected($event)" type="file" #fileInput id="archivo">
+        <input (change)="onFileSelected($event)" type="file" #fileInput id="archivo" hidden>
         <button type="button" mat-raised-button color="primary" (click)="fileInput.click()">
           <mat-icon>cloud_upload</mat-icon> Cargar Imagen
         </button>

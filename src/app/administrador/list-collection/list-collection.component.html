@@ -2,6 +2,9 @@
 <ng-template #loggedout>
   <app-header-client></app-header-client>
 </ng-template>
+
+x
+
 <div *ngIf="errorMsg; else content">
   <h3 class="error">{{errorMsg}}</h3>
 </div>
@@ -10,22 +13,36 @@
     <div class="col title">
       Lista de Colecciones
     </div>
+    <div class="row">
+      <div class="col-lg-8">
+        <mat-form-field>
+          <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Buscar">
+        </mat-form-field>
+      </div>
+      <div class="col-lg-4">
+        <mat-button-toggle-group *ngIf="loggedin">
+          <mat-button-toggle (click)="downloadPDF()">
+            <mat-icon>cloud_download </mat-icon> Reporte PDF
+          </mat-button-toggle>
+          <mat-button-toggle routerLink="/admin-collection">
+            <mat-icon>add</mat-icon> Nueva Colección
+          </mat-button-toggle>
+        </mat-button-toggle-group>
+      </div>
 
-    <mat-form-field class="col-lg-10">
-      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Buscar">
-    </mat-form-field>
-
-    <button *ngIf="loggedin" mat-raised-button class="text-right col-lg-2" routerLink="/admin-collection">
-      <mat-icon>add</mat-icon> Nueva Colección
-    </button>
+    </div>
     <table class="table table-dark" mat-table matSort [dataSource]="collection" multiTemplateDataRows
       class="mat-elevation-z8">
       <ng-container matColumnDef="url">
         <th mat-header-cell *matHeaderCellDef> Foto </th>
         <td mat-cell *matCellDef="let element">
-          <img class="miniatura rounded-circle" src="{{element.url}}" alt="{{element.medianame}}">
+          <img class="miniatura rounded-circle" src="{{getFoto(element.identificationid)}}" alt="">
           {{element.identificationid}}
         </td>
+      </ng-container>
+      <ng-container matColumnDef="kingdom">
+        <th mat-header-cell *matHeaderCellDef> Reino </th>
+        <td mat-cell *matCellDef="let element"> {{element.kingdom|uppercase}} </td>
       </ng-container>
       <ng-container matColumnDef="scientificname">
         <th mat-header-cell *matHeaderCellDef>Nombre Científico</th>
@@ -39,6 +56,7 @@
         <th mat-header-cell *matHeaderCellDef> Identificado por. </th>
         <td mat-cell *matCellDef="let element"> {{element.identifiedby|uppercase}} </td>
       </ng-container>
+
       <ng-container matColumnDef="verificationstatus">
         <th mat-header-cell *matHeaderCellDef> Estado </th>
         <td mat-cell *matCellDef="let element"> {{element.verificationstatus|uppercase}} </td>
@@ -50,8 +68,9 @@
           <div class="example-element-detail" [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
             <div class="example-element-diagram">
               <div>
-                <img class="resumen img-thumbnail img-fluid" src="{{element.url}}" alt="{{element.scientificname}}">
-                <button class="col-lg-12 " mat-raised-button color="primary"
+                <img class="resumen img-thumbnail img-fluid" src="{{getFoto(element.identificationid)}}"
+                  alt="{{element.scientificname}}">
+                <button class="col-lg-12 " mdbBtn type="button" color="primary" block="true"
                   routerLink="/ficha/{{element.identificationid}}">Ver Ficha</button>
               </div>
             </div>

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { GeologicalcontextService } from 'src/app/services/dwc_geologicalcontext_service/geologicalcontext.service';
 import { MatDialog, MatSnackBar } from '@angular/material';
 import { DialogCreateEonComponent } from '../dialog-create-eon/dialog-create-eon.component';
@@ -14,6 +14,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 })
 export class CreateGeologicalcontextComponent implements OnInit {
   @Input() identificationid: number;
+  @Output() geologicalBool = new EventEmitter;
   geologicalcontext = this.formBuilder.group({
     identificationid: [null],
     earliesteonorlowesteonothem: [null],
@@ -50,7 +51,8 @@ export class CreateGeologicalcontextComponent implements OnInit {
     this.geologicalcontext.value.identificationid = this.identificationid;
     if (this.geologicalcontext.value.identificationid) {
       this.geologicalcontextService.postGeologicalcontext(this.geologicalcontext.value).subscribe(data => {
-        this.openSnackBar('REGISTRO GEOLOGICAL CONTEXT EXITOSO', '✅');
+        this.geologicalBool.emit(true);
+        this.openSnackBar('REGISTRO DE CONTEXTO GEOLÓGICO EXITOSO', '✅');
       },
         error => {
           this.openSnackBar(error.error.message, '🛑');

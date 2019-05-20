@@ -12,7 +12,7 @@ export class DialogCreateFamilyComponent {
   constructor(public dialogRef: MatDialogRef<DialogCreateFamilyComponent>,
     @Inject(MAT_DIALOG_DATA) public data: Family) {
     data.family = null;
-    data.order = null;
+    
   }
 
   onNoClick(): void {

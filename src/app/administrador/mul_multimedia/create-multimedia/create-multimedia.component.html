@@ -1,26 +1,87 @@
-<form [formGroup]="multimedia" (ngSubmit)="postFile()">
-  <div class="row">
-    <mat-form-field appearance="outline" class="col-lg-4">
-      <mat-label>Type Media</mat-label>
-      <mat-select ng-model="typemedias" formControlName="typemedia">
-        <mat-option>-Ninguno-</mat-option>
-        <mat-option *ngFor="let typemedia of typemedias" value="{{typemedia.typemedia}}">{{typemedia.typemedia}}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-    <mat-form-field appearance="outline" class="col-lg-4">
-      <mat-label>Autor</mat-label>
-      <input matInput formControlName="author" type="text" placeholder="">
-    </mat-form-field>
-    <div class="col-lg-4">
-      <input  (change)="onFileSelected($event)" type="file" #fileInput id="archivo">
-      <button mat-raised-button color="primary" (click)="fileInput.click()"> <mat-icon>cloud_upload</mat-icon> Cargar Imagen</button>
-      <label >{{archivo}}</label>
+<div class="row">
+  <div class="col-md-8">
+    <div *ngIf="galeria;else notGaleria" class="row justify-content-center">
+      <div *ngFor="let img of multimediaList" class=" text-center" [contextMenu]="basicMenu" [contextMenuSubject]="img">
+        <a href="{{img.url}}" data-toggle="lightbox" data-gallery="example-gallery" data-height="800">
+          <img src="{{img.url}}" class="img-fluid thumbnail">
+        </a>
+      </div>
     </div>
-    <div class="form-group">
-        <button mdbBtn type="submit" [disabled]="!multimedia.valid" color="primary" block="true">
-              Registrar Contenido Multimedia</button>
-              <span class="spinner-grow text-danger"></span> 
-    </div>
+    <ng-template #notGaleria>
+      <h3>No existen archivos subidos</h3>
+    </ng-template>
   </div>
-</form>
+  <div class="col-md-4">
+    <form [formGroup]="multimedia" (ngSubmit)="postFile()">
+      <div class="row">
+        <h3>Nuevo Contenido</h3>
+        <mat-form-field appearance="outline" class="col-6">
+          <mat-label>Autor</mat-label>
+          <input matInput formControlName="author" type="text" placeholder="">
+        </mat-form-field>
+        <div class="col-6">
+          <mat-form-field appearance="outline">
+            <mat-label>Tipo de Archivo</mat-label>
+            <mat-select ng-model="typemedias" formControlName="typemedia">
+              <mat-option>-Ninguno-</mat-option>
+              <mat-option *ngFor="let typemedia of typemedias" value="{{typemedia.typemedia}}">{{typemedia.typemedia}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="col-6">
+          <input (change)="onFileSelected($event)" type="file" #fileInput id="archivo" hidden>
+          <button type="button" (click)="fileInput.click()" mdbBtn color="primary" block="true">
+            <mat-icon>cloud_upload</mat-icon> Cargar Imagen
+          </button>
+          <label>{{archivo}}</label>
+        </div>
+        <div class="col-6">
+          <img class="preview" id="blah" [src]="imageSrc || 'http://placehold.it/150'" alt="your image" />
+        </div>
+        <div class="form-group col-12">
+          <button mdbBtn type="submit" [disabled]="!multimedia.valid" color="primary" block="true">
+            Registrar Contenido Multimedia </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<context-menu>
+  <ng-template contextMenuItem>
+    {{item?.url}}
+  </ng-template>
+  <ng-template contextMenuItem let-item (execute)="imagenPrincipal($event.item)">
+      <button mdbBtn type="button" color="primary" block="true"  mdbWavesEffect>
+    <mat-icon>check_circle_outline</mat-icon> Imagen principal
+    </button>
+  </ng-template>
+
+  <ng-template contextMenuItem let-item (execute)="deleteMultimedia($event.item.multimediaid)">
+      <button mdbBtn type="button" color="danger" block="true"  mdbWavesEffect>
+          <mat-icon>close</mat-icon> Eliminar
+      </button>
+  </ng-template>
+
+</context-menu>
+
+
+<!--
+<ul>
+  <li *ngFor="let item of items" [contextMenu]="basicMenu" [contextMenuSubject]="item">{{item?.name}}</li>
+</ul>
+
+<context-menu>
+  <ng-template contextMenuItem (execute)="showMessage('Hi, ' + $event.item.multimediaid)">
+    <button> Elegi como principal</button>
+  </ng-template>
+
+  <ng-template contextMenuItem let-item
+    (execute)="showMessage($event.item.multimediaid + ' said: ' + $event.item.author)">
+    Bye, {{item?.multimediaid}}
+  </ng-template>
+
+</context-menu
+  
+-->

@@ -1,0 +1,162 @@
+<form [formGroup]="taxon" (ngSubmit)="updateTaxon()">
+    <br>
+    <h2>Taxón</h2>
+    <h5>Rango de Taxon: </h5>
+    <div class="row">
+      <mat-form-field appearance="outline" class="col-lg-3">
+        <mat-label>Reino</mat-label>
+        <mat-select ng-model="kingdom" formControlName="kingdom" required>
+          <mat-option (click)="getPhylums()">-Ninguno-</mat-option>
+          <mat-option (click)="getPhylums()" *ngFor="let kingdom of kingdoms" value="{{kingdom.kingdom}}">
+            {{kingdom.kingdom}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field *ngIf="kingdomshow; else phylumBlock" appearance="outline" class="col-lg-3">
+        <mat-label>Filo</mat-label>
+        <input matInput disabled>
+      </mat-form-field>
+      <ng-template #phylumBlock>
+        <mat-form-field appearance="outline" class="col-lg-3">
+          <mat-label>Filo</mat-label>
+          <mat-select ng-model="phylum" formControlName="phylum">
+            <mat-option (click)="getClasses()">-Ninguno-</mat-option>
+            <mat-option (click)="getClasses()" *ngFor="let phylum of phylums" value="{{phylum.phylum}}">{{phylum.phylum}}
+            </mat-option>
+          </mat-select>
+          <mat-hint class="add" (click)="addPhylum()">
+            <mat-icon>add</mat-icon> Add Filo
+          </mat-hint>
+        </mat-form-field>
+      </ng-template>
+      <mat-form-field *ngIf="phylumshow; else classBlock" appearance="outline" class="col-lg-3">
+        <mat-label>Clase</mat-label>
+        <input matInput disabled>
+      </mat-form-field>
+      <ng-template #classBlock>
+        <mat-form-field appearance="outline" class="col-lg-3">
+          <mat-label>Clase</mat-label>
+          <mat-select ng-model="class" formControlName="class">
+            <mat-option (click)="getOrders()">-Ninguno-</mat-option>
+            <mat-option (click)="getOrders()" *ngFor="let class of classs" value="{{class.class}}">{{class.class}}
+            </mat-option>
+          </mat-select>
+          <mat-hint class="add" (click)="addClass()">
+            <mat-icon>add</mat-icon> Add Clase
+          </mat-hint>
+        </mat-form-field>
+      </ng-template>
+      <mat-form-field *ngIf="classshow; else orderBlock" appearance="outline" class="col-lg-3">
+        <mat-label>Orden</mat-label>
+        <input matInput disabled>
+      </mat-form-field>
+      <ng-template #orderBlock>
+        <mat-form-field appearance="outline" class="col-lg-3">
+          <mat-label>Orden</mat-label>
+          <mat-select ng-model="order" formControlName="order">
+            <mat-option (click)="getFamilys()">-Ninguno-</mat-option>
+            <mat-option (click)="getFamilys()" *ngFor="let order of orders" value="{{order.order}}">{{order.order}}
+            </mat-option>
+          </mat-select>
+          <mat-hint class="add" (click)="addOrder()">
+            <mat-icon>add</mat-icon> Add Orden
+          </mat-hint>
+        </mat-form-field>
+      </ng-template>
+      <mat-form-field *ngIf="ordershow; else familyBlock" appearance="outline" class="col-lg-3">
+        <mat-label>Familia</mat-label>
+        <input matInput disabled>
+      </mat-form-field>
+      <ng-template #familyBlock>
+        <mat-form-field appearance="outline" class="col-lg-4">
+          <mat-label for="family">Familia</mat-label>
+          <mat-select ng-model="family" formControlName="family">
+            <mat-option (click)="getGenuss()">-Ninguno-</mat-option>
+            <mat-option (click)="getGenuss()" *ngFor="let family of familys" value="{{family.family}}">{{family.family}}
+            </mat-option>
+          </mat-select>
+          <mat-hint class="add" (click)="addFamily()">
+            <mat-icon>add</mat-icon> Add Familia
+          </mat-hint>
+        </mat-form-field>
+      </ng-template>
+      <mat-form-field *ngIf="familyshow; else genusBlock" appearance="outline" class="col-lg-4">
+        <mat-label>Género</mat-label>
+        <input matInput disabled>
+      </mat-form-field>
+      <ng-template #genusBlock>
+        <mat-form-field appearance="outline" class="col-lg-4">
+          <mat-label for="genus">Género</mat-label>
+          <mat-select ng-model="genus" formControlName="genus">
+            <mat-option (click)="getSpecies()">-Ninguno-</mat-option>
+            <mat-option (click)="getSpecies()" *ngFor="let genus of genuss" value="{{genus.genus}}">{{genus.genus}}
+            </mat-option>
+          </mat-select>
+          <mat-hint class="add" (click)="addGenus()">
+            <mat-icon>add</mat-icon> Add Género
+          </mat-hint>
+        </mat-form-field>
+      </ng-template>
+      <mat-form-field *ngIf="genusshow; else specieBlock" appearance="outline" class="col-lg-4">
+        <mat-label>Especie</mat-label>
+        <input matInput disabled>
+      </mat-form-field>
+      <ng-template #specieBlock>
+        <mat-form-field appearance="outline" class="col-lg-4">
+          <mat-label for="specie">Especie</mat-label>
+          <mat-select ng-model="specie" formControlName="specie">
+            <mat-option (click)="selectSpecie()">-Ninguno-</mat-option>
+            <mat-option (click)="selectSpecie()" *ngFor="let specie of species" value="{{specie.specie}}">
+              {{specie.specie}}</mat-option>
+          </mat-select>
+          <mat-hint class="add" (click)="addSpecie()">
+            <mat-icon>add</mat-icon> Add Especie
+          </mat-hint>
+        </mat-form-field>
+      </ng-template>
+    </div>
+  
+    <div class="row">
+      <mat-form-field appearance="outline" class="col-lg-6">
+        <mat-label for="scientificname">Nombre Científico</mat-label>
+        <input class="uppercase" matInput formControlName="scientificname" type="text"
+          placeholder="El nombre científico completo. " required>
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="col-lg-6">
+        <mat-label for="acceptednameusage">Nombre de uso aceptado </mat-label>
+        <input class="uppercase" matInput formControlName="acceptednameusage" type="text" id="acceptednameusage"
+          placeholder="El nombre aceptado de mayor uso">
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="col-lg-6">
+        <mat-label for="originalnameusage">Nombre de uso original </mat-label>
+        <input class="uppercase" matInput formControlName="originalnameusage" type="text" id="originalnameusage"
+          placeholder="El nombre del taxón, como apareció originalmente cuando se estableció por primera vez">
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="col-lg-6">
+        <mat-label for="vernacularname">Nombre Común</mat-label>
+        <input class="uppercase" matInput formControlName="vernacularname" type="text" id="vernacularname"
+          placeholder="Un nombre común o vernáculo.">
+      </mat-form-field>
+    </div>
+    <div class="row">
+      <mat-form-field appearance="outline" class="col-lg-8">
+        <mat-label for="taxonremarks">Observaciones del Taxón</mat-label>
+        <textarea class="uppercase" matInput formControlName="taxonremarks" type="text" id="taxonremarks"
+          placeholder="Comentarios o notas sobre el taxon o nombre."></textarea>
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="col-lg-4">
+        <mat-label for="taxonomicstatus">Estado Taxonómico</mat-label>
+        <mat-select ng-model="taxonomicstatus" formControlName="taxonomicstatus" required>
+          <mat-option *ngFor="let taxonomicstatus of taxonomicstatuss" value="{{taxonomicstatus.taxonomicstatus}}">
+            {{taxonomicstatus.taxonomicstatus}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  
+    <div class="form-group">
+      <div class="form-group text-right">
+        <button mdbBtn type="submit" [disabled]="!taxon.valid" color="primary" block="true">
+          Actualizar Taxón</button>
+      </div>
+    </div>
+  </form>
+  

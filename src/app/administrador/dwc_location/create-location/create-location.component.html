@@ -56,6 +56,7 @@
       <mat-form-field appearance="outline" class="col">
         <mat-label>Parroquia</mat-label>
         <mat-select ng-model="municipality" formControlName="municipality">
+          <mat-option>-Ninguno-</mat-option>
           <mat-option *ngFor="let municipality of municipalitys" value="{{municipality.municipality}}">
             {{municipality.municipality}}</mat-option>
         </mat-select>
@@ -75,6 +76,7 @@
     <mat-form-field appearance="outline" class="col">
       <mat-label for="continent">Continente</mat-label>
       <mat-select ng-model="continent" formControlName="continent">
+        <mat-option>-Ninguno-</mat-option>
         <mat-option *ngFor="let continent of continents" value="{{continent.continent}}">{{continent.continent}}
         </mat-option>
       </mat-select>
@@ -85,6 +87,7 @@
     <mat-form-field appearance="outline" class="col">
       <mat-label for="waterbody">Cuerpo de Agua</mat-label>
       <mat-select ng-model="waterbody" formControlName="waterbody">
+        <mat-option>-Ninguno-</mat-option>
         <mat-option *ngFor="let waterbody of waterbodys" value="{{waterbody.waterbody}}">{{waterbody.waterbody}}
         </mat-option>
       </mat-select>
@@ -95,6 +98,7 @@
     <mat-form-field appearance="outline" class="col">
       <mat-label for="island">Isla</mat-label>
       <mat-select ng-model="island" formControlName="island">
+        <mat-option>-Ninguno-</mat-option>
         <mat-option *ngFor="let island of islands" value="{{island.island}}">{{island.island}}</mat-option>
       </mat-select>
       <mat-hint class="add" (click)="addIsland()">
@@ -117,6 +121,7 @@
     <mat-form-field appearance="outline" class="col">
       <mat-label for="geodeticdatum">Dato Geodésico</mat-label>
       <mat-select ng-model="geodeticdatum" formControlName="geodeticdatum">
+        <mat-option>-Ninguno-</mat-option>
         <mat-option *ngFor="let geodeticdatum of geodeticdatums" value="{{geodeticdatum.geodeticdatum}}">
           {{geodeticdatum.geodeticdatum}}</mat-option>
       </mat-select>
@@ -127,6 +132,7 @@
     <mat-form-field appearance="outline" class="col">
       <mat-label for="georeferenceverificationstatus">Estado de Verificación Georeferencial</mat-label>
       <mat-select ng-model="georeferenceverificationstatus" formControlName="georeferenceverificationstatus">
+        <mat-option>-Ninguno-</mat-option>
         <mat-option *ngFor="let georeferenceverificationstatus of georeferenceverificationstatuss"
           value="{{georeferenceverificationstatus.georeferenceverificationstatus}}">
           {{georeferenceverificationstatus.georeferenceverificationstatus}}</mat-option>

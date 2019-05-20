@@ -8,6 +8,8 @@ import { DialogCreateOrderComponent } from '../dialog-create-order/dialog-create
 import { DialogCreateFamilyComponent } from '../dialog-create-family/dialog-create-family.component';
 import { DialogCreateGenusComponent } from '../dialog-create-genus/dialog-create-genus.component';
 import { DialogCreateSpecieComponent } from '../dialog-create-specie/dialog-create-specie.component';
+import { Router } from '@angular/router';
+import { DialogCreateTaxonomicstatusComponent } from '../dialog-create-taxonomicstatus/dialog-create-taxonomicstatus.component';
 
 @Component({
   selector: 'app-create-taxon',
@@ -71,7 +73,8 @@ export class CreateTaxonComponent implements OnInit {
     private formBuilder: FormBuilder,
     private taxonService: TaxonService,
     public dialog: MatDialog,
-    private snackBar: MatSnackBar) { }
+    private snackBar: MatSnackBar,
+    private router: Router) { }
 
   ngOnInit() {
     this.getKingdoms();
@@ -85,6 +88,7 @@ export class CreateTaxonComponent implements OnInit {
       this.taxonService.postTaxon(this.taxon.value).subscribe(data => {
         this.taxonBool.emit(true);
         this.openSnackBar('REGISTRO DE TAXÓN EXITOSO', '✅');
+        this.router.navigate(['admin-collection/' + this.identificationid]);
       }, error => {
         this.taxonBool.emit(false);
         this.openSnackBar(error.error.message, '🛑');
@@ -105,13 +109,13 @@ export class CreateTaxonComponent implements OnInit {
               if (this.phylumshow == true) {
                 if (this.kingdomshow == true) {
                   this.taxon.value.taxonrank = '';
-                } else { this.taxon.value.taxonrank = 'Kingdom'; }
-              } else { this.taxon.value.taxonrank = 'Phylum'; }
-            } else { this.taxon.value.taxonrank = 'Class'; }
-          } else { this.taxon.value.taxonrank = 'Order'; }
-        } else { this.taxon.value.taxonrank = 'Family'; }
-      } else { this.taxon.value.taxonrank = 'Genus'; }
-    } else { this.taxon.value.taxonrank = 'Specie'; }
+                } else { this.taxon.value.taxonrank = 'REINO'; }
+              } else { this.taxon.value.taxonrank = 'FILO'; }
+            } else { this.taxon.value.taxonrank = 'CLASE'; }
+          } else { this.taxon.value.taxonrank = 'ORDEN'; }
+        } else { this.taxon.value.taxonrank = 'FAMILIA'; }
+      } else { this.taxon.value.taxonrank = 'GENERO'; }
+    } else { this.taxon.value.taxonrank = 'ESPECIE'; }
   }
   getKingdoms() {
     this.taxonService.getKingdoms().subscribe(data => {
@@ -314,18 +318,28 @@ export class CreateTaxonComponent implements OnInit {
       width: '350px',
       data: { genus: this.taxon.value.genus }
     });
-
     dialogRef.afterClosed().subscribe(result => {
-
       console.log('The dialog was closed');
       this.specie = result;
       this.postSpecie();
 
     });
   }
+  addTaxonomicStatus(): void {
+    const dialogRef = this.dialog.open(DialogCreateTaxonomicstatusComponent, {
+      width: '350px',
+      data: { }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      this.taxonomicstatus = result;
+      this.postTaxonomicStatus();
+
+    });
+  }
   postPhylum() {
     this.taxonService.postPhylum(this.phylum).subscribe(data => {
-      this.openSnackBar('Phylum Registrado', '✅');
+      this.openSnackBar('FILO Registrado', '✅');
     }, error => {
       this.openSnackBar(error.error.message, '🛑');
       console.log(JSON.stringify(error));
@@ -334,7 +348,7 @@ export class CreateTaxonComponent implements OnInit {
   }
   postClass() {
     this.taxonService.postClass(this.class).subscribe(data => {
-      this.openSnackBar('Class Registrado', '✅');
+      this.openSnackBar('CLASE Registrado', '✅');
     }, error => {
       this.openSnackBar(error.error.message, '🛑');
       console.log(JSON.stringify(error));
@@ -343,7 +357,7 @@ export class CreateTaxonComponent implements OnInit {
   }
   postOrder() {
     this.taxonService.postOrder(this.order).subscribe(data => {
-      this.openSnackBar('Order Registrado', '✅');
+      this.openSnackBar('ORDEN Registrado', '✅');
     }, error => {
       this.openSnackBar(error.error.message, '🛑');
       console.log(JSON.stringify(error));
@@ -352,7 +366,7 @@ export class CreateTaxonComponent implements OnInit {
   }
   postFamily() {
     this.taxonService.postFamily(this.family).subscribe(data => {
-      this.openSnackBar('Family Registrado', '✅');
+      this.openSnackBar('FAMILIA Registrado', '✅');
     }, error => {
       this.openSnackBar(error.error.message, '🛑');
       console.log(JSON.stringify(error));
@@ -361,7 +375,7 @@ export class CreateTaxonComponent implements OnInit {
   }
   postGenus() {
     this.taxonService.postGenus(this.genus).subscribe(data => {
-      this.openSnackBar('Genus Registrado', '✅');
+      this.openSnackBar('GENERO Registrado', '✅');
     }, error => {
       this.openSnackBar(error.error.message, '🛑');
       console.log(JSON.stringify(error));
@@ -370,14 +384,22 @@ export class CreateTaxonComponent implements OnInit {
   }
   postSpecie() {
     this.taxonService.postSpecie(this.specie).subscribe(data => {
-      this.openSnackBar('Specie Registrado', '✅');
+      this.openSnackBar('ESPECIE Registrado', '✅');
     }, error => {
       this.openSnackBar(error.error.message, '🛑');
       console.log(JSON.stringify(error.message));
     });
     this.getSpecies();
   }
-
+  postTaxonomicStatus() {
+    this.taxonService.postTaxonomicStatus(this.taxonomicstatus).subscribe(data => {
+      this.openSnackBar('ESTADO Registrado', '✅');
+    }, error => {
+      this.openSnackBar(error.error.message, '🛑');
+      console.log(JSON.stringify(error.message));
+    });
+    this.getTaxonomicStatus();
+  }
   openSnackBar(message: string, action: string) {
     this.snackBar.open(message, action, {
       duration: 2000,

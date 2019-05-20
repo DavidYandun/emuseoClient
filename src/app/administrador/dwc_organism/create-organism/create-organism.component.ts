@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { OrganismService } from 'src/app/services/dwc_organism_services/organism.service';
 import { FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material';
@@ -10,6 +10,7 @@ import { MatSnackBar } from '@angular/material';
 })
 export class CreateOrganismComponent implements OnInit {
   @Input() identificationid: number;
+  @Output() organismBool = new EventEmitter();
 
   organism = this.formBuilder.group({
     identificationid: [null],
@@ -29,6 +30,7 @@ export class CreateOrganismComponent implements OnInit {
     this.organism.value.identificationid = this.identificationid;
     if (this.organism.value.identificationid) {
       this.organismService.postOrganism(this.organism.value).subscribe(data => {
+        this.organismBool.emit(true);
         this.openSnackBar('REGISTRO DE ORGANISMO EXITOSO', '✅');
       },
         error => {

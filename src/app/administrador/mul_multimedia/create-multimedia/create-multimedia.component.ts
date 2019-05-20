@@ -1,9 +1,10 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import { MultimediaService } from 'src/app/services/mul_multimedia_service/multimedia.service';
 import { HttpEventType } from '@angular/common/http';
 import { TaxonService, Taxon } from 'src/app/services/dwc_taxon_services/taxon.service';
 import { FormBuilder } from '@angular/forms';
 import { MatSnackBar } from '@angular/material';
+import { ContextMenuComponent } from 'ngx-contextmenu';
 
 @Component({
   selector: 'app-create-multimedia',
@@ -12,7 +13,8 @@ import { MatSnackBar } from '@angular/material';
 })
 export class CreateMultimediaComponent implements OnInit {
   @Input() identificationid: number;
-  multimedia=this.formBuilder.group({
+  multimediaList: any;
+  multimedia = this.formBuilder.group({
     identificationid: null,
     typemedia: null,
     name: null,
@@ -23,25 +25,54 @@ export class CreateMultimediaComponent implements OnInit {
   extension: any;
   max: number;
 
+  galeria = false;
   typemedias: any;
   File: File;
-
-
+  imageSrc: any;
   constructor(
     private formBuilder: FormBuilder,
     private multimediaService: MultimediaService,
-     private taxoService: TaxonService,
-     private snackBar: MatSnackBar
-     ) { }
+    private taxoService: TaxonService,
+    private snackBar: MatSnackBar
+  ) { }
+
 
   ngOnInit() {
+    this.cargarImagenes();
+  }
 
+  cargarImagenes() {
+    this.multimediaService.getMultimediaIdAll(this.identificationid).subscribe(data => {
+      this.multimediaList = data;
+      console.log(data);
+
+      if (data.length > 0) this.galeria = true;
+    })
     this.getTypeMedias();
     this.getMax();
+    this.File = null;
+  }
+  imagenPrincipal(multimedia) {
+    
+    this.multimediaService.getPrincipal(this.identificationid).subscribe(data => {
+      data.principal = false;
+      this.multimediaService.putMultimedia(data.multimediaid, data).subscribe(data => {   
+        this.cargarImagenes();
+      })
+    });
+    multimedia.principal = true;
+    this.multimediaService.putMultimedia(multimedia.multimediaid, multimedia).subscribe(data => {
+      this.cargarImagenes();
+      this.openSnackBar('CAMBIO DE IMAGEN PRINCIPAL', '✅');
+    })
   }
 
   onFileSelected(file: any) {
     this.File = file.target.files[0];
+    const reader = new FileReader();
+    reader.onload = e => this.imageSrc = reader.result;
+    reader.readAsDataURL(this.File);
+
     if (this.File.name.substr(-3, 1) == '.') {
       this.extension = this.File.name.substr(-3);
     } else if (this.File.name.substr(-4, 1) == '.') {
@@ -94,6 +125,7 @@ export class CreateMultimediaComponent implements OnInit {
 
           //sube el archivo al repostitorio
           this.multimediaService.postFile(this.File, this.multimedia.value.name + this.max + this.extension).subscribe(data => {
+            this.cargarImagenes()
             if (data.type === HttpEventType.UploadProgress) {
               console.log('Upload Progress: ' + Math.round(data.loaded / data.total * 100) + '%');
             } else if (data.type === HttpEventType.Response) {
@@ -106,9 +138,32 @@ export class CreateMultimediaComponent implements OnInit {
       })
     }
   }
+
+  deleteMultimedia(multimediaid: any) {
+    console.log(multimediaid);
+
+    this.multimediaService.deleteMultimedia(multimediaid).subscribe(data => {
+      console.log(data);
+      this.cargarImagenes();
+    })
+  }
+
   openSnackBar(message: string, action: string) {
     this.snackBar.open(message, action, {
       duration: 2000,
     });
   }
+
+
+  public items = [
+    { name: 'John', otherProperty: 'Foo' },
+    { name: 'Joe', otherProperty: 'Bar' }
+  ];
+  @ViewChild(ContextMenuComponent) public basicMenu: ContextMenuComponent;
+
+
+  showMessage(message: any) {
+    console.log(message);
+  }
+
 }

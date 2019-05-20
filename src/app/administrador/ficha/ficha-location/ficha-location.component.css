@@ -1,4 +1,6 @@
 .title {
     font-weight: bold;
   }
-  
+  agm-map {
+    height: 350px;
+  }

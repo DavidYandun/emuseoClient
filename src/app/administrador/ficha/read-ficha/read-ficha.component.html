@@ -78,15 +78,20 @@
             <img class="img-thumbnail banner" src="{{image}}" alt="">
             <button (click)="onClickMultimedia()" mdbBtn type="button" color="primary" block="true">
               Multimedia </button>
-            <button *ngIf="loggedin" mdbBtn type="button" color="primary" outline="true" block="true">
+            <button *ngIf="loggedin" mdbBtn type="button" color="primary" outline="true" block="true"
+              routerLink="/admin-collection/{{identificationid}}">
               Editar Ficha
+            </button>
+            <button *ngIf="loggedin" mdbBtn type="button" color="primary" outline="true" block="true"
+              (click)="reportePDF()">
+              Reporte Ficha
             </button>
             <button mdbBtn type="button" color="secondary" outline="true" block="true" routerLink="/list-collection">
               Cerrar Ficha </button>
           </div>
           <div class="col-lg-9">
             <div *ngIf="taxonBool">
-              <app-ficha-taxon [identificationid]="identificationid"></app-ficha-taxon>
+              <app-ficha-taxon  [identificationid]="identificationid"></app-ficha-taxon>
             </div>
             <div *ngIf="recordlevelBool">
               <app-ficha-recordlevel [identificationid]="identificationid"></app-ficha-recordlevel>
@@ -115,4 +120,5 @@
     </mat-card>
   </mat-sidenav-content>
 </mat-sidenav-container>
+
 <app-footer></app-footer>

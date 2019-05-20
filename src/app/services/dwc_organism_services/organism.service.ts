@@ -31,7 +31,7 @@ export class OrganismService {
     return this.httpClient.delete("/api/organism", organismid);
   }
 }
-interface Organism {
+export interface Organism {
   organismid: number,
   identificationid: number,
   organismname: string,

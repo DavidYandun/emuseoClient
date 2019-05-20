@@ -17,9 +17,12 @@ export class HeaderAdminComponent implements OnInit {
     this.userService.getPerfil(sessionStorage.getItem('email')).subscribe(data => {
       this.user = data;
       if (this.user.url == null)
-      this.user.url = '../../../../assets/img/perfil.jpg';
+        this.user.url = '../../../../assets/img/perfil.jpg';
+    }, error => {
+      console.log(error);
+
     });
-    
+
 
   }
 

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { EventService } from 'src/app/services/dwc_event_services/event.service';
 import { FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material';
@@ -11,6 +11,8 @@ import { MatSnackBar } from '@angular/material';
 export class CreateEventComponent implements OnInit {
   @Input() identificationid: number;
 
+  @Output() eventBool = new EventEmitter;
+
   event = this.formBuilder.group({
     identificationid: [null],
     fieldnumber: [null, Validators.required],
@@ -18,7 +20,7 @@ export class CreateEventComponent implements OnInit {
     eventtime: [null],
     habitat: [null],
     samplingprotocol: [null],
-    samplesizevalue: [null,Validators.min(0)],
+    samplesizevalue: [null, Validators.min(0)],
     samplesizeunit: [null],
     fieldnotes: [null],
     eventremarks: [null]
@@ -36,7 +38,8 @@ export class CreateEventComponent implements OnInit {
     this.event.value.identificationid = this.identificationid;
     if (this.event.value.identificationid) {
       this.eventService.postEvent(this.event.value).subscribe(data => {
-        this.openSnackBar('REGISTRO EVENT EXITOSO', '✅');
+        this.eventBool.emit(true);
+        this.openSnackBar('REGISTRO DE EVENTO EXITOSO', '✅');
       },
         error => {
           this.openSnackBar(error.error.message, '🛑');

@@ -11,7 +11,7 @@ export class DialogCreateOrderComponent {
 
   constructor(public dialogRef: MatDialogRef<DialogCreateOrderComponent>,
     @Inject(MAT_DIALOG_DATA) public data: Order) { 
-      data.class=null;
+      
       data.order=null;
     }
 

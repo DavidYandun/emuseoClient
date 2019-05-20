@@ -1,0 +1,11 @@
+<h1 mat-dialog-title>Nuevo Estado Taxonómico</h1>
+<div mat-dialog-content>
+  <mat-form-field appearance="outline" class="col">
+      <mat-label>Nuevo Estado</mat-label>
+      <input class="uppercase" matInput [(ngModel)]="data.taxonomicstatus" cdkFocusInitial required>
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button class="col" mat-flat-button (click)="onNoClick()">No Gracias</button>
+  <button class="col" mat-flat-button [mat-dialog-close]="data" color="primary">Gracias</button>
+</div>

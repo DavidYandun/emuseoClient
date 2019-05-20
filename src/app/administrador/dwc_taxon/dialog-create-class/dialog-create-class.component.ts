@@ -11,7 +11,7 @@ export class DialogCreateClassComponent {
 
   constructor(public dialogRef: MatDialogRef<DialogCreateClassComponent>,
     @Inject(MAT_DIALOG_DATA) public data: Class) {
-    data.phylum = null;
+    
     data.class = null;
   }
 

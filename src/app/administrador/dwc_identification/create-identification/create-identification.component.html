@@ -10,7 +10,7 @@
         <mat-option *ngFor="let verification of verifications" value="{{verification.verificationstatus}}">
           {{verification.verificationstatus}}</mat-option>
       </mat-select>
-      <mat-hint class="add" (click)="addVerification()">
+      <mat-hint class="add" (click)="addVerification()" hidden>
         <mat-icon>add</mat-icon> Add Verificación
       </mat-hint>
     </mat-form-field>

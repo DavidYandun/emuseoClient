@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { Specie } from 'src/app/services/dwc_taxon_services/taxon.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
@@ -10,7 +10,6 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 export class DialogCreateSpecieComponent{
   constructor(public dialogRef: MatDialogRef<DialogCreateSpecieComponent>,
     @Inject(MAT_DIALOG_DATA) public data: Specie) { 
-      data.genus=null;
       data.specie=null;
     }
 

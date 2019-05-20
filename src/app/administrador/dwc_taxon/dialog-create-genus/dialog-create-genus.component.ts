@@ -10,7 +10,7 @@ import { Genus } from 'src/app/services/dwc_taxon_services/taxon.service';
 export class DialogCreateGenusComponent {
   constructor(public dialogRef: MatDialogRef<DialogCreateGenusComponent>,
     @Inject(MAT_DIALOG_DATA) public data: Genus) { 
-      data.family=null;
+      
       data.genus=null;
     }
 

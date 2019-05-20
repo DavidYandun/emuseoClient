@@ -25,10 +25,12 @@ export class ReinosComponent implements OnInit {
   ngOnInit() {
     if (sessionStorage.getItem('loggedin') == 'true') {
       this.loggedin = true;
+      this.getCollection();
     } else {
       this.loggedin = false;
+      this.getCollectionAprobado();
     }
-    this.getCollection();
+    
 
   }
 
@@ -49,8 +51,24 @@ export class ReinosComponent implements OnInit {
       }
       console.log(this.collection);
     }, error => this.errorMsg = error);
-
-
+  };
+  getCollectionAprobado() {
+    this.kingdom = this.route.snapshot.params['kingdom'];
+    this.identificationService.getReinosAprobado(this.kingdom).subscribe(data => {
+      this.collection = data;
+      for (let d of this.collection) {
+        this.multimediaService.getMultimediaId(d.identificationid).subscribe(dato => {
+          this.multimedia.push(dato);
+        }, error => {
+          let media: any = {
+            identificationid: d.identificationid,
+            url: '../../../assets/img/sin_animal.png'
+          }
+          this.multimedia.push(media);
+        });
+      }
+      console.log(this.collection);
+    }, error => this.errorMsg = error);
   };
 
   getFoto(identificationid) {

@@ -2,7 +2,7 @@ import {
   MatButtonModule, MatCheckboxModule, MatMenuModule, MatToolbarModule, MatIconModule,
   MatFormFieldModule, MatInputModule, MatCardModule, MatTabsModule, MatStepperModule,
   MatTableModule, MatPaginatorModule, MatSortModule, MatDividerModule, MatListModule,
-  MatSelectModule, MatDatepickerModule, MatNativeDateModule, MatDialogModule,
+  MatSelectModule, MatDatepickerModule, MatNativeDateModule, MatDialogModule,MatButtonToggleModule,
   MatGridListModule, MatSidenavModule, MatExpansionModule, MatSnackBarModule
 } from '@angular/material';
 import { ScrollDispatchModule } from '@angular/cdk/scrolling';
@@ -16,13 +16,13 @@ import { GALLERY_CONFIG } from '@ngx-gallery/core';
 @NgModule({
   imports: [MatButtonModule, MatCheckboxModule, MatMenuModule, MatToolbarModule, MatIconModule,
     MatFormFieldModule, MatInputModule, MatCardModule, MatTabsModule, MatStepperModule,
-    MatTableModule, MatPaginatorModule, MatSortModule, MatDividerModule, MatListModule,
+    MatTableModule, MatPaginatorModule, MatSortModule, MatDividerModule, MatListModule,MatButtonToggleModule,
     MatSelectModule, MatDatepickerModule, MatNativeDateModule, MatDialogModule, MatExpansionModule, MatSnackBarModule,
     MatGridListModule, MatSidenavModule, CarouselModule, WavesModule, ButtonsModule, CollapseModule,
     ScrollDispatchModule],
   exports: [MatButtonModule, MatCheckboxModule, MatMenuModule, MatToolbarModule, MatIconModule,
     MatFormFieldModule, MatInputModule, MatCardModule, MatTabsModule, MatStepperModule, MatSnackBarModule,
-    MatTableModule, MatPaginatorModule, MatSortModule, MatDividerModule, MatListModule,
+    MatTableModule, MatPaginatorModule, MatSortModule, MatDividerModule, MatListModule,MatButtonToggleModule,
     MatSelectModule, MatDatepickerModule, MatNativeDateModule, MatDialogModule, MatExpansionModule,
     MatGridListModule, MatSidenavModule, CarouselModule, WavesModule, ButtonsModule, CollapseModule,
     ScrollDispatchModule],

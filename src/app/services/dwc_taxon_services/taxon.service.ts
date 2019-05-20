@@ -14,7 +14,7 @@ export class TaxonService {
   getTaxon(taxonid): Observable<any> {
     return this.httpClient.get<any>('api/taxon/' + taxonid);
   }
-  getTaxonId(identificationid): Observable<any> {
+  getTaxonId(identificationid): Observable<Taxon> {
     return this.httpClient.get<any>('api/taxon/id/' + identificationid);
   }
   postTaxon(taxon: Taxon) {

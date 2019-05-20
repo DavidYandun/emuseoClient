@@ -1,0 +1,68 @@
+<form [formGroup]="event" (ngSubmit)="updateEvent()">
+  <br>
+  <h2>Evento</h2>
+  <div class="row">
+    <mat-form-field appearance="outline" class="col">
+      <mat-label for="fieldnumber">Número de Campo</mat-label>
+      <input class="uppercase" matInput formControlName="fieldnumber" type="text"
+        placeholder="Identificador de las notas de campo." required>
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="col">
+      <mat-label for="habitat">Hábitat</mat-label>
+      <input class="uppercase" matInput formControlName="habitat" type="text" id="habitat"
+        placeholder="Descripción del hábitat en el que ocurrió el Evento.">
+    </mat-form-field>
+  </div>
+  <div class="row">
+    <mat-form-field appearance="outline" class="col">
+      <mat-label for="eventdate">Fecha del Evento</mat-label>
+      <input class="uppercase" matInput [matDatepicker]="eventdate" formControlName="eventdate" type="text" required
+        placeholder="Ingrese una eventdate" disabled>
+      <mat-datepicker-toggle matSuffix [for]="eventdate"></mat-datepicker-toggle>
+      <mat-datepicker #eventdate disabled="false"></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="col">
+      <mat-label for="eventtime">Hora del Evento</mat-label>
+      <input class="uppercase" matInput formControlName="eventtime" type="text" id="eventtime"
+        placeholder="Ingrese una eventtime">
+    </mat-form-field>
+  </div>
+
+  <div class="row">
+    <mat-form-field appearance="outline" class="col">
+      <mat-label for="samplingprotocol">Protocolo de Muestreo</mat-label>
+      <textarea class="uppercase" matInput formControlName="samplingprotocol" type="text" id="samplingprotocol"
+        placeholder="El nombre, la referencia o la descripción del método o protocolo utilizado durante un Evento."></textarea>
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="col">
+      <mat-label for="fieldnotes">Notas de Campo</mat-label>
+      <textarea class="uppercase" matInput formControlName="fieldnotes" type="text" id="fieldnotes"
+        placeholder="Texto de las notas tomadas en el campo sobre el Evento."></textarea>
+    </mat-form-field>
+  </div>
+  <div class="row">
+    <mat-form-field appearance="outline" class="col">
+      <mat-label for="samplesizevalue">Tamaño de la muestra</mat-label>
+      <input class="uppercase" matInput formControlName="samplesizevalue" type="number" id="samplesizevalue"
+        placeholder="Duración, área o volumen de una muestra en un evento.">
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="col">
+      <mat-label for="samplesizeunit">Unidad de medida</mat-label>
+      <input class="uppercase" matInput formControlName="samplesizeunit" type="text" id="samplesizeunit"
+        placeholder="Unidad de medida de una muestra.">
+    </mat-form-field>
+  </div>
+
+  <div class="row">
+    <mat-form-field appearance="outline" class="col">
+      <mat-label for="eventremarks">Observaciones del evento</mat-label>
+      <textarea class="uppercase" matInput formControlName="eventremarks" type="text" id="eventremarks"
+        placeholder="Comentarios o notas sobre el evento."></textarea>
+    </mat-form-field>
+  </div>
+
+  <div class="form-group">
+    <button mdbBtn type="submit" [disabled]="!event.valid" color="primary" block="true">
+      Actualizar Evento</button>
+  </div>
+</form>

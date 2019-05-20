@@ -4,6 +4,7 @@ import { IdentificationService } from 'src/app/services/dwc_identification_servi
 import { VerificationService } from 'src/app/services/dwc_identification_services/verification.service';
 import { MatDialog, MatSnackBar } from '@angular/material';
 import { DialogCreateVerificationstatusComponent } from '../dialog-create-verificationstatus/dialog-create-verificationstatus.component';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -32,7 +33,8 @@ export class CreateIdentificationComponent implements OnInit {
     private identificationService: IdentificationService,
     private verificationService: VerificationService,
     public dialog: MatDialog,
-    private snackBar: MatSnackBar) { }
+    private snackBar: MatSnackBar,
+    private router:Router) { }
 
   ngOnInit() {
     this.getVerificationstatus();
@@ -42,6 +44,7 @@ export class CreateIdentificationComponent implements OnInit {
       this.identificationid.emit(resultado.identificationid);
       this.openSnackBar('REGISTRO EXITOSO', '✅');
       console.log(resultado);
+      this.router.navigate(['admin-collection/'+resultado.identificationid]);
     },
       error => {
         this.openSnackBar(error.error.message, '🛑');

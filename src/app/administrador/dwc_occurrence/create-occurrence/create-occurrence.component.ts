@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { OccurrenceService } from 'src/app/services/dwc_occurrence_services/occurrence.service';
 import { MatDialog, MatSnackBar } from '@angular/material';
 import { DialogCreateLifestageComponent } from '../dialog-create-lifestage/dialog-create-lifestage.component';
@@ -15,21 +15,22 @@ import { FormBuilder, Validators } from '@angular/forms';
 })
 export class CreateOccurrenceComponent implements OnInit {
   @Input() identificationid: number;
+  @Output() occurrenceBool = new EventEmitter();
 
-  occurrence= this.formBuilder.group({
-    identificationid:[null],
-    organismquantitytype:[null],
-    lifestage:[null,Validators.required],
-    reproductivecondition:[null],
-    sex:[null,Validators.required],
-    establishmentmeans:[null],
-    recordnumber:[null,Validators.required],
-    individualcount:[null,Validators.min(0)],
-    organismquantity:[null,Validators.min(0)],
-    behavior:[null],
-    preparations:[null],
-    associatedreferences:[null],
-    occurrenceremarks:[null]
+  occurrence = this.formBuilder.group({
+    identificationid: [null],
+    organismquantitytype: [null],
+    lifestage: [null, Validators.required],
+    reproductivecondition: [null],
+    sex: [null, Validators.required],
+    establishmentmeans: [null],
+    recordnumber: [null, Validators.required],
+    individualcount: [null, Validators.min(0)],
+    organismquantity: [null, Validators.min(0)],
+    behavior: [null],
+    preparations: [null],
+    associatedreferences: [null],
+    occurrenceremarks: [null]
   });
 
 
@@ -59,6 +60,7 @@ export class CreateOccurrenceComponent implements OnInit {
     this.occurrence.value.identificationid = this.identificationid;
     if (this.occurrence.value.identificationid) {
       this.occurrenceService.postOccurrence(this.occurrence.value).subscribe(data => {
+        this.occurrenceBool.emit(true);
         this.openSnackBar('REGISTRO DE OCCURRENCE EXITOSO', '✅');
       },
         error => {

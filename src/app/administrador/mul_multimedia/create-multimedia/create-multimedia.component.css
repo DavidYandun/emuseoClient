@@ -1,0 +1,13 @@
+.preview {
+  height: 150px;
+}
+
+.thumbnail {
+    height: 150px;
+    width: 150px;
+    margin: 2px;
+    border-radius: 15px;
+  }
+  context-menu{
+    color: black;
+  }

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { LocationService } from 'src/app/services/dwc_location_services/location.service';
 import { MatDialog, MatSnackBar } from '@angular/material';
 import { DialogCreateCountryComponent } from '../dialog-create-country/dialog-create-country.component';
@@ -19,6 +19,7 @@ import { FormBuilder } from '@angular/forms';
 })
 export class CreateLocationComponent implements OnInit {
   @Input() identificationid: number;
+  @Output() locationBool = new EventEmitter;
   location = this.formBuilder.group({
     identificationid: [null],
     continent: [null],
@@ -89,6 +90,7 @@ export class CreateLocationComponent implements OnInit {
     this.location.value.identificationid = this.identificationid;
     if (this.location.value.identificationid) {
       this.locationService.postLocation(this.location.value).subscribe(data => {
+        this.locationBool.emit(true);
         this.openSnackBar('REGISTRO LOCATION EXITOSO', '✅');
       },
         error => {

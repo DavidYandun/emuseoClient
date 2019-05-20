@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { RecordLevelService } from 'src/app/services/dwc_record-level_services/record-level.service';
 import { BasisofrecordService } from 'src/app/services/dwc_record-level_services/basisofrecord.service';
 import { DialogCreateBasisofrecordComponent } from '../dialog-create-basisofrecord/dialog-create-basisofrecord.component';
@@ -12,8 +12,8 @@ import { FormBuilder, Validators } from '@angular/forms';
 })
 export class CreateRecordLevelComponent implements OnInit {
   @Input() identificationid: number;
-
-  recordlevel= this.formBuilder.group({
+  @Output() recordlevelBool = new EventEmitter();
+  recordlevel = this.formBuilder.group({
     identificationid: [null],
     entidadid: [null],
     type: [null],
@@ -24,7 +24,7 @@ export class CreateRecordLevelComponent implements OnInit {
     accessrights: [null],
     bibliographiccitation: [null],
     references: [null],
-    basisofrecord: [null,Validators.required],
+    basisofrecord: [null, Validators.required],
     dynamicproperties: [null]
   });
 
@@ -45,6 +45,7 @@ export class CreateRecordLevelComponent implements OnInit {
     if (this.recordlevel.value.identificationid) {
       console.log(this.recordlevel.value);
       this.recordLevelService.postRecordLevel(this.recordlevel.value).subscribe(data => {
+        this.recordlevelBool.emit(true);
         this.openSnackBar('REGISTRO DE RECORD LEVEL EXITOSO', '✅');
       },
         error => {

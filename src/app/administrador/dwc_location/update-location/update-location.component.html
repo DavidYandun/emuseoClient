@@ -1,0 +1,204 @@
+<form [formGroup]="location" (ngSubmit)="updateLocation()">
+  <br>
+  <h2>Ubicación</h2>
+  <h5>División Política</h5>
+  <div class="row">
+    <mat-form-field appearance="outline" class="col">
+      <mat-label>País</mat-label>
+      <mat-select ng-model="country" formControlName="country">
+        <mat-option (click)="getStateProvinces()">-Ninguno-</mat-option>
+        <mat-option (click)="getStateProvinces()" *ngFor="let country of countrys" value="{{country.country}}">
+          {{country.country}}</mat-option>
+      </mat-select>
+      <mat-hint class="add" (click)="addCountry()">
+        <mat-icon>add</mat-icon> Add País
+      </mat-hint>
+    </mat-form-field>
+    <mat-form-field *ngIf="countryshow; else stateProvinceBlock" appearance="outline" class="col-lg-3">
+      <mat-label>Provincia</mat-label>
+      <input matInput disabled>
+    </mat-form-field>
+    <ng-template #stateProvinceBlock>
+      <mat-form-field appearance="outline" class="col">
+        <mat-label>Provincia</mat-label>
+        <mat-select ng-model="stateprovince" formControlName="stateprovince">
+          <mat-option (click)="getCountys()">-Ninguno-</mat-option>
+          <mat-option (click)="getCountys()" *ngFor="let stateprovince of stateprovinces"
+            value="{{stateprovince.stateprovince}}">{{stateprovince.stateprovince}}</mat-option>
+        </mat-select>
+        <mat-hint class="add" (click)="addStateProvince()">
+          <mat-icon>add</mat-icon> Add Provincia
+        </mat-hint>
+      </mat-form-field>
+    </ng-template>
+    <mat-form-field *ngIf="stateprovinceshow; else countyBlock" appearance="outline" class="col-lg-3">
+      <mat-label>Cantón</mat-label>
+      <input matInput disabled>
+    </mat-form-field>
+    <ng-template #countyBlock>
+      <mat-form-field appearance="outline" class="col">
+        <mat-label>Cantón</mat-label>
+        <mat-select ng-model="county" formControlName="county">
+          <mat-option (click)="getMunicipalitys()">-Ninguno-</mat-option>
+          <mat-option (click)="getMunicipalitys()" *ngFor="let county of countys" value="{{county.county}}">
+            {{county.county}}</mat-option>
+        </mat-select>
+        <mat-hint class="add" (click)="addCounty()">
+          <mat-icon>add</mat-icon> Add Cantón
+        </mat-hint>
+      </mat-form-field>
+    </ng-template>
+    <mat-form-field *ngIf="countyshow; else municipalityBlock" appearance="outline" class="col-lg-3">
+      <mat-label>Parroquia</mat-label>
+      <input matInput disabled>
+    </mat-form-field>
+    <ng-template #municipalityBlock>
+      <mat-form-field appearance="outline" class="col">
+        <mat-label>Parroquia</mat-label>
+        <mat-select ng-model="municipality" formControlName="municipality">
+          <mat-option *ngFor="let municipality of municipalitys" value="{{municipality.municipality}}">
+            {{municipality.municipality}}</mat-option>
+        </mat-select>
+        <mat-hint class="add" (click)="addMunicipality()">
+          <mat-icon>add</mat-icon> Add Parroquia
+        </mat-hint>
+      </mat-form-field>
+    </ng-template>
+    <mat-form-field appearance="outline" class="col-lg-12">
+      <mat-label for="verbatimlocality">Localización Textual</mat-label>
+      <input class="uppercase" matInput formControlName="verbatimlocality" type="text" id="verbatimlocality"
+        placeholder="La descripción textual original del lugar.">
+    </mat-form-field>
+  </div>
+  <h5>Ubicación Regional</h5>
+  <div class="row">
+    <mat-form-field appearance="outline" class="col">
+      <mat-label for="continent">Continente</mat-label>
+      <mat-select ng-model="continent" formControlName="continent">
+        <mat-option *ngFor="let continent of continents" value="{{continent.continent}}">{{continent.continent}}
+        </mat-option>
+      </mat-select>
+      <mat-hint class="add" (click)="addContinent()">
+        <mat-icon>add</mat-icon> Add Continente
+      </mat-hint>
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="col">
+      <mat-label for="waterbody">Cuerpo de Agua</mat-label>
+      <mat-select ng-model="waterbody" formControlName="waterbody">
+        <mat-option *ngFor="let waterbody of waterbodys" value="{{waterbody.waterbody}}">{{waterbody.waterbody}}
+        </mat-option>
+      </mat-select>
+      <mat-hint class="add" (click)="addWaterBody()">
+        <mat-icon>add</mat-icon> Add Cuerpo de Agua
+      </mat-hint>
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="col">
+      <mat-label for="island">Isla</mat-label>
+      <mat-select ng-model="island" formControlName="island">
+        <mat-option *ngFor="let island of islands" value="{{island.island}}">{{island.island}}</mat-option>
+      </mat-select>
+      <mat-hint class="add" (click)="addIsland()">
+        <mat-icon>add</mat-icon> Add Isla
+      </mat-hint>
+    </mat-form-field>
+  </div>
+  <h5>Georeferencia</h5>
+  <div class="row">
+    <mat-form-field appearance="outline" class="col">
+      <mat-label for="decimallatitude">Latitud Decimal</mat-label>
+      <input class="uppercase" matInput formControlName="decimallatitude" type="number" step="any" id="decimallatitude"
+        placeholder="Ingrese una decimallatitude">
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="col">
+      <mat-label for="decimallongitude">Longitud Decimal</mat-label>
+      <input class="uppercase" matInput formControlName="decimallongitude" type="number" step="any"
+        id="decimallongitude" placeholder="Ingrese una decimallongitude">
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="col">
+      <mat-label for="geodeticdatum">Dato Geodésico</mat-label>
+      <mat-select ng-model="geodeticdatum" formControlName="geodeticdatum">
+        <mat-option *ngFor="let geodeticdatum of geodeticdatums" value="{{geodeticdatum.geodeticdatum}}">
+          {{geodeticdatum.geodeticdatum}}</mat-option>
+      </mat-select>
+      <mat-hint class="add" (click)="addGeodeticdatum()">
+        <mat-icon>add</mat-icon> Add Dato Geodésico
+      </mat-hint>
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="col">
+      <mat-label for="georeferenceverificationstatus">Estado de Verificación Georeferencial</mat-label>
+      <mat-select ng-model="georeferenceverificationstatus" formControlName="georeferenceverificationstatus">
+        <mat-option *ngFor="let georeferenceverificationstatus of georeferenceverificationstatuss"
+          value="{{georeferenceverificationstatus.georeferenceverificationstatus}}">
+          {{georeferenceverificationstatus.georeferenceverificationstatus}}</mat-option>
+      </mat-select>
+      <mat-hint class="add" (click)="addGeoreferenceverificationstatus()">
+        <mat-icon>add</mat-icon> Add Verificación
+      </mat-hint>
+    </mat-form-field>
+  </div>
+  <div class="row">
+    <mat-form-field appearance="outline" class="col">
+      <mat-label for="minimumelevationinmeters">Elevación mínima en metros</mat-label>
+      <input class="uppercase" matInput formControlName="minimumelevationinmeters" type="number"
+        id="minimumelevationinmeters" placeholder="El límite inferior de elevación sobre el nivel del mar">
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="col">
+      <mat-label for="maximumelevationinmeters">Elevación máxima en metros</mat-label>
+      <input class="uppercase" matInput formControlName="maximumelevationinmeters" type="number"
+        id="maximumelevationinmeters" placeholder="El límite superior de elevación sobre el nivel del mar">
+    </mat-form-field>
+  </div>
+  <div class="row">
+    <mat-form-field appearance="outline" class="col">
+      <mat-label for="coordinateuncertaintyinmeters">Incertidumbre de coordenadas en metros</mat-label>
+      <input class="uppercase" matInput formControlName="coordinateuncertaintyinmeters" type="number"
+        id="coordinateuncertaintyinmeters" placeholder="Diámetro de precisión GPS en metros">
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="col">
+      <mat-label for="coordinateprecision"> Precisión de Coordenadas</mat-label>
+      <input class="uppercase" matInput formControlName="coordinateprecision" type="number" id="coordinateprecision"
+        placeholder="Diámetro de precisión GPS en decimales">
+    </mat-form-field>
+  </div>
+  <div class="row">
+    <mat-form-field appearance="outline" class="col">
+      <mat-label for="locationaccordingto">Ubicación de acuerdo con</mat-label>
+      <input class="uppercase" matInput formControlName="locationaccordingto" type="text" id="locationaccordingto"
+        placeholder="Fuente de información de ubicación.">
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="col">
+      <mat-label for="georeferencedby">Georeferenciado por</mat-label>
+      <input class="uppercase" matInput formControlName="georeferencedby" type="text" id="georeferencedby"
+        placeholder="Persona que determinaron la georreferencia ">
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="col">
+      <mat-label for="georeferenceddate">Fecha de Georeferencia</mat-label>
+      <input class="uppercase" matInput [matDatepicker]="georeferenceddate" formControlName="georeferenceddate"
+        type="text" id="georeferenceddate" disabled>
+      <mat-datepicker-toggle matSuffix [for]="georeferenceddate"></mat-datepicker-toggle>
+      <mat-datepicker #georeferenceddate disabled="false"></mat-datepicker>
+    </mat-form-field>
+  </div>
+  <h5>Comentarios</h5>
+  <div class="row">
+    <mat-form-field appearance="outline" class="col-lg-6">
+      <mat-label for="locationremarks">Observaciones de Ubicación</mat-label>
+      <textarea class="uppercase" matInput formControlName="locationremarks" type="text" id="locationremarks"
+        placeholder="Comentarios o notas sobre la Ubicación."></textarea>
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="col-lg-6">
+      <mat-label for="georeferenceremarks">Observacionesde Georeferencia</mat-label>
+      <textarea class="uppercase" matInput formControlName="georeferenceremarks" type="text" id="georeferenceremarks"
+        placeholder="Notas o comentarios sobre la determinación de la descripción espacial, explicando los supuestos hechos en adición u oposición a los formalizados en el método referido en un protocolo"></textarea>
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="col-lg-12">
+      <mat-label for="georeferencesources">Fuentes de georeferencia</mat-label>
+      <input class="uppercase" matInput formControlName="georeferencesources" type="text" id="georeferencesources"
+        placeholder="Lista de recursos utilizados para georreferenciar la Ubicación">
+    </mat-form-field>
+  </div>
+  <div class="form-group">
+    <button mdbBtn type="submit" [disabled]="!location.valid" color="primary" block="true">
+      Actualizar Ubicación</button>
+  </div>
+</form>

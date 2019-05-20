@@ -1,0 +1,47 @@
+<form [formGroup]="identification" (ngSubmit)="updateIdentification()">
+  <br>
+  <div class="row">
+    <mat-form-field appearance="outline" class="col">
+      <mat-label>Estado de Verificación</mat-label>
+      <mat-select ng-model="verifications" formControlName="verificationstatus" name="singleSelectVerificationstatus"
+        required>
+        <mat-option>-Ninguno-</mat-option>
+        <mat-option *ngFor="let verification of verifications" value="{{verification.verificationstatus}}">
+          {{verification.verificationstatus}}</mat-option>
+      </mat-select>
+      <mat-hint class="add" (click)="addVerification()" hidden>
+        <mat-icon>add</mat-icon> Add Verificación
+      </mat-hint>
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="col">
+      <mat-label>Índice de Identificación</mat-label>
+      <input matInput formControlName="identificationqualifier" class="uppercase" type="text"
+        placeholder="Una breve frase o un término estándar (cf., aff.)">
+    </mat-form-field>
+  </div>
+  <div class="row">
+    <mat-form-field appearance="outline" class="col">
+      <mat-label>Identificado por</mat-label>
+      <input matInput formControlName="identifiedby" class="uppercase" type="text"
+        placeholder="Responsable de la identificación de la muestra" required>
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="col">
+      <mat-label>Fecha de Identificación</mat-label>
+      <input matInput [matDatepicker]="dateidentified" formControlName="dateidentified" type="text"
+        placeholder="dd/mm/yyyy" disabled required>
+      <mat-datepicker-toggle matSuffix [for]="dateidentified"></mat-datepicker-toggle>
+      <mat-datepicker #dateidentified disabled="false"></mat-datepicker>
+    </mat-form-field>
+  </div>
+  <div class="row">
+    <mat-form-field appearance="outline" class="col">
+      <mat-label>Observación de Identificación</mat-label>
+      <textarea matInput formControlName="identificationremarks" class="uppercase" type="text"
+        id="identificationremarks" placeholder="Comentarios o notas sobre la Identificación."></textarea>
+    </mat-form-field>
+  </div>
+  <div class="form-group text-right">
+    <button mdbBtn type="submit" [disabled]="!identification.valid" color="primary" block="true">
+      Actualizar Muestra</button>
+  </div>
+</form>

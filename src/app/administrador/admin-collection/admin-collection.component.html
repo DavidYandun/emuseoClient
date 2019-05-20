@@ -1,9 +1,25 @@
 <app-header-admin></app-header-admin>
 <br>
 <div class="container">
-    <div class="col title">
-        Nueva de Colección
+  <div class="col">
+    <div *ngIf="!identificationid; else notNuevo">
+      <p class="title">Nueva de Colección</p>
+      <div class="text-right">
+        <button mdbBtn type="button" color="danger" mdbWavesEffect routerLink="/list-collection">
+          <mat-icon>close</mat-icon>
+        </button>
       </div>
+    </div>
+    <ng-template #notNuevo>
+      <p class="title"> Editar Colección</p>
+      <div class="text-right">
+        <button mdbBtn type="button" color="danger" mdbWavesEffect routerLink="/ficha/{{identificationid}}">
+          <mat-icon>close</mat-icon>
+        </button>
+      </div>
+    </ng-template>
+  </div>
+
   <mat-card>
     <mat-tab-group backgroundColor="">
       <div *ngIf="identificationid; else elseBlock">
@@ -11,55 +27,22 @@
           <ng-template mat-tab-label>
             <mat-icon class="icon">filter_1</mat-icon> Identificación
           </ng-template>
-          <h3>Identificación #: {{identificationid}}</h3>
-          <p>Registre los enunciados faltantes (Ejemplo: Taxón, Record Level,etc)...</p>
+          <h2>Identificación #: {{identificationid}}</h2>
+          <app-update-identification (identificationid)="postIdentificationid($event)"></app-update-identification>
         </mat-tab>
         <mat-tab>
           <ng-template mat-tab-label>
             <mat-icon class="icon">filter_2</mat-icon> Taxon
           </ng-template>
-          <app-create-taxon [identificationid]="identificationid" (taxonBool)="postTaxon($event)"></app-create-taxon>
-        </mat-tab>
-        <mat-tab>
-          <ng-template mat-tab-label>
-            <mat-icon class="icon">filter_3</mat-icon> Nivel de Registro
+          <app-update-taxon *ngIf="taxonBool; else notTaxon" [identificationid]="identificationid"></app-update-taxon>
+          <ng-template #notTaxon>
+            <app-create-taxon [identificationid]="identificationid" (taxonBool)="postTaxon($event)"></app-create-taxon>
           </ng-template>
-          <app-create-record-level [identificationid]="identificationid"></app-create-record-level>
-        </mat-tab>
-        <mat-tab>
-          <ng-template mat-tab-label>
-            <mat-icon class="icon">filter_4</mat-icon> Ocurrencia
-          </ng-template>
-          <app-create-occurrence [identificationid]="identificationid"></app-create-occurrence>
-        </mat-tab>
-        <mat-tab>
-          <ng-template mat-tab-label>
-            <mat-icon class="icon">filter_5</mat-icon> Organismo
-          </ng-template>
-          <app-create-organism [identificationid]="identificationid"></app-create-organism>
-        </mat-tab>
-        <mat-tab>
-          <ng-template mat-tab-label>
-            <mat-icon class="icon">filter_6</mat-icon> Evento
-          </ng-template>
-          <app-create-event [identificationid]="identificationid"></app-create-event>
-        </mat-tab>
-        <mat-tab>
-          <ng-template mat-tab-label>
-            <mat-icon class="icon">filter_7</mat-icon> Ubicación
-          </ng-template>
-          <app-create-location [identificationid]="identificationid"></app-create-location>
-        </mat-tab>
-        <mat-tab>
-          <ng-template mat-tab-label>
-            <mat-icon class="icon">filter_8</mat-icon> Contexto Geológico
-          </ng-template>
-          <app-create-geologicalcontext [identificationid]="identificationid"></app-create-geologicalcontext>
         </mat-tab>
         <div *ngIf="taxonBool;else disabledMultimedia">
           <mat-tab>
             <ng-template mat-tab-label>
-              <mat-icon class="icon">filter_9</mat-icon> Multimedia
+              <mat-icon class="icon">filter_3</mat-icon> Multimedia
             </ng-template>
             <app-create-multimedia [identificationid]="identificationid"></app-create-multimedia>
           </mat-tab>
@@ -67,11 +50,73 @@
         <ng-template #disabledMultimedia>
           <mat-tab>
             <ng-template mat-tab-label>
-              <mat-icon class="icon">filter_9</mat-icon> Multimedia
+              <mat-icon class="icon">filter_3</mat-icon> Multimedia
             </ng-template>
             <h2>Primero debes registrar el Taxón</h2>
           </mat-tab>
         </ng-template>
+        <mat-tab>
+          <ng-template mat-tab-label>
+            <mat-icon class="icon">filter_4</mat-icon> Nivel de Registro
+          </ng-template>
+          <app-update-record-level *ngIf="recordlevelBool;else notRecordLevel"></app-update-record-level>
+          <ng-template #notRecordLevel>
+            <app-create-record-level [identificationid]="identificationid" (recordlevelBool)="postRecordLevel($event)">
+            </app-create-record-level>
+          </ng-template>
+        </mat-tab>
+        <mat-tab>
+          <ng-template mat-tab-label>
+            <mat-icon class="icon">filter_5</mat-icon> Ocurrencia
+          </ng-template>
+          <app-update-occurrence *ngIf="occurrenceBool;else notOccurrence"></app-update-occurrence>
+          <ng-template #notOccurrence>
+            <app-create-occurrence [identificationid]="identificationid" (occurrenceBool)="postOccurrence($event)">
+            </app-create-occurrence>
+          </ng-template>
+        </mat-tab>
+        <mat-tab>
+          <ng-template mat-tab-label>
+            <mat-icon class=" icon">filter_6</mat-icon> Organismo
+          </ng-template>
+          <app-update-organism *ngIf="organismBool;else notOrganism">
+          </app-update-organism>
+          <ng-template #notOrganism>
+            <app-create-organism [identificationid]="identificationid" (organismBool)="postOrganism($event)">
+            </app-create-organism>
+          </ng-template>
+        </mat-tab>
+        <mat-tab>
+          <ng-template mat-tab-label>
+            <mat-icon class="icon">filter_7</mat-icon> Evento
+          </ng-template>
+          <app-update-event *ngIf="eventBool; else notEvent"></app-update-event>
+          <ng-template #notEvent>
+            <app-create-event [identificationid]="identificationid" (eventBool)="postEvent($event)"></app-create-event>
+          </ng-template>
+        </mat-tab>
+        <mat-tab>
+          <ng-template mat-tab-label>
+            <mat-icon class="icon">filter_8</mat-icon> Ubicación
+          </ng-template>
+          <app-update-location *ngIf="locationBool;else notLocation"></app-update-location>
+          <ng-template #notLocation>
+            <app-create-location [identificationid]="identificationid" (locationBool)="postLocation($event)">
+            </app-create-location>
+          </ng-template>
+        </mat-tab>
+        <mat-tab>
+          <ng-template mat-tab-label>
+            <mat-icon class="icon">filter_9</mat-icon> Contexto Geológico
+          </ng-template>
+          <app-update-geologicalcontext *ngIf="geologicalBool;else notGeological"></app-update-geologicalcontext>
+          <ng-template #notGeological>
+            <app-create-geologicalcontext [identificationid]="identificationid"
+              (geologicalBool)="postGeological($event)"></app-create-geologicalcontext>
+          </ng-template>
+        </mat-tab>
+
+
       </div>
       <!--Tabs deshabilitadas-->
       <ng-template #elseBlock>
@@ -89,39 +134,40 @@
         </mat-tab>
         <mat-tab disabled>
           <ng-template mat-tab-label>
-            <mat-icon class="icon">filter_3</mat-icon> Nivel de Registro
+            <mat-icon class="icon">filter_3</mat-icon> Multimedia
           </ng-template>
         </mat-tab>
         <mat-tab disabled>
           <ng-template mat-tab-label>
-            <mat-icon class="icon">filter_4</mat-icon> Ocurrencia
+            <mat-icon class="icon">filter_4</mat-icon> Nivel de Registro
           </ng-template>
         </mat-tab>
         <mat-tab disabled>
           <ng-template mat-tab-label>
-            <mat-icon class="icon">filter_5</mat-icon> Organismo
+            <mat-icon class="icon">filter_5</mat-icon> Ocurrencia
           </ng-template>
         </mat-tab>
         <mat-tab disabled>
           <ng-template mat-tab-label>
-            <mat-icon class="icon">filter_6</mat-icon> Evento
+            <mat-icon class="icon">filter_6</mat-icon> Organismo
           </ng-template>
         </mat-tab>
         <mat-tab disabled>
           <ng-template mat-tab-label>
-            <mat-icon class="icon">filter_7</mat-icon> Ubicación
+            <mat-icon class="icon">filter_7</mat-icon> Evento
           </ng-template>
         </mat-tab>
         <mat-tab disabled>
           <ng-template mat-tab-label>
-            <mat-icon class="icon">filter_8</mat-icon> Contexto Geológico
+            <mat-icon class="icon">filter_8</mat-icon> Ubicación
           </ng-template>
         </mat-tab>
         <mat-tab disabled>
           <ng-template mat-tab-label>
-            <mat-icon class="icon">filter_9</mat-icon> Multimedia
+            <mat-icon class="icon">filter_9</mat-icon> Contexto Geológico
           </ng-template>
         </mat-tab>
+
       </ng-template>
     </mat-tab-group>
   </mat-card>

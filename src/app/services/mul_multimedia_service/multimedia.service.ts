@@ -25,6 +25,9 @@ export class MultimediaService {
   getImagen(name): Observable<any> {
     return this.httpClient.get<any>('api/multimedia/img/' + name);
   }
+  getPrincipal(identificationid): Observable<any> {
+    return this.httpClient.get<any>('api/multimedia/principal/' + identificationid);
+  }
   postMultimedia(multimedia: Multimedia) {
     let json = JSON.stringify(multimedia);
     let headers = new HttpHeaders().set('Content-Type', 'application/json');
@@ -36,7 +39,7 @@ export class MultimediaService {
     return this.httpClient.put('api/multimedia/' + multimediaid, json, { headers: headers });
   }
   deleteMultimedia(multimediaid) {
-    return this.httpClient.delete("/api/multimedia", multimediaid);
+    return this.httpClient.delete("/api/multimedia/" + multimediaid);
   }
 
   getTypeMedias(): Observable<any> {

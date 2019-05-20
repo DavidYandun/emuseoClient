@@ -12,6 +12,7 @@
     <mat-card *ngFor="let element of collection" class="card col-lg-3">
       <mat-card-header>
         <mat-card-title>{{element.scientificname}}</mat-card-title>
+        <mat-card-subtitle *ngIf="loggedin">{{element.verificationstatus}}</mat-card-subtitle>
       </mat-card-header>
       <img class="imagen" mat-card-image src="{{getFoto(element.identificationid)}}" alt="">
       <mat-card-content>
@@ -20,7 +21,8 @@
         </p>
       </mat-card-content>
       <mat-card-actions>
-        <button mdbBtn color="primary" block="true" outline="true" routerLink="/ficha/{{element.identificationid}}">VER FICHA</button>
+        <button mdbBtn color="primary" block="true" outline="true" routerLink="/ficha/{{element.identificationid}}">VER
+          FICHA</button>
       </mat-card-actions>
     </mat-card>
   </div>
