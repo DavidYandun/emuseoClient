@@ -7,6 +7,7 @@ import { OrganismService } from 'src/app/services/dwc_organism_services/organism
 import { EventService } from 'src/app/services/dwc_event_services/event.service';
 import { LocationService } from 'src/app/services/dwc_location_services/location.service';
 import { GeologicalcontextService } from 'src/app/services/dwc_geologicalcontext_service/geologicalcontext.service';
+import { MultimediaService } from 'src/app/services/mul_multimedia_service/multimedia.service';
 
 
 @Component({
@@ -18,7 +19,7 @@ export class AdminCollectionComponent implements OnInit {
   loggedin = false;
   isLinear = true;
   identificationid: number;
-
+  taxon: any;
   taxonBool: boolean;
   recordlevelBool: boolean;
   occurrenceBool: boolean;
@@ -35,10 +36,12 @@ export class AdminCollectionComponent implements OnInit {
     private eventService: EventService,
     private locationService: LocationService,
     private geologicalcontextService: GeologicalcontextService,
+    private multimediaService:MultimediaService,
     private router: Router,
     private route: ActivatedRoute) { }
 
   ngOnInit() {
+    //verifica inicio de sesión
     if (sessionStorage.getItem('loggedin') == 'true') {
       this.loggedin = true;
       if (this.route.snapshot.params['identificationid']) {
@@ -47,6 +50,7 @@ export class AdminCollectionComponent implements OnInit {
         this.taxonService.getTaxonId(this.route.snapshot.params['identificationid']).subscribe(data => {
           if (data.identificationid) {
             this.taxonBool = true;
+            this.taxon = data;
           } else {
             this.taxonBool = false;
           }
@@ -101,6 +105,13 @@ export class AdminCollectionComponent implements OnInit {
         });
 
       }
+      //buscar imagen
+      this.multimediaService.getMultimediaId(this.identificationid).subscribe(dato => {
+        this.imagen=dato.url;
+      }, error => {
+        this.imagen='../../../assets/img/sin_animal.png';
+      });
+
     } else {
       this.router.navigate(['/admin']);
       this.loggedin = false;
@@ -131,5 +142,9 @@ export class AdminCollectionComponent implements OnInit {
   postIdentificationid(e) {
     this.identificationid = e;
     console.log(this.identificationid);
+  }
+imagen:any;
+  getFoto(){
+   
   }
 }

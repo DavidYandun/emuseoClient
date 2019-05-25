@@ -12,11 +12,21 @@
     </div>
     <ng-template #notNuevo>
       <p class="title"> Editar Colección</p>
-      <div class="text-right">
-        <button mdbBtn type="button" color="danger" mdbWavesEffect routerLink="/ficha/{{identificationid}}">
-          <mat-icon>close</mat-icon>
-        </button>
+      <div class="row">
+        <div class="col-1">
+            <img class="miniatura" src="{{imagen}}" alt="">
+        </div>
+        <div class="col-10 subtitle text-center"> Nombre Científico: <strong> {{taxon.scientificname}}</strong> </div>
+        <div class="col-1 text-right">
+          <div class="">
+            <button mdbBtn type="button" color="danger" mdbWavesEffect routerLink="/ficha/{{identificationid}}">
+              <mat-icon>close</mat-icon>
+            </button>
+          </div>
+        </div>
+
       </div>
+
     </ng-template>
   </div>
 
