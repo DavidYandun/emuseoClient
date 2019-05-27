@@ -14,7 +14,11 @@
       <h5>{{fichaTitle2}}</h5>
     </td>
   </tr>
-
+  <div class="text-right">
+    <button mdbBtn type="button" color="danger" mdbWavesEffect routerLink="/list-collection">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
 
 </table>
 <mat-sidenav-container class="  ">
@@ -91,7 +95,7 @@
           </div>
           <div class="col-lg-9">
             <div *ngIf="taxonBool">
-              <app-ficha-taxon  [identificationid]="identificationid"></app-ficha-taxon>
+              <app-ficha-taxon [identificationid]="identificationid"></app-ficha-taxon>
             </div>
             <div *ngIf="recordlevelBool">
               <app-ficha-recordlevel [identificationid]="identificationid"></app-ficha-recordlevel>
