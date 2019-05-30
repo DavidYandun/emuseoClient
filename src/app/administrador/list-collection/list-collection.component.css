@@ -1,6 +1,4 @@
-.title {
-  font-size: 2em;
-}
+
 
 table {
   width: 100%;
@@ -16,11 +14,16 @@ tr.example-detail-row {
 }
 
 tr.example-element-row:not(.example-expanded-row):hover {
-  background: #2df09f;
+  background: rgb(163, 250, 2);
 }
 
-tr.example-element-row:not(.example-expanded-row):active {
-  background: #197e6d;
+mat-button-toggle-group{  border-color: #0CB14B;}
+
+mat-button-toggle{color:#0CB14B;}
+
+mat-button-toggle:hover{
+  background-color: #0CB14B;
+  color:white;
 }
 
 .example-element-detail {

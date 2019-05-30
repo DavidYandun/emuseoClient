@@ -2,7 +2,7 @@
 
 
 <div class="container row ">
-  <button mdbBtn type="button" color="primary" mdbWavesEffect block="true" outline="true" class="new-user"
+  <button mdbBtn type="button" mdbWavesEffect block="true" outline="true" class="new-user boton2"
     routerLink="/create-user">Nuevo Usuario</button>
 
   <div *ngFor="let user of users">
@@ -11,21 +11,20 @@
         <div class="text-center">
           <h5> <strong>{{user.name}} {{user.lastname}}</strong></h5>
           <h6>{{user.rolname}}</h6>
-              <img mat-card-image src="{{user.url}}" alt="" class="perfil rounded-circle ">
+          <img mat-card-image src="{{user.url}}" alt="" class="perfil rounded-circle ">
         </div>
       </mat-card-header>
 
-      
+
       <mat-card-content>
         <ul>
-          <li> <strong>Email:</strong>  {{user.email}}</li>
+          <li> <strong>Email:</strong> {{user.email}}</li>
           <li><strong>Dirección:</strong> {{user.direction}}</li>
           <li><strong>Teléfono:</strong> {{user.phone}}</li>
         </ul>
       </mat-card-content>
       <mat-card-actions>
-        <button (click)="openDialogEditUser(user)" type="button" mdbBtn color="link" mdbWavesEffect>
-          Editar</button>
+        <a routerLink="/update-user/{{user.userid}}" class="link"> Editar</a>
       </mat-card-actions>
     </mat-card>
   </div>

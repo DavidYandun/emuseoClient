@@ -9,9 +9,99 @@
   border-color: #5D5C5C;
 }
 
-.uppercase{
+.uppercase {
   text-transform: uppercase;
 }
-.add{
+
+.add {
   color: blue;
+}
+
+
+/* Color Theme Swatches in Hex */
+
+
+.primario {  color: #00A82D;}
+
+.secundario {  color: #097F36;}
+
+.terciario {  color: #0CB14B;}
+
+.cuaternario {  color: #CADA2A;}
+.cuaternario {  color: rgb(202, 218, 42);}
+
+.quinario {  color: #0D0D0D;}
+
+/*header*/
+nav.bg-primario{background-color: rgb(25, 221, 25); }
+a.dropdown-item:hover{
+  background-color: #0CB14B;
+  color:#ffffff;
+  
+}
+/*titulos*/
+
+div.title {
+  font-size: 2em;
+  color: #00A82D;
+}
+div.title2{
+  color: #00A82D;
+}
+div.title3{
+  font-size: 1.5em;
+  color: #00A82D;
+}
+div.title4{
+  font-size: .5em;
+  color: #CADA2A;
+}
+div.backgroundTitle {
+  background-color: #E1DEDD;
+  color:#097F36;
+  width: 100%;
+}
+
+/*botones*/
+button.boton{
+  background-color: rgb(25, 221, 25);
+  border-color: rgb(25, 221, 25);
+  color:white;
+}
+button.boton:hover{
+  background-color: #097F36;
+  border-color: #097F36;
+  color:white;
+}
+
+button.boton2{
+  border-color:  rgb(25, 221, 25);
+  color: rgb(25, 221, 25);
+}
+button.boton2:hover{
+  background-color: rgb(25, 221, 25);
+  border-color: rgb(25, 221, 25);
+  color:white;
+}
+
+button.boton3{
+  background-color: #CADA2A;
+  border-color: #CADA2A;
+  color:black;
+}
+button.boton3:hover{
+  background-color: #DD2A;
+  border-color: #DD2A;
+  color:black;
+}
+
+mat-hint.add{
+  color: #0CB14B;
  }
+a.link{
+  color:#0CB14B;
+}
+
+input{
+  border-color:#0CB14B;
+}

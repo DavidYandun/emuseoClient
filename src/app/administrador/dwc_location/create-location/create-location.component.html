@@ -1,7 +1,7 @@
 <form [formGroup]="location" (ngSubmit)="postLocation()">
   <br>
   <h2>Ubicación</h2>
-  <h5>División Política</h5>
+  <div class="title">División Política</div>
   <div class="row">
     <mat-form-field appearance="outline" class="col">
       <mat-label>País</mat-label>
@@ -204,7 +204,7 @@
     </mat-form-field>
   </div>
   <div class="form-group">
-    <button mdbBtn type="submit" [disabled]="!location.valid" color="primary" block="true">
+    <button mdbBtn type="submit" [disabled]="!location.valid" class="boton" block="true">
       Registrar Ubicación</button>
   </div>
 </form>

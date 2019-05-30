@@ -27,6 +27,7 @@ export class ReadFichaComponent implements OnInit {
 
   identificationid = null;
   image: any;
+
   //title
   fichaTitle1: string;
   fichaTitle2: string = "Taxonomía";

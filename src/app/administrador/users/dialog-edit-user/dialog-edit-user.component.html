@@ -40,9 +40,15 @@
     <mat-form-field appearance="outline" class="col">
       <mat-label for="url">Fotografía</mat-label>
       <input matInput type="url" [(ngModel)]="data.url" id="url" placeholder="Ingrese la url de la fotografía">
+      <input (change)="onFileSelected($event)" type="file" #fileInput id="archivo" hidden>
+      <button type="button" mdbBtn class="boton2" (click)="fileInput.click()">
+        <mat-icon>cloud_upload</mat-icon> Cargar Imagen
+      </button>
+      <label>{{archivo}}</label>
+
     </mat-form-field>
   </div>
   <div mat-dialog-actions>
     <button class="col" mat-flat-button (click)="onNoClick()">No Gracias</button>
-    <button class="col" mat-flat-button [mat-dialog-close]="data" color="primary">Aceptar</button>
+    <button class="col boton" mat-flat-button [mat-dialog-close]="data">Aceptar</button>
   </div>

@@ -1,6 +1,6 @@
 <form [formGroup]="location" (ngSubmit)="updateLocation()">
   <br>
-  <h2>Ubicación</h2>
+  <div class="title">Ubicación</div>
   <h5>División Política</h5>
   <div class="row">
     <mat-form-field appearance="outline" class="col">
@@ -198,7 +198,7 @@
     </mat-form-field>
   </div>
   <div class="form-group">
-    <button mdbBtn type="submit" [disabled]="!location.valid" color="primary" block="true">
+    <button mdbBtn type="submit" [disabled]="!location.valid" class="boton" block="true">
       Actualizar Ubicación</button>
   </div>
 </form>

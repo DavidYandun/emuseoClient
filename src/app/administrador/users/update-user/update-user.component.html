@@ -1,0 +1,62 @@
+<app-header-admin></app-header-admin>
+
+<div class="container">
+  <form [formGroup]="userRecord" (ngSubmit)="postFile()">
+    <div class="row">
+      <div class="text-center col-lg-12">
+        <h1 class="h3 mb-3 font-weight-normal color-primary">Editar Usuario</h1>
+      </div>
+      <mat-form-field class="col-lg-12" appearance="outline">
+        <mat-label for="userid">ID/Cédula/Pasaporte</mat-label>
+        <input matInput type="text" formControlName="userid" placeholder="Ingrese su cédula" required>
+      </mat-form-field>
+      <mat-form-field class="col-lg-12" appearance="outline">
+        <mat-label for="name">Nombre</mat-label>
+        <input matInput type="text" formControlName="name" placeholder="Ingrese su nombre">
+      </mat-form-field>
+      <mat-form-field class="col-lg-12" appearance="outline">
+        <mat-label for="lastname">Apellido</mat-label>
+        <input matInput type="text" formControlName="lastname" placeholder="Ingrese su apellido">
+      </mat-form-field>
+      <mat-form-field class="col-lg-12" appearance="outline">
+        <mat-label for="email">Correo Electrónico</mat-label>
+        <input matInput type="email" formControlName="email" placeholder="Ingrese su correo electrónico" required>
+      </mat-form-field>
+      <mat-form-field class="col-lg-12" appearance="outline">
+        <mat-label for="direction">Domicilio</mat-label>
+        <input matInput type="direction" formControlName="direction" placeholder="Ingrese su domicilio">
+      </mat-form-field>
+      <mat-form-field class="col-lg-12" appearance="outline">
+        <mat-label for="phone">Teléfono</mat-label>
+        <input matInput type="tel" formControlName="phone" placeholder="Ingrese su Teléfono">
+      </mat-form-field>
+      
+      <mat-form-field class="col-lg-12" appearance="outline">
+        <mat-label for="singleSelectRol">Rol</mat-label>
+        <mat-select ng-model="rols" formControlName="rolid" name="singleSelectRol">
+          <mat-option value="">-Ninguno-</mat-option>
+          <mat-option *ngFor="let rol of rols" value="{{rol.rolid}}">{{rol.name}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <div class="col-2"></div>
+      <div class="col-lg-4">
+        <input (change)="onFileSelected($event)" type="file" #fileInput id="archivo" hidden>
+        <button type="button" mdbBtn class="boton2" (click)="fileInput.click()">
+          <mat-icon>cloud_upload</mat-icon> Cargar Imagen
+        </button>
+        <label>{{archivo}}</label>
+      </div>
+      <div class="col-6">
+        <img class="preview rounded-circle" id="blah" [src]="imageSrc || 'http://placehold.it/150'" alt="your image" />
+      </div>
+      <div class="form-group col-lg-12">
+        <button class="col-4" type="button" mdbBtn color="secondary" mdbWavesEffect routerLink="/control-user"
+          style="margin-right:5px">Cancelar</button>
+        <button class="col-7 boton" [disabled]="!userRecord.valid" type="submit" mdbBtn mdbWavesEffect>Actualizar
+          Usuario</button>
+      </div>
+    </div>
+  </form>
+</div>
+
+<app-footer></app-footer>

@@ -3,24 +3,20 @@
   <app-header-client></app-header-client>
 </ng-template>
 
-<table class="backgroundTitle">
-  <tr>
-    <td class="text-center">
-      <h1>{{fichaTitle1}}</h1>
-    </td>
-  </tr>
-  <tr>
-    <td class="text-center">
-      <h5>{{fichaTitle2}}</h5>
-    </td>
-  </tr>
-  <div class="text-right">
-    <button mdbBtn type="button" color="danger" mdbWavesEffect routerLink="/list-collection">
+<div class="backgroundTitle row">
+  <div class="text-center col-lg-11">
+    <h1>{{fichaTitle1}}</h1>
+    <h5>{{fichaTitle2}}</h5>
+  </div>
+  <div class="col-lg-1 text-right" rowspan="2">
+    <button mdbBtn class="" type="button" color="danger" mdbWavesEffect routerLink="/list-collection">
       <mat-icon>close</mat-icon>
     </button>
   </div>
+</div>
 
-</table>
+
+
 <mat-sidenav-container class="  ">
   <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches"
     fixedTopGap="100" class="nav">
@@ -37,33 +33,32 @@
       <mat-card-content>
         <mat-list>
           <mat-list-item>
-            <button (click)="onClickTaxon()" mdbBtn type="button" color="primary" outline="true" block="true"> Taxón
+            <button (click)="onClickTaxon()" class="boton2" mdbBtn block="true"> Taxón
             </button> </mat-list-item>
           <mat-list-item>
-            <button (click)="onClickRecordlevel()" mdbBtn type="button" color="primary" outline="true" block="true">
+            <button (click)="onClickRecordlevel()" class="boton2" mdbBtn block="true">
               Nivel de Registro </button>
           </mat-list-item>
           <mat-list-item>
-            <button (click)="onClickOccurrence()" mdbBtn type="button" color="primary" outline="true" block="true">
+            <button (click)="onClickOccurrence()" class="boton2" mdbBtn block="true">
               Ocurrencia </button>
           </mat-list-item>
           <mat-list-item>
-            <button (click)="onClickOrganism()" mdbBtn type="button" color="primary" outline="true" block="true">
+            <button (click)="onClickOrganism()" class="boton2" mdbBtn block="true">
               Organismo </button>
           </mat-list-item>
           <mat-list-item>
-            <button (click)="onClickEvent()" mdbBtn type="button" color="primary" outline="true" block="true"> Event
+            <button (click)="onClickEvent()" class="boton2" mdbBtn block="true"> Evento
             </button> </mat-list-item>
           <mat-list-item>
-            <button (click)="onClickLocation()" mdbBtn type="button" color="primary" outline="true" block="true">
+            <button (click)="onClickLocation()" class="boton2" mdbBtn block="true">
               Ubicación </button>
           </mat-list-item>
           <mat-list-item>
-            <button (click)="onClickGeologicalContext()" mdbBtn type="button" color="primary" outline="true"
-              block="true"> Geológico </button>
+            <button (click)="onClickGeologicalContext()" class="boton2" mdbBtn block="true"> Geológico </button>
           </mat-list-item>
           <mat-list-item>
-            <button (click)="onClickMultimedia()" mdbBtn type="button" color="primary" outline="true" block="true">
+            <button (click)="onClickMultimedia()" class="boton2" mdbBtn type="button" block="true">
               Multimedia</button>
           </mat-list-item>
         </mat-list>
@@ -76,17 +71,17 @@
       <mat-card-content>
         <div class="row">
           <div class="col-lg-3">
-            <button mdbBtn type="button" color="primary" outline="true" block="true" (click)="snav.toggle()">
+            <button mdbBtn type="button" class="boton2" block="true" (click)="snav.toggle()">
               <mat-icon>menu</mat-icon>
             </button>
             <img class="img-thumbnail banner" src="{{image}}" alt="">
-            <button (click)="onClickMultimedia()" mdbBtn type="button" color="primary" block="true">
+            <button (click)="onClickMultimedia()" mdbBtn type="button" class="boton3" block="true">
               Multimedia </button>
-            <button *ngIf="loggedin" mdbBtn type="button" color="primary" outline="true" block="true"
+            <button *ngIf="loggedin" mdbBtn type="button" class="boton2" block="true"
               routerLink="/admin-collection/{{identificationid}}">
               Editar Ficha
             </button>
-            <button *ngIf="loggedin" mdbBtn type="button" color="primary" outline="true" block="true"
+            <button *ngIf="loggedin" mdbBtn type="button" class="boton2" block="true"
               (click)="reportePDF()">
               Reporte Ficha
             </button>

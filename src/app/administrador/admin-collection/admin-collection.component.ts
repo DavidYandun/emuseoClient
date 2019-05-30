@@ -109,7 +109,7 @@ export class AdminCollectionComponent implements OnInit {
       this.multimediaService.getMultimediaId(this.identificationid).subscribe(dato => {
         this.imagen=dato.url;
       }, error => {
-        this.imagen='../../../assets/img/sin_animal.png';
+        this.imagen='../../../assets/img/'+this.taxon.kingdom+'.png';
       });
 
     } else {

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/services/users/user.service';
 import { RolService } from 'src/app/services/users/rol.service';
 import { MatSnackBar } from '@angular/material';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { HttpEventType } from '@angular/common/http';
 import { Router } from '@angular/router';
 
@@ -27,10 +27,10 @@ export class CreateUserComponent implements OnInit {
     created_at: ['']
   });
 
-  userBool = false;
   user: any;
   rols: any;
   File: File;
+  imageSrc: any;
   extension: any;
   constructor(
     private formBuilder: FormBuilder,
@@ -59,8 +59,6 @@ export class CreateUserComponent implements OnInit {
   postUser() {
     this.userService.postUser(this.userRecord.value).subscribe(resultado => {
       this.openSnackBar('REGISTRO EXITOSO', '✅');
-      console.log(resultado);
-      this.userBool = true;
       this.user = this.userRecord.value;
     },
       error => {
@@ -71,6 +69,9 @@ export class CreateUserComponent implements OnInit {
 
   onFileSelected(file: any) {
     this.File = file.target.files[0];
+    const reader = new FileReader();
+    reader.onload = e => this.imageSrc = reader.result;
+    reader.readAsDataURL(this.File);
 
     if (this.File.name.substr(-3, 1) == '.') {
       this.extension = this.File.name.substr(-3);
@@ -83,11 +84,11 @@ export class CreateUserComponent implements OnInit {
 
   postFile() {
     this.userRecord.value.url = 'api/users/img/' + this.userRecord.value.userid + this.extension;
+    
     if (this.userRecord.value.url != null) {
       //registra el el user en la bdd
       this.userService.postUser(this.userRecord.value).subscribe(resultado => {
         this.openSnackBar('REGISTRO EXITOSO', '✅');
-        this.userBool = true
         this.user = this.userRecord.value
         this.router.navigate(['control-user'])
       },

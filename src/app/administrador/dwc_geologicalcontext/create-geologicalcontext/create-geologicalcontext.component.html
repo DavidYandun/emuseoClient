@@ -1,11 +1,11 @@
 <form [formGroup]="geologicalcontext" (ngSubmit)="postGeologicalContext()">
   <br>
-  <h2>Contexto Geológico</h2>
+  <div class="title">Contexto Geológico</div>
   <div class="row">
     <div class="col-lg-3">
-      <h5> <button (click)="addEon()" class="add" mat-mini-fab color="primary">
+      <h5> <button (click)="addEon()" class="fab" mat-mini-fab color="primary">
           <mat-icon>add</mat-icon>
-        </button>Eón</h5>
+        </button>Nuevo Eón</h5>
       <mat-form-field appearance="outline" class="col-lg-12">
         <mat-label for="earliesteonorlowesteonothem">Eon más Bajo</mat-label>
         <mat-select ng-model="eons" formControlName="earliesteonorlowesteonothem">
@@ -20,9 +20,9 @@
       </mat-form-field>
     </div>
     <div class="col-lg-3">
-      <h5><button (click)="addEra()" class="add" mat-mini-fab color="primary">
+      <h5><button (click)="addEra()" class="fab" mat-mini-fab color="primary">
           <mat-icon>add</mat-icon>
-        </button>Era</h5>
+        </button>Nueva Era</h5>
       <mat-form-field appearance="outline" class="col-lg-12">
         <mat-label for="earliesteraorlowesterathem">Era más Baja</mat-label>
         <mat-select ng-model="eras" formControlName="earliesteraorlowesterathem">
@@ -37,9 +37,9 @@
       </mat-form-field>
     </div>
     <div class="col-lg-3">
-      <h5><button (click)="addPeriod()" class="add" mat-mini-fab color="primary">
+      <h5><button (click)="addPeriod()" class="fab" mat-mini-fab color="primary">
           <mat-icon>add</mat-icon>
-        </button>Periodo</h5>
+        </button>Nuevo Periodo</h5>
       <mat-form-field appearance="outline" class="col-lg-12">
         <mat-label for="earliestperiodorlowestsystem">Periodo más Bajo</mat-label>
         <mat-select ng-model="periods" formControlName="earliestperiodorlowestsystem">
@@ -54,9 +54,9 @@
       </mat-form-field>
     </div>
     <div class="col-lg-3">
-      <h5><button (click)="addEpoch()" class="add" mat-mini-fab color="primary">
+      <h5><button (click)="addEpoch()" class="fab" mat-mini-fab color="primary">
           <mat-icon>add</mat-icon>
-        </button>Epoca</h5>
+        </button>Nueva Epoca</h5>
       <mat-form-field appearance="outline" class="col-lg-12">
         <mat-label for="earliestepochorlowestseries">Epoca más Baja</mat-label>
         <mat-select ng-model="epochs" formControlName="earliestepochorlowestseries">
@@ -79,7 +79,7 @@
     </mat-form-field>
   </div>
   <div>
-      <button mdbBtn type="submit" [disabled]="!geologicalcontext.valid" color="primary" block="true">
+      <button mdbBtn type="submit" [disabled]="!geologicalcontext.valid" class="boton" block="true">
           Registrar Contexto Geológico</button>
       </div>
   </form>

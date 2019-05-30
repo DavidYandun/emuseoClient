@@ -12,9 +12,7 @@ mat-list {
   height: 100%;
 }
 
-mat-icon{
-  margin-left: 10px;
-}
+
 .list {
   height: 100%;
   width: 100%;
@@ -32,14 +30,7 @@ mat-icon{
   width: 350px;
 }
 
-.boton{
-  margin-left: 20px;
-  
-}
-.backgroundTitle {
-  background-color: #E1DEDD;
-  width: 100%;
-}
+
 .title{
   width: 100%;
 }

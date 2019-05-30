@@ -1,6 +1,6 @@
 <form [formGroup]="taxon" (ngSubmit)="postTaxon()">
     <br>
-    <h2>Taxón</h2>
+    <div class="title">Taxón</div>
     <h5>Rango de Taxon: </h5>
     <div class="row">
       <mat-form-field appearance="outline" class="col-lg-3">
@@ -158,7 +158,7 @@
   
     <div class="form-group">
       <div class="form-group text-right">
-        <button mdbBtn type="submit" [disabled]="!taxon.valid" color="primary" block="true">
+        <button mdbBtn type="submit" [disabled]="!taxon.valid" class="boton" block="true">
           Registrar Taxón</button>
       </div>
     </div>

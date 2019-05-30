@@ -1,7 +1,7 @@
 <app-header-admin></app-header-admin>
 
 <div class="container">
-  <form *ngIf="!userBool;else resultado" [formGroup]="userRecord" (ngSubmit)="postFile()">
+  <form [formGroup]="userRecord" (ngSubmit)="postFile()">
     <div class="row">
       <div class="text-center col-lg-12">
         <h1 class="h3 mb-3 font-weight-normal color-primary">Nuevo Usuario</h1>
@@ -32,12 +32,12 @@
       </mat-form-field>
       <mat-form-field class="col-lg-12" appearance="outline">
         <mat-label for="password">Contraseña</mat-label>
-        <input matInput type="password" formControlName="password" placeholder="Ingrese su password mínimo 6 caracteres"
+        <input matInput type="password" ng-model="password" formControlName="password" placeholder="Ingrese su password mínimo 6 caracteres"
           require minlength="6">
       </mat-form-field>
       <mat-form-field class="col-lg-12" appearance="outline">
         <mat-label for="password">Repetir Contraseña</mat-label>
-        <input matInput type="password" placeholder="Ingrese su password mínimo 6 caracteres" require minlength="6">
+        <input matInput type="password" ng-model="repit_password" placeholder="Ingrese su password mínimo 6 caracteres" require minlength="6">
       </mat-form-field>
       <mat-form-field class="col-lg-12" appearance="outline">
         <mat-label for="singleSelectRol">Rol</mat-label>
@@ -46,46 +46,25 @@
           <mat-option *ngFor="let rol of rols" value="{{rol.rolid}}">{{rol.name}}</mat-option>
         </mat-select>
       </mat-form-field>
+      <div class="col-2"></div>
       <div class="col-lg-4">
         <input (change)="onFileSelected($event)" type="file" #fileInput id="archivo" hidden>
-        <button type="button" mat-raised-button color="primary" (click)="fileInput.click()">
+        <button type="button" mdbBtn class="boton2" (click)="fileInput.click()">
           <mat-icon>cloud_upload</mat-icon> Cargar Imagen
         </button>
         <label>{{archivo}}</label>
       </div>
+      <div class="col-6">
+        <img class="preview rounded-circle" id="blah" [src]="imageSrc || 'http://placehold.it/150'" alt="your image" />
+      </div>
       <div class="form-group col-lg-12">
         <button class="col-4" type="button" mdbBtn color="secondary" mdbWavesEffect routerLink="/control-user"
           style="margin-right:5px">Cancelar</button>
-        <button class="col-7" [disabled]="!userRecord.valid" type="submit" mdbBtn color="primary"
-          mdbWavesEffect>Registrar
+        <button class="col-7 boton" [disabled]="!userRecord.valid" type="submit" mdbBtn mdbWavesEffect>Registrar
           Usuario</button>
       </div>
     </div>
   </form>
-  <ng-template #resultado>
-    <mat-card class="cards">
-      <mat-card-header class="text-center">
-        <mat-card-title>Usuario Registrado con los siguentes datos:</mat-card-title>
-      </mat-card-header>
-      <div class="text-center">
-        <img mat-card-image src="{{user.url}}" alt="" class="perfil rounded-circle ">
-      </div>
-      <mat-card-content>
-        <ul>
-          <li>ID/Cédula/Pasaporte: {{user.userid}}</li>
-          <li>Nombre: {{user.name}}</li>
-          <li>Apellido: {{user.lastname}}</li>
-          <li>Email: {{user.email}}</li>
-          <li>Dirección: {{user.direction}}</li>
-          <li>Teléfono: {{user.phone}}</li>
-        </ul>
-      </mat-card-content>
-      <mat-card-actions>
-        <button type="button" mdbBtn color="link" mdbWavesEffect>
-          Editar</button>
-      </mat-card-actions>
-    </mat-card>
-  </ng-template>
 </div>
 
 <app-footer></app-footer>

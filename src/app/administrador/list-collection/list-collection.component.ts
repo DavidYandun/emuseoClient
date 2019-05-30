@@ -90,7 +90,7 @@ export class ListCollectionComponent implements OnInit {
         }, error => {
           let media: any = {
             identificationid: d.identificationid,
-            url: '../../../assets/img/sin_animal.png'
+            url: '../../../assets/img/'+d.kingdom+'.png'
           }
           this.multimedia.push(media);
         });

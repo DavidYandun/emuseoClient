@@ -1,6 +1,6 @@
 <form [formGroup]="organism" (ngSubmit)="updateOrganism()">
   <br>
-  <h2>Organismo</h2>
+  <div class="title">Organismo</div>
   <div class="row">
     <mat-form-field appearance="outline" class="col-lg-12">
       <mat-label for="organismname">Nombre de Organismo</mat-label>
@@ -19,7 +19,7 @@
     </mat-form-field>
   </div>
   <div class="form-group">
-    <button mdbBtn type="submit" [disabled]="!organism.valid" color="primary" block="true">
+    <button mdbBtn type="submit" [disabled]="!organism.valid" class="boton" block="true">
       Actualizar Organismo</button>
   </div>
 </form>

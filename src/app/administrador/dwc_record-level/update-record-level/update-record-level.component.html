@@ -1,6 +1,6 @@
 <form [formGroup]="recordlevel" (ngSubmit)="updateRecordLevel()">
   <br>
-  <h2>Nivel de Registro</h2>
+  <div class="title">Nivel de Registro</div>
   <div class="row">
     <mat-form-field appearance="outline" class="col">
       <mat-label for="name">Entidad</mat-label>
@@ -71,7 +71,7 @@
   </div>
 
   <div>
-    <button mdbBtn type="submit" [disabled]="!recordlevel.valid" color="primary" block="true">
+    <button mdbBtn type="submit" [disabled]="!recordlevel.valid" class="boton" block="true">
       Actualizar Nivel de Registro</button>
   </div>
 </form>

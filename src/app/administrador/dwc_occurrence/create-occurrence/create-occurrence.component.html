@@ -1,6 +1,6 @@
 <form [formGroup]="occurrence" (ngSubmit)="postOccurrence()">
   <br>
-  <h2>Ocurrencia</h2>
+  <div class="title">Ocurrencia</div>
   <div class="row">
     <mat-form-field appearance="outline" class="col">
       <mat-label for="lifestage">Estado de Vida</mat-label>
@@ -101,7 +101,7 @@
     </mat-form-field>
   </div>
   <div class="form-group">
-    <button mdbBtn type="submit" [disabled]="!occurrence.valid" color="primary" block="true">
+    <button mdbBtn type="submit" [disabled]="!occurrence.valid" class="boton" block="true">
       Registrar Ocurrencia</button>
   </div>
 </form>
