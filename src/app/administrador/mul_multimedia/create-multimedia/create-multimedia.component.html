@@ -1,37 +1,82 @@
 <div class="row">
   <div class="col-md-8">
-    <div *ngIf="galeria;else notGaleria" class="row justify-content-center">
-      <div *ngFor="let img of multimediaList" class=" text-center" [contextMenu]="basicMenu" [contextMenuSubject]="img">
-        <a href="{{img.url}}" data-toggle="lightbox" data-gallery="example-gallery" data-height="800">
-          <img src="{{img.url}}" class="img-fluid thumbnail">
-        </a>
-      </div>
-    </div>
-    <ng-template #notGaleria>
-      <h3>No existen archivos subidos</h3>
-    </ng-template>
+
+    <mat-accordion class="example-headers-align">
+      <mat-expansion-panel hideToggle>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Imagenes
+          </mat-panel-title>
+          <mat-panel-description>
+            {{cantidadFotografia}} Fotografias
+
+          </mat-panel-description>
+          <mat-icon>photo_library</mat-icon>
+        </mat-expansion-panel-header>
+        <div class="row justify-content-center">
+          <div *ngFor="let img of fotografia" class=" text-center" [contextMenu]="basicMenu" [contextMenuSubject]="img">
+            <a href="{{img.url}}" data-toggle="lightbox" data-gallery="example-gallery" data-height="800">
+              <img src="{{img.url}}" class="img-fluid thumbnail">
+            </a>
+          </div>
+        </div>
+      </mat-expansion-panel>
+
+      <mat-expansion-panel hideToggle>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Video
+          </mat-panel-title>
+          <mat-panel-description>
+            {{cantidadVideo}} Videos
+          </mat-panel-description>
+          <mat-icon>video_library</mat-icon>
+        </mat-expansion-panel-header>
+        <div class="row">
+          <div *ngFor="let vid of video" class="col-lg-6" [contextMenu]="basicMenu" [contextMenuSubject]="vid">
+            <video controls height="190">
+              <source src="{{vid.url}}">
+              Lo siento; su navegador no soporta video HTML5
+            </video>
+          </div>
+        </div>
+      </mat-expansion-panel>
+
+      <mat-expansion-panel hideToggle>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Sonido
+          </mat-panel-title>
+          <mat-panel-description>
+            {{cantidadAudio}} Notas de Audio
+          </mat-panel-description>
+          <mat-icon>library_music</mat-icon>
+        </mat-expansion-panel-header>
+        <div class="row">
+          <div *ngFor="let aud of audio" class="col-lg-6"[contextMenu]="basicMenu" [contextMenuSubject]="aud">
+            <audio controls class="col">
+              <source src="{{aud.url}}">
+              Y Lo siento; su navegador no soporta audio HTML5
+            </audio>
+          </div>
+        </div>
+      </mat-expansion-panel>
+
+    </mat-accordion>
+
   </div>
   <div class="col-md-4">
     <form [formGroup]="multimedia" (ngSubmit)="postFile()">
       <div class="row">
         <div class="title2">
-            <h3>Nuevo Contenido</h3>
+          <h3>Nuevo Contenido</h3>
         </div>
-        
+
         <mat-form-field appearance="outline" class="col-6">
           <mat-label>Autor</mat-label>
           <input matInput formControlName="author" type="text" placeholder="">
         </mat-form-field>
-        <div class="col-6">
-          <mat-form-field appearance="outline">
-            <mat-label>Tipo de Archivo</mat-label>
-            <mat-select ng-model="typemedias" formControlName="typemedia">
-              <mat-option>-Ninguno-</mat-option>
-              <mat-option *ngFor="let typemedia of typemedias" value="{{typemedia.typemedia}}">{{typemedia.typemedia}}
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
-        </div>
+
         <div class="col-6">
           <input (change)="onFileSelected($event)" type="file" #fileInput id="archivo" hidden>
           <button type="button" (click)="fileInput.click()" mdbBtn class="boton2" block="true">
@@ -51,40 +96,20 @@
   </div>
 </div>
 
+<!--Context Imagen-->
 <context-menu>
   <ng-template contextMenuItem>
     {{item?.url}}
   </ng-template>
   <ng-template contextMenuItem let-item (execute)="imagenPrincipal($event.item)">
-      <button mdbBtn type="button" color="primary" block="true"  mdbWavesEffect>
-    <mat-icon>check_circle_outline</mat-icon> Imagen principal
+    <button mdbBtn type="button" color="primary" block="true" mdbWavesEffect>
+      <mat-icon>check_circle_outline</mat-icon> Imagen principal
     </button>
   </ng-template>
 
   <ng-template contextMenuItem let-item (execute)="deleteMultimedia($event.item.multimediaid)">
-      <button mdbBtn type="button" color="danger" block="true"  mdbWavesEffect>
-          <mat-icon>close</mat-icon> Eliminar
-      </button>
+    <button mdbBtn type="button" color="danger" block="true" mdbWavesEffect>
+      <mat-icon>close</mat-icon> Eliminar
+    </button>
   </ng-template>
-
 </context-menu>
-
-
-<!--
-<ul>
-  <li *ngFor="let item of items" [contextMenu]="basicMenu" [contextMenuSubject]="item">{{item?.name}}</li>
-</ul>
-
-<context-menu>
-  <ng-template contextMenuItem (execute)="showMessage('Hi, ' + $event.item.multimediaid)">
-    <button> Elegi como principal</button>
-  </ng-template>
-
-  <ng-template contextMenuItem let-item
-    (execute)="showMessage($event.item.multimediaid + ' said: ' + $event.item.author)">
-    Bye, {{item?.multimediaid}}
-  </ng-template>
-
-</context-menu
-  
--->

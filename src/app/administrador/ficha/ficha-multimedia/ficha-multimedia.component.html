@@ -5,13 +5,13 @@
         Imagenes
       </mat-panel-title>
       <mat-panel-description>
-        {{cantidadImages}} Fotografias
+        {{cantidadFotografia}} Fotografias
 
       </mat-panel-description>
       <mat-icon>photo_library</mat-icon>
     </mat-expansion-panel-header>
     <div class="row justify-content-center">
-      <div *ngFor="let img of multimedia" class=" text-center">
+      <div *ngFor="let img of fotografia" class=" text-center">
         <a href="{{img.url}}" data-toggle="lightbox" data-gallery="example-gallery" data-height="800">
           <img src="{{img.url}}" class="img-fluid thumbnail">
         </a>
@@ -25,13 +25,18 @@
         Video
       </mat-panel-title>
       <mat-panel-description>
-        2 Videos
+        {{cantidadVideo}} Videos
       </mat-panel-description>
       <mat-icon>video_library</mat-icon>
     </mat-expansion-panel-header>
-    Contenido 2
-
-
+    <div class="row">
+      <div *ngFor="let vid of video" class="col-lg-6">
+        <video controls height="250">
+          <source src="{{vid.url}}">
+          Lo siento; su navegador no soporta video HTML5
+        </video>
+      </div>
+    </div>
   </mat-expansion-panel>
 
   <mat-expansion-panel hideToggle>
@@ -40,11 +45,18 @@
         Sonido
       </mat-panel-title>
       <mat-panel-description>
-        4 Notas de Audio
+        {{cantidadAudio}} Notas de Audio
       </mat-panel-description>
       <mat-icon>library_music</mat-icon>
     </mat-expansion-panel-header>
-
+    <div class="row">
+      <div *ngFor="let aud of audio" class="col-lg-6">
+        <audio controls class="col">
+          <source src="{{aud.url}}">
+          Y Lo siento; su navegador no soporta audio HTML5
+        </audio>
+      </div>
+    </div>
   </mat-expansion-panel>
 
 </mat-accordion>

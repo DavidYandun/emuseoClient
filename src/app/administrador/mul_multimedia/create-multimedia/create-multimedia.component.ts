@@ -13,6 +13,16 @@ import { ContextMenuComponent } from 'ngx-contextmenu';
 })
 export class CreateMultimediaComponent implements OnInit {
   @Input() identificationid: number;
+
+  fotografia: any;
+  video: any;
+  audio: any;
+
+  cantidadFotografia: any;
+  cantidadVideo: any;
+  cantidadAudio: any;
+
+
   multimediaList: any;
   multimedia = this.formBuilder.group({
     identificationid: null,
@@ -42,21 +52,28 @@ export class CreateMultimediaComponent implements OnInit {
   }
 
   cargarImagenes() {
-    this.multimediaService.getMultimediaIdAll(this.identificationid).subscribe(data => {
-      this.multimediaList = data;
-      console.log(data);
-
-      if (data.length > 0) this.galeria = true;
+    this.multimediaService.getMultimediaIdAllFotografia(this.identificationid).subscribe(data => {
+      this.fotografia = data;
+      this.cantidadFotografia = data.length;
     })
+    this.multimediaService.getMultimediaIdAllVideo(this.identificationid).subscribe(data => {
+      this.video = data;
+      this.cantidadVideo = data.length;
+    })
+    this.multimediaService.getMultimediaIdAllAudio(this.identificationid).subscribe(data => {
+      this.audio = data;
+      this.cantidadAudio = data.length;
+    })
+
     this.getTypeMedias();
     this.getMax();
     this.File = null;
   }
   imagenPrincipal(multimedia) {
-    
+
     this.multimediaService.getPrincipal(this.identificationid).subscribe(data => {
       data.principal = false;
-      this.multimediaService.putMultimedia(data.multimediaid, data).subscribe(data => {   
+      this.multimediaService.putMultimedia(data.multimediaid, data).subscribe(data => {
         this.cargarImagenes();
       })
     });
@@ -113,7 +130,18 @@ export class CreateMultimediaComponent implements OnInit {
         this.multimedia.value.name = data.scientificname
         //condiciona si no tiene nombre no registra en la BDD ni sube la imagen
         if (this.multimedia.value.name != null && this.multimedia.value.principal != null) {
-          this.multimedia.value.url = 'api/multimedia/img/' + this.multimedia.value.name + this.max + this.extension;
+          //condiciona tipo de contenido multimedia
+          if (this.extension == '.jpg' || this.extension == '.jpeg' || this.extension == '.png' || this.extension == '.gif' || this.extension == '.svg' || this.extension == '.tiff') {
+            this.multimedia.value.url = 'api/multimedia/img/' + this.multimedia.value.name + this.max + this.extension;
+            this.multimedia.value.typemedia = 'FOTOGRAFIA';
+          } else if (this.extension == '.mp4' || this.extension == '.webm' || this.extension == '.ogg' || this.extension == '.ogv') {
+            this.multimedia.value.url = 'api/multimedia/vid/' + this.multimedia.value.name + this.max + this.extension;
+            this.multimedia.value.typemedia = 'VIDEO';
+          } else if (this.extension == '.wav' || this.extension == '.mp3' || this.extension == '.aac' || this.extension == '.m4a') {
+            this.multimedia.value.url = 'api/multimedia/aud/' + this.multimedia.value.name + this.max + this.extension;
+            this.multimedia.value.typemedia = 'AUDIO';
+          }
+
           //registra el campo multimedia en la bdd
           this.multimediaService.postMultimedia(this.multimedia.value).subscribe(resultado => {
             console.log(resultado)
@@ -124,7 +152,7 @@ export class CreateMultimediaComponent implements OnInit {
           //asigna el nombre de la imagen
 
           //sube el archivo al repostitorio
-          this.multimediaService.postFile(this.File, this.multimedia.value.name + this.max + this.extension).subscribe(data => {
+          this.multimediaService.postFile(this.File, this.multimedia.value.name + this.max + this.extension, this.extension).subscribe(data => {
             this.cargarImagenes()
             if (data.type === HttpEventType.UploadProgress) {
               console.log('Upload Progress: ' + Math.round(data.loaded / data.total * 100) + '%');
@@ -137,6 +165,7 @@ export class CreateMultimediaComponent implements OnInit {
         console.log(data.scientificname)
       })
     }
+
   }
 
   deleteMultimedia(multimediaid: any) {
@@ -160,6 +189,7 @@ export class CreateMultimediaComponent implements OnInit {
     { name: 'Joe', otherProperty: 'Bar' }
   ];
   @ViewChild(ContextMenuComponent) public basicMenu: ContextMenuComponent;
+  @ViewChild(ContextMenuComponent) public basicMenu2: ContextMenuComponent;
 
 
   showMessage(message: any) {
