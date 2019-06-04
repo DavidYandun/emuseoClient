@@ -33,7 +33,7 @@
 .quinario {  color: #0D0D0D;}
 
 /*header*/
-nav.bg-primario{background-color: rgb(25, 221, 25); }
+nav.bg-primario{background-color: #0CB14B; }
 a.dropdown-item:hover{
   background-color: #0CB14B;
   color:#ffffff;
