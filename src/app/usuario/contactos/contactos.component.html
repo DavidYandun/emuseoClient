@@ -2,5 +2,36 @@
 <ng-template #loggedout>
   <app-header-client></app-header-client>
 </ng-template>
-  contactos works!
+<ol class="breadcrumb">
+  <li class="breadcrumb-item"><a routerLink="/admin">Inicio</a></li>
+  <li class="breadcrumb-item"><a>Acerca de</a></li>
+  <li class="breadcrumb-item active" aria-current="page">Contactos</li>
+</ol>
+<h1 class="text-center color-primary">Contactos</h1>
+<div class="container row">
+  <div class="col-lg-7">
+    <img src="../../../assets/img/edificio.png" alt="" width="450">
+  </div>
+  <div class="col-lg-5">
+    <div class="col-lg-12 titulo"><strong> Teléfonos: </strong></div>
+    <div class="col-lg-12 subtitulo">
+      <mat-icon>phone</mat-icon> (06)123-4567
+    </div>
+    <div class="col-lg-12 titulo"> <strong> E-mail:</strong> </div>
+    <div class="col-lg-12 subtitulo">
+      <mat-icon>email</mat-icon> museo@utn.edu.ec
+    </div>
+    <div class="col-lg-12 titulo"><strong> Skype:</strong></div>
+    <div class="col-lg-12 subtitulo">MuseoUTN-EC</div>
+    <div class="col-lg-12 titulo"><strong> Whatsapp:</strong></div>
+    <div class="col-lg-12 subtitulo">(+593)98-123-4567</div>
+    <div class="col-lg-12 titulo"><strong> Donde estamos:</strong> </div>
+    <div class="col-lg-12 subtitulo">
+      <mat-icon>account_balance </mat-icon> Calle Juan Montalvo
+    </div>
+    <div class="col-lg-12 subtitulo">entre Juán de Velazco y Colón</div>
+  </div>
+
+</div>
+
 <app-footer></app-footer>

@@ -2,5 +2,44 @@
 <ng-template #loggedout>
   <app-header-client></app-header-client>
 </ng-template>
-noticias works!
+<nav aria-label="breadcrumb">
+<ol class="breadcrumb">
+    <li class="breadcrumb-item"><a routerLink="/admin">Inicio</a></li>
+    <li class="breadcrumb-item"><a>Acerca de</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Noticias</li>
+  </ol>
+</nav>
+<h1 class="text-center color-primary">Noticias</h1>
+<div class="container">
+  <hr class="featurette-divider">
+  <div class="row featurette">
+    <div class="col-md-7">
+      <h2 class="featurette-heading">Inauguración Museo de Historia Natural UTN</h2>
+      <p class="lead">El Museo de Historia Natural de la Universidad Técnica del Norte tiene como
+        objetivo, convertirse en un espacio para la preservación, conservación, investigacióny difusión
+        del conocimiento relacionado con el patrimonio cultural y natural, lo que le perimitirá ser un lugar
+        destinado para el aprendizaje de los estudiantes universitarios y público en general, lo que lleva a
+        generar cambios positivos en la ciudadanía. </p>
+    </div>
+    <div class="col-md-5">
+      <img src="../../../assets/img/pelicano.jpg" alt="" width="500" height="500">
+    </div>
+  </div>
+
+  <hr class="featurette-divider">
+
+  <div class="row featurette">
+    <div class="col-md-7 order-md-2">
+      <h2 class="featurette-heading">Murales Artístico Museo UTN</h2>
+      <p class="lead">El Museo de Historia Natural de la Universidad Técnica del Norte será un espacio
+        reconocido por las colecciones que alberga, sus aportes a la educación y la ciencia; así como por
+        las exhibiciones de calidad que genera.</p>
+    </div>
+    <div class="col-md-5 order-md-1">
+      <img src="../../../assets/img/murales_museo.jpg" alt="" width="450">
+    </div>
+  </div>
+
+  <hr class="featurette-divider">
+  </div>
 <app-footer></app-footer>

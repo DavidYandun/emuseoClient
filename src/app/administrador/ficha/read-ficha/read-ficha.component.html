@@ -2,7 +2,14 @@
 <ng-template #loggedout>
   <app-header-client></app-header-client>
 </ng-template>
-
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a routerLink="/admin">Inicio</a></li>
+    <li class="breadcrumb-item"><a>Colecciones</a></li>
+    <li class="breadcrumb-item"><a routerLink="/list-collection">Lista de Colecciones</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Ficha {{fichaTitle1}}</li>
+  </ol>
+</nav>
 <div class="backgroundTitle row">
   <div class="text-center col-lg-11">
     <h1>{{fichaTitle1}}</h1>
@@ -67,7 +74,6 @@
   </mat-sidenav>
   <mat-sidenav-content>
     <mat-card>
-
       <mat-card-content>
         <div class="row">
           <div class="col-lg-3">

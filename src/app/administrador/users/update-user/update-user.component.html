@@ -1,5 +1,10 @@
 <app-header-admin></app-header-admin>
-
+<ol class="breadcrumb">
+  <li class="breadcrumb-item"><a routerLink="/admin">Inicio</a></li>
+  <li class="breadcrumb-item"><a>Control de Usuarios</a></li>
+  <li class="breadcrumb-item"><a routerLink="/control-user">Lista de Usuarios</a></li>
+  <li class="breadcrumb-item active" aria-current="page">Editar Usuario</li>
+</ol>
 <div class="container">
   <form [formGroup]="userRecord" (ngSubmit)="postFile()">
     <div class="row">

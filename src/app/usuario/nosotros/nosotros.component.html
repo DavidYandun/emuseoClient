@@ -2,16 +2,22 @@
 <ng-template #loggedout>
   <app-header-client></app-header-client>
 </ng-template>
-
+<ol class="breadcrumb">
+  <li class="breadcrumb-item"><a routerLink="/admin">Inicio</a></li>
+  <li class="breadcrumb-item"><a>Acerca de</a></li>
+  <li class="breadcrumb-item active" aria-current="page">Nosotros</li>
+</ol>
 <h1 class="text-center color-primary">Nosotros</h1>
 <div class="container">
   <hr class="featurette-divider">
   <div class="row featurette">
     <div class="col-md-7">
       <h2 class="featurette-heading">Nuestra Misión</h2>
-      <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod
-        semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus
-        commodo.</p>
+      <p class="lead">El Museo de Historia Natural de la Universidad Técnica del Norte tiene como
+        objetivo, convertirse en un espacio para la preservación, conservación, investigación y difusión
+        del conocimiento relacionado con el patrimonio cultural y natural, lo que le perimitirá ser un lugar
+        destinado para el aprendizaje de los estudiantes universitarios y público en general, lo que lleva a
+        generar cambios positivos en la ciudadanía. </p>
     </div>
     <div class="col-md-5">
       <img src="../../../assets/img/mision.jpg" alt="" width="500" height="500">
@@ -23,9 +29,9 @@
   <div class="row featurette">
     <div class="col-md-7 order-md-2">
       <h2 class="featurette-heading">Nuestra Visión</h2>
-      <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod
-        semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus
-        commodo.</p>
+      <p class="lead">El Museo de Historia Natural de la Universidad Técnica del Norte será un espacio
+        reconocido por las colecciones que alberga, sus aportes a la educación y la ciencia; así como por
+        las exhibiciones de calidad que genera.</p>
     </div>
     <div class="col-md-5 order-md-1">
       <img src="../../../assets/img/vision.jpg" alt="" width="450">
@@ -36,53 +42,57 @@
 
   <h2 class="text-center">Nuestro Equipo</h2><br>
   <div class="row">
-    <div class="card col-lg-2" style="width: 14rem;">
-      <img src="../../assets/img/ejemplos/perfil.png" class="card-img-top" alt="...">
-      <div class="card-body">
-        <h3 class="card-title">Pepito Perez</h3>
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-          content.</p>
-      </div>
+    <div class="col text-center">
+      <img mat-card-image src="../../../assets/img/perfil.jpg" alt="" class="perfil rounded-circle ">
+      <h6>Ima Sánchez</h6>
     </div>
-    <div class="card col-lg-2" style="width: 12rem;">
-      <img src="../../assets/img/ejemplos/perfil.png" class="card-img-top" alt="...">
-      <div class="card-body">
-        <h3 class="card-title">Pepito Perez</h3>
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-          content.</p>
-      </div>
+    <div class="col text-center">
+      <img mat-card-image src="../../../assets/img/perfil.jpg" alt="" class="perfil rounded-circle ">
+      <h6>Sania Ortega</h6>
     </div>
-    <div class="card col-lg-2" style="width: 12rem;">
-      <img src="../../assets/img/ejemplos/perfil.png" class="card-img-top" alt="...">
-      <div class="card-body">
-        <h3 class="card-title">Pepito Perez</h3>
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-          content.</p>
-      </div>
+    <div class="col text-center">
+      <img mat-card-image src="../../../assets/img/perfil.jpg" alt="" class="perfil rounded-circle ">
+      <h6>Tito Mendoza</h6>
     </div>
-    <div class="card col-lg-2" style="width: 12rem;">
-      <img src="../../assets/img/ejemplos/perfil.png" class="card-img-top" alt="...">
-      <div class="card-body">
-        <h3 class="card-title">Pepito Perez</h3>
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-          content.</p>
-      </div>
+    <div class="col text-center">
+      <img mat-card-image src="../../../assets/img/perfil.jpg" alt="" class="perfil rounded-circle ">
+      <h6>Julia Prado</h6>
     </div>
-    <div class="card col-lg-2" style="width: 12rem;">
-      <img src="../../assets/img/ejemplos/perfil.png" class="card-img-top" alt="...">
-      <div class="card-body">
-        <h3 class="card-title">Pepito Perez</h3>
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-          content.</p>
-      </div>
+    <div class="col text-center">
+      <img mat-card-image src="../../../assets/img/perfil.jpg" alt="" class="perfil rounded-circle ">
+      <h6>Elizabeth Velarde</h6>
     </div>
-    <div class="card col-lg-2" style="width: 12rem;">
-      <img src="../../assets/img/ejemplos/perfil.png" class="card-img-top" alt="...">
-      <div class="card-body">
-        <h3 class="card-title">Pepito Perez</h3>
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-          content.</p>
-      </div>
+    <div class="col text-center">
+      <img mat-card-image src="../../../assets/img/perfil.jpg" alt="" class="perfil rounded-circle ">
+      <h6>Karla Sandoval</h6>
+    </div>
+    <div class="col text-center">
+      <img mat-card-image src="../../../assets/img/perfil.jpg" alt="" class="perfil rounded-circle ">
+      <h6>Tania Oña</h6>
+    </div>
+    <div class="col text-center">
+      <img mat-card-image src="../../../assets/img/perfil.jpg" alt="" class="perfil rounded-circle ">
+      <h6>Walter Palacios</h6>
+    </div>
+    <div class="col text-center">
+      <img mat-card-image src="../../../assets/img/perfil.jpg" alt="" class="perfil rounded-circle ">
+      <h6>Gabriela Tenea</h6>
+    </div>
+    <div class="col text-center">
+      <img mat-card-image src="../../../assets/img/perfil.jpg" alt="" class="perfil rounded-circle ">
+      <h6>Cristina Echeverria</h6>
+    </div>
+    <div class="col text-center">
+      <img mat-card-image src="../../../assets/img/perfil.jpg" alt="" class="perfil rounded-circle ">
+      <h6>Estuardo Pruna</h6>
+    </div>
+    <div class="col text-center">
+      <img mat-card-image src="../../../assets/img/perfil.jpg" alt="" class="perfil rounded-circle ">
+      <h6>Alexander Guevara</h6>
+    </div>
+    <div class="col text-center">
+      <img mat-card-image src="../../../assets/img/perfil.jpg" alt="" class="perfil rounded-circle ">
+      <h6>David Yandún</h6>
     </div>
   </div>
 </div>

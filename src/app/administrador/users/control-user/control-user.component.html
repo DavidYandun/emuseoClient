@@ -1,6 +1,11 @@
 <app-header-admin></app-header-admin>
-
-
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a routerLink="/admin">Inicio</a></li>
+    <li class="breadcrumb-item"><a>Control de Usuarios</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Lista de Usuarios</li>
+  </ol>
+</nav>
 <div class="container row ">
   <button mdbBtn type="button" mdbWavesEffect block="true" outline="true" class="new-user boton2"
     routerLink="/create-user">Nuevo Usuario</button>

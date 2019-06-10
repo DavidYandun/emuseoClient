@@ -2,7 +2,14 @@
 <ng-template #loggedout>
   <app-header-client></app-header-client>
 </ng-template>
-
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a routerLink="/admin">Inicio</a></li>
+    <li class="breadcrumb-item"><a>Colecciones</a></li>
+    <li class="breadcrumb-item"><a routerLink="/colecciones-user">Reinos</a></li>
+    <li class="breadcrumb-item active" aria-current="page">{{kingdom}}</li>
+  </ol>
+</nav>
 <div class="title text-center backgroundTitle">
   <h1>{{kingdom}}</h1>
   <h5>{{collection.length}} Registros</h5>

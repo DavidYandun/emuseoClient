@@ -1,5 +1,12 @@
 <app-header-admin></app-header-admin>
-
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a routerLink="/admin">Inicio</a></li>
+    <li class="breadcrumb-item"><a>Control de Usuarios</a></li>
+    <li class="breadcrumb-item"><a routerLink="/control-user">Lista de Usuarios</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Nuevo Usuario</li>
+  </ol>
+</nav>
 <div class="container">
   <form [formGroup]="userRecord" (ngSubmit)="postFile()">
     <div class="row">

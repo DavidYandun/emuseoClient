@@ -1,5 +1,18 @@
 <app-header-admin></app-header-admin>
-<br>
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a routerLink="/admin">Inicio</a></li>
+    <li class="breadcrumb-item"><a>Colecciones</a></li>
+    <li class="breadcrumb-item"><a routerLink="/list-collection">Lista de Colecciones</a></li>
+
+    <li *ngIf="!identificationid; else notNuevos" class="breadcrumb-item active" aria-current="page">Nueva Colección
+    </li>
+
+    <ng-template #notNuevos>
+      <li class="breadcrumb-item active" aria-current="page">Editar Colección</li>
+    </ng-template>
+  </ol>
+</nav>
 <div class="container">
   <div class="col">
     <div *ngIf="!identificationid; else notNuevo">
@@ -34,10 +47,10 @@
     <mat-tab-group backgroundColor="">
       <div *ngIf="identificationid; else elseBlock">
         <mat-tab>
-          <ng-template  mat-tab-label>
+          <ng-template mat-tab-label>
             <div class="tab">
-            <mat-icon class="icon">filter_1</mat-icon> Identificación
-          </div>
+              <mat-icon class="icon">filter_1</mat-icon> Identificación
+            </div>
           </ng-template>
           <div class="title2">
             <h2>Identificación #: {{identificationid}}</h2>
@@ -46,7 +59,9 @@
         </mat-tab>
         <mat-tab>
           <ng-template mat-tab-label>
-            <div class="tab"><mat-icon class="icon">filter_2</mat-icon> Taxon</div>
+            <div class="tab">
+              <mat-icon class="icon">filter_2</mat-icon> Taxon
+            </div>
           </ng-template>
           <app-update-taxon *ngIf="taxonBool; else notTaxon" [identificationid]="identificationid"></app-update-taxon>
           <ng-template #notTaxon>
@@ -56,7 +71,9 @@
         <div *ngIf="taxonBool;else disabledMultimedia">
           <mat-tab>
             <ng-template mat-tab-label>
-              <div class="tab"><mat-icon class="icon">filter_3</mat-icon> Multimedia</div>
+              <div class="tab">
+                <mat-icon class="icon">filter_3</mat-icon> Multimedia
+              </div>
             </ng-template>
             <app-create-multimedia [identificationid]="identificationid"></app-create-multimedia>
           </mat-tab>
@@ -64,14 +81,18 @@
         <ng-template #disabledMultimedia>
           <mat-tab>
             <ng-template mat-tab-label>
-              <div class="tab"><mat-icon class="icon">filter_3</mat-icon> Multimedia</div>
+              <div class="tab">
+                <mat-icon class="icon">filter_3</mat-icon> Multimedia
+              </div>
             </ng-template>
             <h2>Primero debes registrar el Taxón</h2>
           </mat-tab>
         </ng-template>
         <mat-tab>
           <ng-template mat-tab-label>
-            <div class="tab"><mat-icon class="icon">filter_4</mat-icon> Nivel de Registro</div>
+            <div class="tab">
+              <mat-icon class="icon">filter_4</mat-icon> Nivel de Registro
+            </div>
           </ng-template>
           <app-update-record-level *ngIf="recordlevelBool;else notRecordLevel"></app-update-record-level>
           <ng-template #notRecordLevel>
@@ -81,7 +102,9 @@
         </mat-tab>
         <mat-tab>
           <ng-template mat-tab-label>
-            <div class="tab"><mat-icon class="icon">filter_5</mat-icon> Ocurrencia</div>
+            <div class="tab">
+              <mat-icon class="icon">filter_5</mat-icon> Ocurrencia
+            </div>
           </ng-template>
           <app-update-occurrence *ngIf="occurrenceBool;else notOccurrence"></app-update-occurrence>
           <ng-template #notOccurrence>
@@ -91,7 +114,9 @@
         </mat-tab>
         <mat-tab>
           <ng-template mat-tab-label>
-              <div class="tab"><mat-icon class=" icon">filter_6</mat-icon> Organismo</div>
+            <div class="tab">
+              <mat-icon class=" icon">filter_6</mat-icon> Organismo
+            </div>
           </ng-template>
           <app-update-organism *ngIf="organismBool;else notOrganism">
           </app-update-organism>
@@ -102,7 +127,9 @@
         </mat-tab>
         <mat-tab>
           <ng-template mat-tab-label>
-            <div class="tab"><mat-icon class="icon">filter_7</mat-icon> Evento</div>
+            <div class="tab">
+              <mat-icon class="icon">filter_7</mat-icon> Evento
+            </div>
           </ng-template>
           <app-update-event *ngIf="eventBool; else notEvent"></app-update-event>
           <ng-template #notEvent>
@@ -111,7 +138,9 @@
         </mat-tab>
         <mat-tab>
           <ng-template mat-tab-label>
-            <div class="tab"><mat-icon class="icon">filter_8</mat-icon> Ubicación</div>
+            <div class="tab">
+              <mat-icon class="icon">filter_8</mat-icon> Ubicación
+            </div>
           </ng-template>
           <app-update-location *ngIf="locationBool;else notLocation"></app-update-location>
           <ng-template #notLocation>
@@ -121,7 +150,9 @@
         </mat-tab>
         <mat-tab>
           <ng-template mat-tab-label>
-            <div class="tab"><mat-icon class="icon">filter_9</mat-icon> Contexto Geológico</div>
+            <div class="tab">
+              <mat-icon class="icon">filter_9</mat-icon> Contexto Geológico
+            </div>
           </ng-template>
           <app-update-geologicalcontext *ngIf="geologicalBool;else notGeological"></app-update-geologicalcontext>
           <ng-template #notGeological>
@@ -136,49 +167,67 @@
       <ng-template #elseBlock>
         <mat-tab>
           <ng-template mat-tab-label>
-            <div class="tab"><mat-icon class="icon">filter_1</mat-icon> Identificación</div>
+            <div class="tab">
+              <mat-icon class="icon">filter_1</mat-icon> Identificación
+            </div>
           </ng-template>
           <app-create-identification (identificationid)="postIdentificationid($event)"></app-create-identification>
         </mat-tab>
 
         <mat-tab disabled>
           <ng-template mat-tab-label>
-            <div class="tab"><mat-icon class="icon">filter_2</mat-icon> Taxon</div>
+            <div class="tab">
+              <mat-icon class="icon">filter_2</mat-icon> Taxon
+            </div>
           </ng-template>
         </mat-tab>
         <mat-tab disabled>
           <ng-template mat-tab-label>
-            <div class="tab"><mat-icon class="icon">filter_3</mat-icon> Multimedia</div>
+            <div class="tab">
+              <mat-icon class="icon">filter_3</mat-icon> Multimedia
+            </div>
           </ng-template>
         </mat-tab>
         <mat-tab disabled>
           <ng-template mat-tab-label>
-            <div class="tab"><mat-icon class="icon">filter_4</mat-icon> Nivel de Registro</div>
+            <div class="tab">
+              <mat-icon class="icon">filter_4</mat-icon> Nivel de Registro
+            </div>
           </ng-template>
         </mat-tab>
         <mat-tab disabled>
           <ng-template mat-tab-label>
-            <div class="tab"><mat-icon class="icon">filter_5</mat-icon> Ocurrencia</div>
+            <div class="tab">
+              <mat-icon class="icon">filter_5</mat-icon> Ocurrencia
+            </div>
           </ng-template>
         </mat-tab>
         <mat-tab disabled>
           <ng-template mat-tab-label>
-            <div class="tab"><mat-icon class="icon">filter_6</mat-icon> Organismo</div>
+            <div class="tab">
+              <mat-icon class="icon">filter_6</mat-icon> Organismo
+            </div>
           </ng-template>
         </mat-tab>
         <mat-tab disabled>
           <ng-template mat-tab-label>
-            <div class="tab"><mat-icon class="icon">filter_7</mat-icon> Evento</div>
+            <div class="tab">
+              <mat-icon class="icon">filter_7</mat-icon> Evento
+            </div>
           </ng-template>
         </mat-tab>
         <mat-tab disabled>
           <ng-template mat-tab-label>
-            <div class="tab"><mat-icon class="icon">filter_8</mat-icon> Ubicación</div>
+            <div class="tab">
+              <mat-icon class="icon">filter_8</mat-icon> Ubicación
+            </div>
           </ng-template>
         </mat-tab>
         <mat-tab disabled>
           <ng-template mat-tab-label>
-            <div class="tab"><mat-icon class="icon">filter_9</mat-icon> Contexto Geológico</div>
+            <div class="tab">
+              <mat-icon class="icon">filter_9</mat-icon> Contexto Geológico
+            </div>
           </ng-template>
         </mat-tab>
 
