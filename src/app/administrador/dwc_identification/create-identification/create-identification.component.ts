@@ -1,5 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Validators, FormBuilder } from '@angular/forms';
+import { UserService } from 'src/app/services/users/user.service';
 import { IdentificationService } from 'src/app/services/dwc_identification_services/identification.service';
 import { VerificationService } from 'src/app/services/dwc_identification_services/verification.service';
 import { MatDialog, MatSnackBar } from '@angular/material';
@@ -30,11 +31,12 @@ export class CreateIdentificationComponent implements OnInit {
   verificationstatus: any;
   constructor(
     private formBuilder: FormBuilder,
+    private userService: UserService,
     private identificationService: IdentificationService,
     private verificationService: VerificationService,
     public dialog: MatDialog,
     private snackBar: MatSnackBar,
-    private router:Router) { }
+    private router: Router) { }
 
   ngOnInit() {
     this.getVerificationstatus();
@@ -44,7 +46,7 @@ export class CreateIdentificationComponent implements OnInit {
       this.identificationid.emit(resultado.identificationid);
       this.openSnackBar('REGISTRO EXITOSO', '✅');
       console.log(resultado);
-      this.router.navigate(['admin-collection/'+resultado.identificationid]);
+      this.router.navigate(['admin-collection/' + resultado.identificationid]);
     },
       error => {
         this.openSnackBar(error.error.message, '🛑');
@@ -53,12 +55,32 @@ export class CreateIdentificationComponent implements OnInit {
   }
 
   getVerificationstatus() {
-    this.verificationService.getVerifications().subscribe(data => {
-      this.verifications = data;
-    },
-      error => {
-        console.log(JSON.stringify(error));
-      })
+    this.userService.getPerfil(sessionStorage.getItem('email')).subscribe(dato => {
+      if (dato.rolid == 1 || dato.rolid == 2) {
+        this.verificationService.getVerificationsTaxonomo().subscribe(data => {
+          this.verifications = data;
+        },
+          error => {
+            console.log(JSON.stringify(error));
+          });
+      } else if (dato.rolid == 3) {
+        this.verificationService.getVerificationsCurador().subscribe(data => {
+          this.verifications = data;
+        },
+          error => {
+            console.log(JSON.stringify(error));
+          });
+      } else if (dato.rolid == 4) {
+        this.verificationService.getVerificationsDigitador().subscribe(data => {
+          this.verifications = data;
+        },
+          error => {
+            console.log(JSON.stringify(error));
+          });
+      }
+    }, error => {
+      console.log(error);
+    })
   }
 
   addVerification(): void {

@@ -15,11 +15,15 @@
       </mat-form-field>
       <mat-form-field class="col-lg-12" appearance="outline">
         <mat-label for="password">Contraseña</mat-label>
-        <input matInput type="password" placeholder="Mínimo 6 caracteres" formControlName="password" required
+        <input matInput [type]="hide ? 'password' : 'text'" placeholder="Mínimo 6 caracteres" formControlName="password" required
           minlength="6">
+          <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
         <mat-error *ngIf="password.errors">
           La contraseña debe tener mínimo 6 caracteres
         </mat-error>
+
       </mat-form-field>
       <div class="form-group">
         <button class="btn btn-lg btn-primary btn-block boton" type="submit">Ingresar</button>

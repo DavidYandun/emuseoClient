@@ -106,7 +106,7 @@ export class AdminCollectionComponent implements OnInit {
 
       }
       //buscar imagen
-      this.multimediaService.getMultimediaId(this.identificationid).subscribe(dato => {
+      this.multimediaService.getPrincipal(this.identificationid).subscribe(dato => {
         this.imagen=dato.url;
       }, error => {
         this.imagen='../../../assets/img/'+this.taxon.kingdom+'.png';

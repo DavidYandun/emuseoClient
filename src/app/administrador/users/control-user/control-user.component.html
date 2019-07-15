@@ -16,7 +16,10 @@
         <div class="text-center">
           <h5> <strong>{{user.name}} {{user.lastname}}</strong></h5>
           <h6>{{user.rolname}}</h6>
-          <img mat-card-image src="{{user.url}}" alt="" class="perfil rounded-circle ">
+          <img *ngIf="user.url;else imagenDefecto" mat-card-image src="{{user.url}}" alt="" class="perfil rounded-circle ">
+          <ng-template #imagenDefecto>
+            <img mat-card-image src="../../../../assets/img/perfil.jpg" alt="" class="perfil rounded-circle ">
+          </ng-template>
         </div>
       </mat-card-header>
 

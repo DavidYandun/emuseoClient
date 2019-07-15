@@ -29,7 +29,7 @@
         <div class="col-1">
           <img class="miniatura" src="{{imagen}}" alt="">
         </div>
-        <div class="col-10 subtitle text-center"> Nombre Científico: <strong> {{taxon.scientificname}}</strong> </div>
+        <div  class="col-10 title2 text-center"> Nombre Científico: <strong *ngIf="taxon"> {{taxon.scientificname}}</strong> </div>
         <div class="col-1 text-right">
           <div class="">
             <button mdbBtn type="button" color="danger" mdbWavesEffect routerLink="/ficha/{{identificationid}}">
@@ -46,7 +46,7 @@
   <mat-card>
     <mat-tab-group backgroundColor="">
       <div *ngIf="identificationid; else elseBlock">
-        <mat-tab>
+         <mat-tab>
           <ng-template mat-tab-label>
             <div class="tab">
               <mat-icon class="icon">filter_1</mat-icon> Identificación
@@ -160,8 +160,6 @@
               (geologicalBool)="postGeological($event)"></app-create-geologicalcontext>
           </ng-template>
         </mat-tab>
-
-
       </div>
       <!--Tabs deshabilitadas-->
       <ng-template #elseBlock>
@@ -230,7 +228,6 @@
             </div>
           </ng-template>
         </mat-tab>
-
       </ng-template>
     </mat-tab-group>
   </mat-card>

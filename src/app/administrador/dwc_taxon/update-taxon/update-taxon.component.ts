@@ -9,6 +9,7 @@ import { DialogCreateFamilyComponent } from '../dialog-create-family/dialog-crea
 import { DialogCreateGenusComponent } from '../dialog-create-genus/dialog-create-genus.component';
 import { DialogCreateSpecieComponent } from '../dialog-create-specie/dialog-create-specie.component';
 import { ActivatedRoute } from '@angular/router';
+import { UserService } from 'src/app/services/users/user.service';
 
 @Component({
   selector: 'app-update-taxon',
@@ -71,6 +72,7 @@ export class UpdateTaxonComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
+    private userService: UserService,
     private taxonService: TaxonService,
     public dialog: MatDialog,
     private snackBar: MatSnackBar,
@@ -295,14 +297,27 @@ export class UpdateTaxonComponent implements OnInit {
       });
   }
   getTaxonomicStatus() {
-    this.taxonService.getTaxonomicStatus().subscribe(data => {
-      this.taxonomicstatuss = data;
-    },
-      error => {
-        console.log(JSON.stringify(error));
-      });
-
+    this.userService.getPerfil(sessionStorage.getItem('email')).subscribe(dato => {
+      if (dato.rolid == 1 || dato.rolid == 2) {
+        this.taxonService.getTaxonomicStatusTaxonomo().subscribe(data => {
+          this.taxonomicstatuss = data;
+        },
+          error => {
+            console.log(JSON.stringify(error));
+          });
+      } else if (dato.rolid == 3 || dato.rolid == 4) {
+        this.taxonService.getTaxonomicStatusUsuario().subscribe(data => {
+          this.taxonomicstatuss = data;
+        },
+          error => {
+            console.log(JSON.stringify(error));
+          });
+      }
+    }, error => {
+      console.log(error);
+    })
   }
+
   addPhylum(): void {
     const dialogRef = this.dialog.open(DialogCreatePhylumComponent, {
       width: '350px',

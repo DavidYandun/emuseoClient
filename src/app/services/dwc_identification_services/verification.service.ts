@@ -16,6 +16,15 @@ export class VerificationService {
   getVerifications(): Observable<any> {
     return this.httpClient.get('/api/verifications');
   }
+  getVerificationsTaxonomo(): Observable<any> {
+    return this.httpClient.get('/api/verifications');
+  }
+  getVerificationsCurador(): Observable<any> {
+    return this.httpClient.get('/api/verifications/curador');
+  }
+  getVerificationsDigitador(): Observable<any> {
+    return this.httpClient.get('/api/verifications/digitador');
+  }
 
 
   getVerification(verificationstatus): Observable<Verification> {

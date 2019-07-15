@@ -87,9 +87,8 @@ export class ReadFichaComponent implements OnInit {
     this.taxonService.getTaxonId(this.identificationid).subscribe(data => {
       this.fichaTitle1 = data.scientificname;
     })
-    this.multimediaService.getPrincipal(this.identificationid).subscribe(data => {
-      this.image = data.url;
-    })
+
+
     //consulta de datos
     this.identificationService.getIdentification(this.identificationid).subscribe(data => {
       this.identification = data;
@@ -104,10 +103,10 @@ export class ReadFichaComponent implements OnInit {
       this.recordlevel = { recordlevelid: null, identificationid: null, entidadid: null, type: null, modified: null, language: null, license: null, rightsholder: null, accessrights: null, bibliographiccitation: null, references: null, basisofrecord: null, dynamicproperties: null, }
     })
     this.taxonService.getTaxonId(this.identificationid).subscribe(data => {
-      this.taxon = data;
+      this.taxon = data;     
     }, error => {
       this.taxon = { taxonid: null, identificationid: null, taxonrank: null, taxonomicstatus: null, scientificname: null, acceptednameusage: null, originalnameusage: null, vernacularname: null, taxonremarks: null, kingdom: null, phylum: null, class: null, order: null, family: null, genus: null, specie: null, }
-    })
+    });
     this.organismService.getOrganismId(this.identificationid).subscribe(data => {
       this.organism = data;
     }, error => {
@@ -137,6 +136,12 @@ export class ReadFichaComponent implements OnInit {
     }, error => {
       this.geologicalcontext = { geologicalcontextid: null, identificationid: null, earliesteonorlowesteonthem: null, latesteonorhighesteonthem: null, earliesteraorlowesterathem: null, latesteraorhighesterathem: null, earliestperiodorlowestperiodthem: null, latestperiodorhighestperiodthem: null, earliestepochorlowestepochthem: null, latestepochorhighestepochthem: null, geologicalcontextremarks: null, }
     })
+
+    this.multimediaService.getPrincipal(this.identificationid).subscribe(dato => {
+      this.image=dato.url;
+    }, error => {
+      this.image='../../../assets/img/'+this.taxon.kingdom+'.png';
+    });
   }
   onClickTaxon() {
     this.fichaTitle2 = "Taxonomía";

@@ -14,7 +14,7 @@ tr.example-detail-row {
 }
 
 tr.example-element-row:not(.example-expanded-row):hover {
-  background: rgb(163, 250, 2);
+  background: #CCFF99;
 }
 
 mat-button-toggle-group{  border-color: #0CB14B;}
@@ -38,7 +38,7 @@ img.miniatura {
 }
 
 img.resumen {
-  height: 200px;
+  height: 220px;
 }
 
 .actions {

@@ -39,7 +39,7 @@ export class ReinosComponent implements OnInit {
     this.identificationService.getReinos(this.kingdom).subscribe(data => {
       this.collection = data;
       for (let d of this.collection) {
-        this.multimediaService.getMultimediaId(d.identificationid).subscribe(dato => {
+        this.multimediaService.getPrincipal(d.identificationid).subscribe(dato => {
           this.multimedia.push(dato);
         }, error => {
           let media: any = {

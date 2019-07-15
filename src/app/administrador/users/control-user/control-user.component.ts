@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./control-user.component.css']
 })
 export class ControlUserComponent implements OnInit {
+  loggedin = false;
   users: any;
   rols: any;
   user = null;
@@ -23,8 +24,14 @@ export class ControlUserComponent implements OnInit {
     private router:Router) { }
 
   ngOnInit() {
+    if (sessionStorage.getItem('loggedin') == 'true') {
+      this.loggedin = true;
     this.getUsers();
     this.getRols();
+  } else {
+    this.router.navigate(['/admin']);
+    this.loggedin = false;
+  }
   }
 
 

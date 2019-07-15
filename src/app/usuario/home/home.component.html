@@ -1,7 +1,7 @@
 <app-header-client></app-header-client>
-<div class="fondo">
+<!--<div class="fondo">
   <br><br>
-  <div class="titulo">Museo UTN</div>
+  <div class="titulo">Museo de Historia Natural UTN</div>
   <div class="contenedores text-justify">
     <div class="card multimedia cuadros">
       <div class="card-body colorcuadros">
@@ -21,6 +21,53 @@
           texto de relleno estándar de las industrias desde el año 1500</p>
         <a href="#" class="card-link">Ver más</a>
       </div>
+    </div>
+  </div>
+</div>
+-->
+
+<div class=" big-banner">
+
+  <div class="row" style="width: 500px; float: right;">
+    <div class="col">
+      <a routerLink="/reinos/Animalia">
+        <img src="../../assets/img/ejemplos/colibri.jpg" class="rounded-circle imgredonda" alt="...">
+      </a>
+      <p>Animalia<br>
+        <small>{{animalia.length}} Registros</small>
+      </p>
+    </div>
+    <div class="col">
+      <a routerLink="/reinos/Plantae">
+        <img src="../../assets/img/ejemplos/girasol.jpg" class="rounded-circle imgredonda" alt="...">
+      </a>
+      <p>Plantae<br>
+        <small>{{plantae.length}} Registros</small>
+      </p>
+    </div>
+    <div class="col">
+      <a routerLink="/reinos/Fungi">
+        <img src="../../assets/img/ejemplos/hongo.jpg" class="rounded-circle imgredonda" alt="...">
+      </a>
+      <p>Fungi<br>
+        <small>{{fungi.length}} Registros</small>
+      </p>
+    </div>
+    <div class="col">
+      <a routerLink="/reinos/Monera">
+        <img src="../../assets/img/ejemplos/bacteria.jpg" class="rounded-circle imgredonda" alt="...">
+      </a>
+      <p>Monera<br>
+        <small>{{monera.length}} Registros</small>
+      </p>
+    </div>
+    <div class="col">
+      <a routerLink="/reinos/Protista">
+        <img src="../../assets/img/ejemplos/protista.jpg" class="rounded-circle imgredonda" alt="...">
+      </a>
+      <p>Protista<br>
+        <small>{{protista.length}} Registros</small>
+      </p>
     </div>
   </div>
 </div>

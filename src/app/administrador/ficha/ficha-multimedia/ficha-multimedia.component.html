@@ -13,7 +13,7 @@
     <div class="row justify-content-center">
       <div *ngFor="let img of fotografia" class=" text-center">
         <a href="{{img.url}}" data-toggle="lightbox" data-gallery="example-gallery" data-height="800">
-          <img src="{{img.url}}" class="img-fluid thumbnail">
+          <img src="{{img.url}}" alt="{{img.name}}" class="img-fluid thumbnail">
         </a>
       </div>
     </div>
@@ -31,10 +31,11 @@
     </mat-expansion-panel-header>
     <div class="row">
       <div *ngFor="let vid of video" class="col-lg-6">
-        <video controls height="250">
+        <video controls>
           <source src="{{vid.url}}">
           Lo siento; su navegador no soporta video HTML5
         </video>
+        <h5>{{vid.name}}</h5>
       </div>
     </div>
   </mat-expansion-panel>
@@ -55,6 +56,7 @@
           <source src="{{aud.url}}">
           Y Lo siento; su navegador no soporta audio HTML5
         </audio>
+        <h5>{{aud.name}}</h5>
       </div>
     </div>
   </mat-expansion-panel>

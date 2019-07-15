@@ -9,6 +9,7 @@ import { UserService } from 'src/app/services/users/user.service';
 })
 export class HeaderAdminComponent implements OnInit {
   user: any;
+  administrador = false;
   constructor(
     private userService: UserService,
     private authService: AuthService) { }
@@ -18,6 +19,9 @@ export class HeaderAdminComponent implements OnInit {
       this.user = data;
       if (this.user.url == null)
         this.user.url = '../../../../assets/img/perfil.jpg';
+      if (this.user.rolid == 1) {
+        this.administrador = true;
+      }
     }, error => {
       console.log(error);
 

@@ -100,8 +100,11 @@ export class TaxonService {
     return this.httpClient.post("/api/taxonrank", json, { headers: headers });
   }
   //taxonomicstatus
-  getTaxonomicStatus(): Observable<any> {
-    return this.httpClient.get('/api/taxonomicstatus');
+  getTaxonomicStatusTaxonomo(): Observable<any> {
+    return this.httpClient.get('/api/taxonomicstatus/taxonomo');
+  }
+  getTaxonomicStatusUsuario(): Observable<any> {
+    return this.httpClient.get('/api/taxonomicstatus/usuario');
   }
   postTaxonomicStatus(taxonomicstatus: TaxonomicStatus) {
     let json = JSON.stringify(taxonomicstatus);

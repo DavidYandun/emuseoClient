@@ -80,13 +80,14 @@ export class CreateUserComponent implements OnInit {
     } else {
       this.extension = this.File.name.substr(-5);
     }
+    this.userRecord.value.url = 'api/users/img/' + this.userRecord.value.userid + this.extension;
   }
 
   postFile() {
-    this.userRecord.value.url = 'api/users/img/' + this.userRecord.value.userid + this.extension;
     
-    if (this.userRecord.value.url != null) {
-      //registra el el user en la bdd
+    
+    //if (this.userRecord.value.url != null) {
+      //registra el user en la bdd
       this.userService.postUser(this.userRecord.value).subscribe(resultado => {
         this.openSnackBar('REGISTRO EXITOSO', '✅');
         this.user = this.userRecord.value
@@ -106,7 +107,7 @@ export class CreateUserComponent implements OnInit {
         }
         console.log(data)
       })
-    }
+   // }
   }
 
   openSnackBar(message: string, action: string) {

@@ -85,7 +85,7 @@ export class ListCollectionComponent implements OnInit {
       this.collection.paginator = this.paginator;
       this.collection.sort = this.sort;
       for (let d of data) {
-        this.multimediaService.getMultimediaId(d.identificationid).subscribe(dato => {
+        this.multimediaService.getPrincipal(d.identificationid).subscribe(dato => {
           this.multimedia.push(dato);
         }, error => {
           let media: any = {
@@ -104,7 +104,7 @@ export class ListCollectionComponent implements OnInit {
       this.collection.paginator = this.paginator;
       this.collection.sort = this.sort;
       for (let d of data) {
-        this.multimediaService.getMultimediaId(d.identificationid).subscribe(dato => {
+        this.multimediaService.getPrincipal(d.identificationid).subscribe(dato => {
           this.multimedia.push(dato);
         }, error => {
           let media: any = {
