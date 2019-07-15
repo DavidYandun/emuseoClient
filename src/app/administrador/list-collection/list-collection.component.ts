@@ -122,8 +122,7 @@ export class ListCollectionComponent implements OnInit {
       this.collectionPDF = new MatTableDataSource(data);
       this.collectionPDF.paginator = this.paginator;
       this.collectionPDF.sort = this.sort;
-    },
-      error => this.errorMsg = error)
+    })
   };
   applyFilter(filterValue: string) {
     this.collection.filter = filterValue.trim().toLowerCase();
