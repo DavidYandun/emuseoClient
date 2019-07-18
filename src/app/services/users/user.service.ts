@@ -51,13 +51,11 @@ export class UserService {
 }
 export interface otherUser {
   userid: string,
-  
   name: string,
   lastname: string,
   email: string,
   direction: string,
   phone: string,
-  
   state: boolean,
   created_at: Date
 }

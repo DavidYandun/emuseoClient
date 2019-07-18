@@ -93,7 +93,7 @@ export interface Occurrence {
   associatedreferences: string,
   occurrenceremarks: string
 }
-export interface LifeStage{ sex:string }
+export interface LifeStage{ lifestage:string }
 export interface ReproductiveCondition{ reproductivecondition:string }
 export interface Sex{ sex:string }
 export interface Establishmentmeans{ establishmentmeans:string }

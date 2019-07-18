@@ -7,8 +7,6 @@ import { IdentificationService } from 'src/app/services/dwc_identification_servi
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  
-  
   animalia: any;
   plantae: any;
   fungi: any;

@@ -8,6 +8,7 @@ import { IdentificationService } from 'src/app/services/dwc_identification_servi
 })
 export class ColeccionesUserComponent implements OnInit {
   loggedin = false;
+  nColecciones:any;
   animalia: any;
   plantae: any;
   fungi: any;
@@ -20,6 +21,9 @@ export class ColeccionesUserComponent implements OnInit {
     } else {
       this.loggedin = false;
     }
+    this.identificationService.getCollection().subscribe(data => {
+      this.nColecciones = data.length;
+    })
     this.identificationService.getReinos('Animalia').subscribe(data => {
       this.animalia = data;
     });

@@ -52,7 +52,6 @@ import { CollectionComponent } from './administrador/collection/collection.compo
 import { CreateUserComponent } from './administrador/users/create-user/create-user.component';
 import { ControlUserComponent } from './administrador/users/control-user/control-user.component';
 import { RolComponent } from './administrador/rol/rol.component';
-import { DialogEditUserComponent } from './administrador/users/dialog-edit-user/dialog-edit-user.component';
 import { UpdateUserComponent } from './administrador/users/update-user/update-user.component';
 
 //dwc_identification
@@ -210,7 +209,6 @@ import { MyPieChartComponent } from './my-pie-chart/my-pie-chart.component';
     DialogCreateEraComponent,
     DialogCreatePeriodComponent,
     DialogCreateEpochComponent,
-    DialogEditUserComponent,
     FichaTaxonComponent,
     FichaRecordlevelComponent,
     FichaOccurrenceComponent,
@@ -356,7 +354,7 @@ import { MyPieChartComponent } from './my-pie-chart/my-pie-chart.component';
     DialogCreateContinentComponent, DialogCreateWaterbodyComponent, DialogCreateIslandComponent, DialogCreateGeodeticdatumComponent,
     DialogCreateGeoreferenceverificationstatusComponent,
     DialogCreateEonComponent, DialogCreateEraComponent, DialogCreatePeriodComponent, DialogCreateEpochComponent,
-    DialogEditUserComponent,DialogCreateTaxonomicstatusComponent
+    DialogCreateTaxonomicstatusComponent
   ],
   providers: [CookieService, RolService, UserService, AuthService, VerificationService, IdentificationService,
     RecordLevelService, OccurrenceService, OrganismService, EventService, LocationService,

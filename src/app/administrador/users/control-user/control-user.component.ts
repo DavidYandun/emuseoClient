@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { UserService, User } from 'src/app/services/users/user.service';
 import { RolService } from 'src/app/services/users/rol.service';
 import { MatDialog, MatSnackBar } from '@angular/material';
-import { DialogEditUserComponent } from '../dialog-edit-user/dialog-edit-user.component';
+
 import { Router } from '@angular/router';
 
 @Component({
@@ -81,30 +81,6 @@ export class ControlUserComponent implements OnInit {
     this.user = null;
   }
 
-
-  //modal
-  openDialogEditUser(user): void {
-    const dialogRef = this.dialog.open(DialogEditUserComponent, {
-      width: '400px',
-      data: {
-        userid: user.userid,
-        //rolid: user.rolid,
-        name: user.name,
-        lastname: user.lastname,
-        email: user.email,
-        direction: user.direction,
-        phone: user.phone,
-        state: user.state,
-        created_at: user.created_at,
-        url: user.url
-      }
-    });
-    dialogRef.afterClosed().subscribe(result => {
-      this.editUser = result;
-      this.updateUser();
-      this.getUsers();
-    });
-  }
 
   updateUser() {
     this.userService.putUser(this.editUser.userid, this.editUser).subscribe(data => {
