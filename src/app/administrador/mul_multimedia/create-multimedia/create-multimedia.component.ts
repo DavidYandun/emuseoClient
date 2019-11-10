@@ -3,7 +3,7 @@ import { MultimediaService } from 'src/app/services/mul_multimedia_service/multi
 import { HttpEventType } from '@angular/common/http';
 import { TaxonService, Taxon } from 'src/app/services/dwc_taxon_services/taxon.service';
 import { FormBuilder } from '@angular/forms';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ContextMenuComponent } from 'ngx-contextmenu';
 
 @Component({
@@ -188,8 +188,8 @@ export class CreateMultimediaComponent implements OnInit {
     { name: 'John', otherProperty: 'Foo' },
     { name: 'Joe', otherProperty: 'Bar' }
   ];
-  @ViewChild(ContextMenuComponent) public basicMenu: ContextMenuComponent;
-  @ViewChild(ContextMenuComponent) public basicMenu2: ContextMenuComponent;
+  @ViewChild(ContextMenuComponent,{read:true,static:false}) public basicMenu: ContextMenuComponent;
+  @ViewChild(ContextMenuComponent,{read:true,static:false}) public basicMenu2: ContextMenuComponent;
 
 
   showMessage(message: any) {

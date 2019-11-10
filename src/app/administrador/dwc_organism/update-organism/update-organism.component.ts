@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { OrganismService } from 'src/app/services/dwc_organism_services/organism.service';
 import { FormBuilder, Validators, FormGroup, FormControl } from '@angular/forms';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({

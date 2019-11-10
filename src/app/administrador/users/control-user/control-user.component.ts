@@ -1,7 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { UserService, User } from 'src/app/services/users/user.service';
 import { RolService } from 'src/app/services/users/rol.service';
-import { MatDialog, MatSnackBar } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { Router } from '@angular/router';
 

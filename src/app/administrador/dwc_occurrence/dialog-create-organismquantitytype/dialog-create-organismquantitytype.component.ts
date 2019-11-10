@@ -1,5 +1,5 @@
 import { Component, Inject} from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Organismquantitytype } from 'src/app/services/dwc_occurrence_services/occurrence.service';
 
 @Component({

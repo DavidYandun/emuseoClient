@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { LocationService } from 'src/app/services/dwc_location_services/location.service';
-import { MatDialog, MatSnackBar } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { DialogCreateCountryComponent } from '../dialog-create-country/dialog-create-country.component';
 import { DialogCreateStateprovinceComponent } from '../dialog-create-stateprovince/dialog-create-stateprovince.component';
 import { DialogCreateCountyComponent } from '../dialog-create-county/dialog-create-county.component';

@@ -1,6 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { Period } from 'src/app/services/dwc_geologicalcontext_service/geologicalcontext.service';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-dialog-create-period',

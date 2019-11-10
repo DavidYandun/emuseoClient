@@ -2,7 +2,8 @@ import { Component, OnInit, Input } from '@angular/core';
 import { RecordLevelService } from 'src/app/services/dwc_record-level_services/record-level.service';
 import { BasisofrecordService } from 'src/app/services/dwc_record-level_services/basisofrecord.service';
 import { DialogCreateBasisofrecordComponent } from '../dialog-create-basisofrecord/dialog-create-basisofrecord.component';
-import { MatDialog, MatSnackBar } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { FormBuilder, Validators, FormGroup, FormControl } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 

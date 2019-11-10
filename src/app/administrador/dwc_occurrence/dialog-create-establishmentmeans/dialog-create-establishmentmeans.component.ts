@@ -1,6 +1,6 @@
 import { Component, Inject} from '@angular/core';
 import { Establishmentmeans } from 'src/app/services/dwc_occurrence_services/occurrence.service';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-dialog-create-establishmentmeans',

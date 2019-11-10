@@ -1,7 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { IdentificationService } from 'src/app/services/dwc_identification_services/identification.service';
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
 import { MultimediaService } from 'src/app/services/mul_multimedia_service/multimedia.service';
 
 declare const require: any;
@@ -29,8 +31,8 @@ interface prueba {
 
 export class ListCollectionComponent implements OnInit {
 
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-  @ViewChild(MatSort) sort: MatSort;
+  @ViewChild(MatPaginator,{read:true,static:false}) paginator: MatPaginator;
+  @ViewChild(MatSort,{read:true,static:false}) sort: MatSort;
 
   loggedin = false;
   collection: any;

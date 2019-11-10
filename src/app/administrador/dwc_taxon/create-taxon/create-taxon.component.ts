@@ -1,7 +1,8 @@
 import { Component, OnInit, Inject, Input, EventEmitter, Output } from '@angular/core';
 import { Validators, FormBuilder } from '@angular/forms';
 import { TaxonService } from 'src/app/services/dwc_taxon_services/taxon.service';
-import { MatDialog, MatSnackBar } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { DialogCreatePhylumComponent } from '../dialog-create-phylum/dialog-create-phylum.component';
 import { DialogCreateClassComponent } from '../dialog-create-class/dialog-create-class.component';
 import { DialogCreateOrderComponent } from '../dialog-create-order/dialog-create-order.component';

@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { EventService } from 'src/app/services/dwc_event_services/event.service';
 import { FormBuilder, Validators, FormGroup, FormControl } from '@angular/forms';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({

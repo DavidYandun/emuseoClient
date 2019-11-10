@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { GeologicalcontextService } from 'src/app/services/dwc_geologicalcontext_service/geologicalcontext.service';
-import { MatDialog, MatSnackBar } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { DialogCreateEonComponent } from '../dialog-create-eon/dialog-create-eon.component';
 import { DialogCreateEraComponent } from '../dialog-create-era/dialog-create-era.component';
 import { DialogCreatePeriodComponent } from '../dialog-create-period/dialog-create-period.component';

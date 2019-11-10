@@ -1,6 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { Eon } from 'src/app/services/dwc_geologicalcontext_service/geologicalcontext.service';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-dialog-create-eon',

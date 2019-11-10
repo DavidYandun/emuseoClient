@@ -3,7 +3,8 @@ import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms'
 import { UserService } from 'src/app/services/users/user.service';
 import { IdentificationService } from 'src/app/services/dwc_identification_services/identification.service';
 import { VerificationService } from 'src/app/services/dwc_identification_services/verification.service';
-import { MatDialog, MatSnackBar } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { DialogCreateVerificationstatusComponent } from '../dialog-create-verificationstatus/dialog-create-verificationstatus.component';
 import { Router, ActivatedRoute } from '@angular/router';
 

@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { OccurrenceService } from 'src/app/services/dwc_occurrence_services/occurrence.service';
-import { MatDialog, MatSnackBar } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { DialogCreateLifestageComponent } from '../dialog-create-lifestage/dialog-create-lifestage.component';
 import { DialogCreateReproductiveconditionComponent } from '../dialog-create-reproductivecondition/dialog-create-reproductivecondition.component';
 import { DialogCreateSexComponent } from '../dialog-create-sex/dialog-create-sex.component';

@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { UserService } from 'src/app/services/users/user.service';
 import { RolService } from 'src/app/services/users/rol.service';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { FormBuilder, Validators, FormGroup, FormControl } from '@angular/forms';
 import { HttpEventType } from '@angular/common/http';
 import { Router, ActivatedRoute } from '@angular/router';
