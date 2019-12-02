@@ -35,7 +35,7 @@
         <mat-label for="phone">Teléfono</mat-label>
         <input matInput type="tel" formControlName="phone" placeholder="Ingrese su Teléfono">
       </mat-form-field>
-      
+
       <mat-form-field class="col-lg-12" appearance="outline">
         <mat-label for="singleSelectRol">Rol</mat-label>
         <mat-select ng-model="rols" formControlName="rolid" name="singleSelectRol">
@@ -44,24 +44,31 @@
         </mat-select>
       </mat-form-field>
       <div class="col-2"></div>
-      <div class="col-lg-4">
+      <div class="col-lg-4 align-self-center">
         <input (change)="onFileSelected($event)" type="file" #fileInput id="archivo" hidden>
         <button type="button" mdbBtn class="boton2" (click)="fileInput.click()">
           <mat-icon>cloud_upload</mat-icon> Cargar Imagen
         </button>
-        
+
       </div>
       <div class="col-6">
-        <img class="preview rounded-circle" id="blah" [src]="imageSrc || 'http://placehold.it/150'" alt="your image" />
+        <img class="preview rounded-circle" id="blah" src="{{imageSrc}}" alt="your image" />
       </div>
       <div class="form-group col-lg-12">
-        <button class="col-4" type="button" mdbBtn color="secondary" mdbWavesEffect routerLink="/control-user"
-          style="margin-right:5px">Cancelar</button>
-        <button class="col-7 boton" [disabled]="!userRecord.valid" type="submit" mdbBtn mdbWavesEffect>Actualizar
-          Usuario</button>
+        <button class="col-5 boton" [disabled]="!userRecord.valid" type="submit" mdbBtn
+          mdbWavesEffect>Actualizar Cambios</button>
+        <button class="col-5" type="button" mdbBtn color="secondary" mdbWavesEffect routerLink="/control-user"
+          style="margin-right:5px">Cancelar Cambios</button>
       </div>
     </div>
   </form>
+  <div class="col-lg-12">
+    <h4>Eliminar Usuario</h4>
+    <p>Eliminar permanentemente la cuenta del sistema eMUSEO-UTN y todos los datos. Esta acción no puede
+      deshacerse.</p>
+    <button class="col-4" type="button" mdbBtn color="danger" mdbWavesEffect (click)="deleteUser()"
+      style="margin-right:5px" routerLink="/control-user">Eliminar Cuenta</button>
+  </div>
 </div>
 
 <app-footer></app-footer>

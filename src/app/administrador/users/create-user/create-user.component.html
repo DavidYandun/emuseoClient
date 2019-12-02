@@ -37,15 +37,13 @@
         <mat-label for="phone">Teléfono</mat-label>
         <input matInput type="tel" formControlName="phone" placeholder="Ingrese su Teléfono">
       </mat-form-field>
+
       <mat-form-field class="col-lg-12" appearance="outline">
         <mat-label for="password">Contraseña</mat-label>
-        <input matInput type="password" ng-model="password" formControlName="password" placeholder="Ingrese su password mínimo 6 caracteres"
-          require minlength="6">
+        <input matInput type="password" ng-model="password" formControlName="password"
+          placeholder="Ingrese su password mínimo 6 caracteres" require minlength="6">
       </mat-form-field>
-      <mat-form-field class="col-lg-12" appearance="outline">
-        <mat-label for="password">Repetir Contraseña</mat-label>
-        <input matInput type="password" ng-model="repit_password" placeholder="Ingrese su password mínimo 6 caracteres" require minlength="6">
-      </mat-form-field>
+
       <mat-form-field class="col-lg-12" appearance="outline">
         <mat-label for="singleSelectRol">Rol</mat-label>
         <mat-select ng-model="rols" formControlName="rolid" name="singleSelectRol">
@@ -59,7 +57,7 @@
         <button type="button" mdbBtn class="boton2" (click)="fileInput.click()">
           <mat-icon>cloud_upload</mat-icon> Cargar Imagen
         </button>
-        
+
       </div>
       <div class="col-6">
         <img class="preview rounded-circle" id="blah" [src]="imageSrc || 'http://placehold.it/150'" alt="your image" />

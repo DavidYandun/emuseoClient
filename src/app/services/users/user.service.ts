@@ -37,6 +37,10 @@ export class UserService {
     let headers = new HttpHeaders().set('Content-Type', 'application/json');
     return this.httpClient.put('api/users/' + userid, json, { headers: headers });
   }
+  delete(userid) {
+    let headers = new HttpHeaders().set('Content-Type', 'application/json');
+    return this.httpClient.delete("/api/users/"+userid, { headers: headers });
+  }
 
   postFile(file: File, name: any): Observable<any> {
 

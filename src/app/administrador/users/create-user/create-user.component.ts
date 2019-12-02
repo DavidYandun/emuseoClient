@@ -44,7 +44,6 @@ export class CreateUserComponent implements OnInit {
       this.router.navigate(['/admin']);
     }
     this.getRols();
-    
   }
 
   getRols() {
@@ -83,9 +82,7 @@ export class CreateUserComponent implements OnInit {
     this.userRecord.value.url = 'api/users/img/' + this.userRecord.value.userid + this.extension;
   }
 
-  postFile() {
-    
-    
+  postFile() {  
     //if (this.userRecord.value.url != null) {
       //registra el user en la bdd
       this.userService.postUser(this.userRecord.value).subscribe(resultado => {

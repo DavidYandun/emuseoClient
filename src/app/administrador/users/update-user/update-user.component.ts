@@ -62,6 +62,7 @@ export class UpdateUserComponent implements OnInit {
           url: new FormControl(data.url),
           created_at: new FormControl(data.created_at),
         })
+        this.imageSrc = data.url;
       }
     })
     this.getRols();
@@ -107,7 +108,7 @@ export class UpdateUserComponent implements OnInit {
     this.userRecord.value.url = 'api/users/img/' + this.userRecord.value.userid + this.extension;
     if (this.userRecord.value.url != null) {
       //registra el el user en la bdd
-      this.userService.putUser(this.userRecord.value.userid,this.userRecord.value).subscribe(resultado => {
+      this.userService.putUser(this.userRecord.value.userid, this.userRecord.value).subscribe(resultado => {
         this.openSnackBar('ACTUALIZACIÓN EXITOSO', '✅');
 
         this.user = this.userRecord.value
@@ -129,7 +130,13 @@ export class UpdateUserComponent implements OnInit {
       })
     }
   }
-
+  deleteUser(){
+    this.userService.delete(this.route.snapshot.params['userid']).subscribe(data=>{
+      this.openSnackBar('Usuario eliminado', '✅');
+    }),error=>{
+      this.openSnackBar(error.error.message,'🛑');
+    }
+  }
   openSnackBar(message: string, action: string) {
     this.snackBar.open(message, action, {
       duration: 2000,

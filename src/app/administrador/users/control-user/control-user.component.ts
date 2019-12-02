@@ -90,6 +90,7 @@ export class ControlUserComponent implements OnInit {
       this.openSnackBar(error.error.message, '🛑');
     });
   }
+ 
   openSnackBar(message: string, action: string) {
     this.snackBar.open(message, action, {
       duration: 2000,
